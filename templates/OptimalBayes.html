@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='AlgorithmsInterfacePage.css') }}">
+
+</head>
+<body>
+    <h1>Algoritmul Bayes Optimal</h1><br>
+
+    <p>
+       Bayes Optimal este teoria ideală în învățarea automată, care presupune că toate datele sunt corecte și complete, iar modelul face cele mai bune predicții posibile, în baza probabilităților posterior.
+        Algoritmul presupune că avem toate informațiile despre distribuția datelor și că putem calcula exact cele mai probabile rezultate.<br>
+        <br>
+        Pasii cheie:<br>
+
+        1.Calculul probabilităților: Bayes Optimal utilizează toate informațiile despre date pentru a calcula probabilitățile precise ale fiecărei clase.
+        <br>
+        2.Maximizarea probabilității: Clasificatorul alege clasa care are probabilitatea cea mai mare.
+        <br>
+        3.Precizia optimă: Algoritmul caută soluția cea mai precisă bazată pe probabilitățile reale, fără nicio eroare de aproximare.
+         <br>
+    </p>
+
+    <p>
+        ✝️Versete biblice care reflecta principiile K-NN:<br>
+        1. Psalmii 33:4<br>
+        „Căci cuvântul Domnului este drept și toată lucrarea Lui este făcută cu credincioșie.”<br>
+        ✅ Legătura:<br>
+        Bayes Optimal utilizează probabilitățile exacte pentru a face predicții corecte. Asemenea cuvântului Domnului, care este „drept” și credincios, Bayes Optimal se bazează pe „cuvinte” (probabilități) precise pentru a asigura acuratețea rezultatelor.
+        <br><br>
+
+        2. Proverbe 8:6-7<br>
+        „Ascultați, căci vorbesc lucruri alese și deschid buzele la lucruri drepte. Gura mea rostește adevărul, și limba mea urăște răutatea.”<br>
+        Legătura: <br>
+        Bayes Optimal folosește doar probabilități corecte, respingând orice erori și „rostește adevărul” în calcule.
+        <br><br>
+
+        3. Luca 8:17<br>
+        „Căci nu este nimic ascuns care nu va fi descoperit și nimic tăinuit care nu va fi cunoscut și va ieși la lumină.”<br>
+        Legătura: <br>
+        Algoritmul „descoperă” toate relațiile între date, oferind predicții transparente și exacte.
+        <br>
+    </p>
+
+    <p>
+        Termeni utilizati:
+        1.<b>Clasificator Bayes optimal</b>- clasificator teoretic care alege ipoteza cu cea mai mare probabilitate a posteriori.<br>
+        2.<b>Teorema lui Bayes</b>- Fundamentul matematic al algoritmului; actualizează probabilitățile pe baza informațiilor noi.<br>
+        3.<b>Probabilitate a priori (P(C))</b>- Probabilitatea ca o clasă să apară înainte de a vedea datele (ex: cât de frecvent apare o etichetă în setul de antrenare).<br>
+        4.<b>Probabilitate a posteriori (P(C|X))</b>- Probabilitatea ca un exemplu să aparțină unei clase date, după ce s-au observat valorile caracteristicilor.<br>
+        5.<b>Verosimilitate (P(X|C))</b>- Probabilitatea de a observa un set de caracteristici, presupunând că se află într-o anumită clasă.<br>
+        <br>
+    </p>
+
+    <a href="{{url_for('OptimalBayesExample')}}">exemplu practic</a>
+    <a href="{{ url_for('home') }}" class="btn-back">🏠 Go Back Home</a>
+
+</body>
+</html>

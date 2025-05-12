@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    color: #333;
+    line-height: 1.6;
+    animation: fadeIn 1.2s ease-in;
+}
+
+h1 {
+    color: #1e3a8a;
+    text-align: center;
+    font-size: 2.8em;
+    margin-bottom: 20px;
+    animation: popIn 1s ease-out;
+}
+
+p {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.8s ease-in-out;
+    transition: transform 0.3s;
+}
+
+p:hover {
+    transform: scale(1.02);
+}
+
+b {
+    color: #1f2937;
+    background: #e0f2fe;
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+
+a {
+    display: inline-block;
+    color: #0d9488;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 20px;
+    background: #ccfbf1;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+a:hover {
+    background: #99f6e4;
+    color: #065f46;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+p > br + br {
+    display: block;
+    margin-top: 16px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.6);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

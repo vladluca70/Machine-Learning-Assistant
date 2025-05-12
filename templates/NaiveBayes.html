@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='AlgorithmsInterfacePage.css') }}">
+
+</head>
+<body>
+    <h1>Algoritmul Bayes Naiv</h1><br><br>
+
+    <p>
+        Algoritmul Naive Bayes este un clasificator probabilistic care se bazează pe teorema lui Bayes. Ideea principală este că pentru fiecare caracteristică (sau atribut) a datelor, probabilitatea ca o anumită clasă să fie corectă este calculată independent de celelalte caracteristici. Deși această presupunere ("naivitatea") este adesea nerealistă în practică, algoritmul poate oferi rezultate foarte bune în multe situații.
+        <br>
+        Pasii cheie:
+        <br>
+        Teorema lui Bayes: Calculează probabilitatea unei clase dată un set de caracteristici.
+        <br>
+        Independența caracteristicilor: Presupune că toate caracteristicile sunt independente unele față de altele.
+        <br>
+        Clasificarea: Atribuie o clasă unui exemplu pe baza probabilității celei mai mari.
+        <br><br>
+    </p>
+
+    <p>
+         ✝️Versete biblice care reflecta principiile Bayes Naiv:<br>
+        1. Matei 7:7<br>
+        „Cereți și vi se va da; căutați și veți găsi; bateți și vi se va deschide.”<br>
+        ✅ Legătura:<br>
+        Naive Bayes „cere” probabilitățile pentru fiecare caracteristică, „caută” cea mai mare probabilitate pentru fiecare clasă și „bate” pentru a găsi cea mai bună decizie pe baza datelor.
+        <br><br>
+
+        2. Proverbe 3:5-6<br>
+        „Încredințează-ți soarta în mâna Domnului și nu te sprijini pe înțelepciunea ta. Recunoaște-L în toate căile tale și El îți va netezi cărările.”<br>
+        ✅ Legătura:<br>
+        Naive Bayes face „încredere” în datele sale, bazându-se pe probabilități pentru a lua decizii informate, fără a depinde prea mult de complexitatea altor caracteristici (independență).
+        <br><br>
+
+        3. Luca 12:27<br>
+        „Priviți la crinii care cresc în câmp: nu lucrează, nici nu țes; totuși vă spun că nici Solomon în toată mărirea lui n-a fost îmbrăcat ca unul din aceștia.”<br>
+        ✅ Legătura:<br>
+        În Naive Bayes, fiecare caracteristică este tratată independent, fără a ține cont de relațiile complexe dintre ele. Așa cum florile cresc fără „muncă”, caracteristicile sunt procesate fără interdependențe complicate.
+        <br><br>
+    </p>
+
+    <p>
+        Termeni utilizati:<br>
+        1.<b>Teorema lui Bayes</b>- Fundamentul matematic al algoritmului; actualizează probabilitățile pe baza informațiilor noi.<br>
+        2.<b>Probabilitate a priori (P(C))</b>- Probabilitatea ca o clasă să apară înainte de a vedea datele (ex: cât de frecvent apare o etichetă în setul de antrenare).<br>
+        3.<b>Probabilitate a posteriori (P(C|X))</b>- Probabilitatea ca un exemplu să aparțină unei clase date, după ce s-au observat valorile caracteristicilor.<br>
+        4.<b>Verosimilitate (P(X|C))</b>- Probabilitatea de a observa un set de caracteristici, presupunând că se află într-o anumită clasă.<br>
+        5.<b>Independență condiționată</b>- Presupunerea că toate caracteristicile sunt independente între ele, dată fiind clasa, de aici termenul „naiv”.<br>
+        6.<b>Laplace smoothing</b>- Tehnică folosită pentru a evita probabilități zero, prin adăugarea unei valori mici la numărător și numitor.<br>
+        <br>
+
+    </p>
+    <a href="{{url_for('NaiveBayesExample')}}">exemplu practic</a>
+    <a href="{{ url_for('home') }}" class="btn-back">🏠 Go Back Home</a>
+
+</body>
+</html>

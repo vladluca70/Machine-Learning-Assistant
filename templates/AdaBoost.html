@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='AlgorithmsInterfacePage.css') }}">
+
+</head>
+<body>
+    <h1>Algoritmul AdaBoost</h1><br>
+
+    <p>
+        AdaBoost (Adaptive Boosting) este un algoritm de învățare automată utilizat pentru clasificare, care funcționează prin combinarea mai multor modele slabe (de obicei arbori de decizie simpli sau "stumps") într-un model puternic.
+        <br>
+        Principiul de bază al AdaBoost este următorul:<br>
+
+        Antrenarea unui model slab: Începe cu un model simplu (de obicei, un „stump”) care face predicții simple.<br>
+
+        Corectarea erorilor: După fiecare iterație, AdaBoost ajustează greutatea exemplelor greșite, adică pune un accent mai mare pe acele exemple care au fost corect clasificate greșit.
+        <br>
+        Combinația modelelor: Modelul final este combinarea unui număr de clasificatori slabi, fiecare ponderat în funcție de performanța sa. Modelele care fac mai multe greșeli primesc o pondere mai mică.
+        <br>
+        AdaBoost repetă acest proces până când ajunge la un număr specificat de clasificatori sau până când eroarea este suficient de mică. Ideea este că fiecare clasificator adaugă ceva valoros și corectează greșelile anterioare, iar modelul final este mult mai robust și precis.
+           <br><br>
+    </p>
+
+    <p>
+        ✝️Versete biblice care reflecta principiile AdaBoost:<br>
+
+        1. Proverbe 24:16<br>
+            „Căci cel neprihănit cade de șapte ori și se ridică, dar cei răi se prăbușesc în nenorocire.”<br>
+            ✅ Legătura:<br>
+            AdaBoost învață din greșelile anterioare, concentrându-se pe exemplele care au fost clasificate greșit. Modelul nu renunță după fiecare „cădere”, ci se ridică și devine mai puternic.
+            <br><br>
+
+        2. Eclesiastul 4:9<br>
+            „Mai bine doi decât unul, căci au o răsplată bună pentru munca lor.”<br>
+            ✅ Legătura:<br>
+            AdaBoost folosește mai mulți clasificatori simpli (slabi) pentru a obține o performanță mai bună decât oricare dintre aceștia individual. Colaborarea lor duce la rezultate mai bune.
+            <br><br>
+
+        3. Galateni 6:2<br>
+            „Purtați-vă sarcinile unii altora, și astfel veți împlini legea lui Hristos.”<br>
+            ✅ Legătura:<br>
+            În AdaBoost, fiecare model învață din greșelile anterioare și „poartă” greșelile celorlalți, îmbunătățind astfel performanța generală a modelului.
+            <br><br>
+
+        4. Proverbe 27:17<br>
+            „După cum fierul ascute fierul, tot așa și omul își ascute fața prin om.”<br>
+            ✅ Legătura:<br>
+            AdaBoost funcționează pe principiul îmbunătățirii continue. Fiecare model „ascute” performanța celuilalt, lucrând împreună pentru a crea un model mai puternic.
+            <br><br>
+
+        5. Isaia 40:29<br>
+            „El dă tărie celui obosit și mărește puterea celui ce cade în leșin.”<br>
+            ✅ Legătura:<br>
+            AdaBoost adaugă noi clasificatori care „revigorează” un sistem slab, concentrându-se pe exemplele care au fost greu de clasificat, astfel îmbunătățind puterea modelului.
+            <br><br>
+    </p>
+
+    <p>
+        Termeni utilizati:<br>
+        1.<b>Clasificator slab</b>- Un model simplu (de obicei un arbore de decizie mic) folosit ca bază în AdaBoost.<br>
+        2.<b>Clasificator puternic</b>- Un model obținut prin combinarea mai multor clasificatori slabi pentru a face predicții mai precise.<br>
+        3.<b>Greutati</b>- Fiecare exemplu din setul de date primește o greutate care se ajustează pe parcursul antrenării, fiind mai mari pentru exemplele greșit clasificate.<br>
+        4.<b>Coeficientul de incredere(&alpha;)</b>- Un factor care controlează influența fiecărui clasificator slab asupra predicției finale. Este calculat pe baza erorii fiecărui clasificator.<br>
+        <br>
+    </p>
+
+    <a href="{{url_for('AdaBoostExample')}}">exemplu practic</a>
+    <a href="{{ url_for('home') }}" class="btn-back">🏠 Go Back Home</a>
+</body>
+</html>

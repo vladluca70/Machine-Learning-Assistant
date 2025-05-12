@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Introducere coordonate și etichete</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='AlgorithmExampleInterface.css') }}">
+</head>
+<body>
+    <h1>Introduceți numărul de puncte (n)</h1>
+    <form method="POST">
+        <label for="n">n: </label>
+        <input type="number" name="n" id="n" required><br><br>
+        <button type="submit">Generează formular</button>
+    </form>
+
+    {% if n%}
+        <h2>Introduceți {{ n }} puncte (x, y) și eticheta (1 sau -1)</h2>
+        <form method="POST">
+            <input type="hidden" name="n" value="{{ n }}">
+
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>i</th>
+                        <th>x</th>
+                        <th>y</th>
+                        <th>Label</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in range(n) %}
+                        <tr>
+                            <td>{{ i + 1 }}</td>
+                            <td><input type="number" name="elements[]" required></td> <!-- x -->
+                            <td><input type="number" name="elements[]" required></td> <!-- y -->
+                            <td>
+                                <input type="number" name="elements[]" required min="-1" max="1" step="2">
+                            </td> <!-- label: 1 sau -1 -->
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br>
+            <button type="submit">Trimite datele</button>
+        </form>
+    {% endif %}
+
+    {% if elements %}
+        <h2 style="margin-top: 2cm;">Punctele introduse</h2>
+        <table border="1" cellpadding="10" cellspacing="0" style="margin: auto; border-collapse: collapse; font-family: Arial, sans-serif; font-size: 16px;">
+            <thead style="background-color: #f2f2f2;">
+                <tr>
+                    <th style="padding: 8px 12px;">Id</th>
+                    <th style="padding: 8px 12px;">x</th>
+                    <th style="padding: 8px 12px;">y</th>
+                    <th style="padding: 8px 12px;">Etichetă</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(n) %}
+                    <tr style="text-align: center;">
+                        <td>x<sub>{{ i + 1 }}</sub></td>
+                        <td>{{ elements[i][0] }}</td>
+                        <td>{{ elements[i][1] }}</td>
+                        <td>{{ elements[i][2] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    {%if etichete%}
+            <img src="data:image/png;base64,{{ imagine1 }}" alt="Grafic puncte">
+    {%endif%}
+
+    {%if etichete%}
+        <br>In cele ce urmeaza vom aplica algoritmul AdaBoost pe setul de date de mai sus, ruland 3 iteratii.
+        <br>Primul pas este cel de stabilire a pragurilor de separare pentru valorile celor doua variabile continue
+        de pe axele de coordonate X si Y(adica trebuie sa vedem pe grafic intre ce puncte apropiate se schimba eticheta de la 1 la -1 sau de la -1 la 1).<br>
+    {%endif%}
+
+{% if etichete %}
+    {% if praguriX %}
+        Pentru a gasi pragurile pe axa X in Adaboost, observam unde o linie verticala ar separa puncte apropiate cu etichete diferite.<br>
+         Apoi, pentru a determina
+    pragul, adunam coordonatele corespunzatoare axei x si le injumatatim. De exemplu, daca am avem punctele A(1,2) cu
+    eticheta 1 si B(4,5) cu eticheta -1, pragul de separare este (1+4)/2=5/2=2.5.
+    <p>Pe axa X, pragurile sunt următoarele:</p>
+        <table border="1" cellspacing="0" cellpadding="5">
+            <tr>
+                <th>Nr. prag</th>
+                <th>Prag</th>
+            </tr>
+            {% for i in range(praguriX|length) %}
+                <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ praguriX[i] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+    Pentru ca algoritmul AdaBoost sa functioneze corect, trebuie adaugat si un prag exterior(este chiar primul prag din tabelul de mai
+    sus). In cazul nostru, s-a adaugat pragul exterior {{prag_exterior_x}} corespunzator axei X.<br><br>
+    {% endif %}
+
+    {% if praguriY %}
+    Pentru a gasi pragurile pe axa Y in Adaboost, observam unde o linie orizontala ar separa puncte apropiate cu etichete diferite.
+    Apoi, pentru a determina
+    pragul, adunam coordonatele corespunzatoare axei y si le injumatatim. De exemplu, daca am avem punctele A(3,1) cu
+    eticheta 1 si B(0,2) cu eticheta -1, pragul de separare este (1+2)/2=3/2=1.5.<br>
+        <p>Pe axa Y, pragurile sunt următoarele:</p>
+        <table border="1" cellspacing="0" cellpadding="5">
+            <tr>
+                <th>Nr. prag</th>
+                <th>Prag</th>
+            </tr>
+            {% for i in range(praguriY|length) %}
+                <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ praguriY[i] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+        La fel ca in cazul axei X, trebuie adaugat un prag exterior si pentru axa Y(este chiar primul prag din tabelul de mai
+    sus). In cazul nostru, s-a adaugat pragul exterior {{prag_exterior_y}} corespunzator axei Y. Fara adaugarea acestui prag exterior,
+    algoritmul ar oferi rezultate eronate.
+    {% endif %}
+{% endif %}
+
+        {%if etichete%}
+            <br><br>Desenul de mai jos prezinta pragurile de separare(cele cu verde corespunzatoare axei X, iar cele cu rosu corespunzatoare axei Y)<br>
+            <img src="data:image/png;base64,{{ imagine_cu_praguri }}" alt="Praguri">
+            <br><br>
+    {%endif%}
+
+{%if praguriY%}
+    <br><br><b><i>Prima iteratie</i></b><br>
+    Prima data trebuie dat fiecarui punct cate o pondere. Aceste ponderi
+    controleaza importanta fiecarui exemplu de antrenament. Initial sunt egale
+    pentru toate exemplele, dar dupa fiecare iteratie:
+    <br>&bull;Exemplele greșite primesc ponderi mai mari → algoritmul le acordă mai multă atenție.
+    <br>&bull;Exemplele corecte primesc ponderi mai mici → sunt considerate „rezolvate”.
+    <br> Initial toate ponderile sunt egale, deci fiecare punct va avea ponderea 1/{{nr_puncte}}(deoarece avem {{nr_puncte}} puncte).
+    <br>
+    {%endif%}
+
+
+{%if ponderi_it1%}
+    <br>Dupa stabilirea ponderilor, urmatorul pas este calcularea erorilor ponderate la
+    antrenare. Pentru asta, luam fiecare prag separat si vedem care puncte
+    sunt clasificate gresit. De exemplu, cand avem <i>X<sub>i</sub></i>&lt;Prag,
+    cautam care puncte aflate in stanga separatorului sunt negative si care in
+    dreapta clasificatorului sunt pozitive, acestea fiind punctele clasificate gresit(urmand
+    sa adunam <b>ponderile</b> lor ca sa determinam eroarea ponderata la antrenare). La fel si
+    in cazul <i>X<sub>i</sub></i>&ge;Prag, determinam care puncte aflate in stanga separatorului
+    pozitive si care in dreapta sunt negative. Mai jos este un tabel cu erorile ponderate.(axele X si Y exhivalente
+    la notatie cu X<sub>1</sub> si X<sub>2</sub>)<br>
+    <table border="1">
+    <tr>
+        <td><strong>Prag</strong></td>
+        {% for prag in praguriX %}
+            <td>{{ prag }}</td>
+        {% endfor %}
+    </tr>
+    <tr>
+        <td><strong><i>err<sub>D1</sub>(X<sub>1</sub>&lt;Prag)</i></strong></td>
+        {% for eroare in it1_axa_x_erori1 %}
+            <td>{{ eroare }}</td>
+        {% endfor %}
+    </tr>
+    <tr>
+        <td><strong><i>err<sub>D1</sub>(X<sub>1</sub>&ge;Prag)</i></strong></td>
+        {% for eroare in it1_axa_x_erori2 %}
+            <td>{{ eroare }}</td>
+        {% endfor %}
+    </tr>
+</table>
+    <br><br>
+{%endif%}
+
+
+{%if ponderi_it1%}
+    Mai sus au fost calculate erorile ponderate pentru axa X. La fel ca si mai sus, trebuie calculate erorile ponderate si pentru axa Y,
+    care sunt prezentare in tabelul de mai jos:<br><br>
+    <table border="1">
+    <tr>
+        <td><strong>Prag</strong></td>
+        {% for prag in praguriY %}
+            <td>{{ prag }}</td>
+        {% endfor %}
+    </tr>
+    <tr>
+        <td><strong><i>err<sub>D1</sub>(X<sub>2</sub>&lt;Prag)</i></strong></td>
+        {% for eroare in it1_axa_y_erori1 %}
+            <td>{{ eroare }}</td>
+        {% endfor %}
+    </tr>
+    <tr>
+        <td><strong><i>err<sub>D1</sub>(X<sub>2</sub>&ge;Prag)</i></strong></td>
+        {% for eroare in it1_axa_y_erori2 %}
+            <td>{{ eroare }}</td>
+        {% endfor %}
+    </tr>
+</table>
+{%endif%}
+
+{%if ponderi_it1%}
+    <br><br> Urmatorul pas este determinarea erorii minime din cele doua tabele. In caz ca eroarea cea mai mica apare in
+    ambele tabele, se alege oricare dintre ele. In cele doua tabele eroarea cea mai mica este &epsilon;<sub>1</sub>={{it1_eroare_minima_tabel}}
+    obtinuta pentru compasul de decizie {{prag_pentru_eroare_minima_it1_mesaj}}.
+    <br>
+    &gamma;<sub>1</sub>=1/2-&epsilon;<sub>1</sub>=1/2-{{it1_eroare_minima_tabel}}={{gamma1}}<br>
+    &alpha;<sub>1</sub>=1/2*ln((1-&epsilon;<sub>1</sub>)/&epsilon;<sub>1</sub>)=1/2*ln((1-{{it1_eroare_minima_tabel}})/{{it1_eroare_minima_tabel}})={{alpha1}}
+    <br>
+
+    {%if valoare_X_it1_prag==1%}
+        Alegem drept cea mai buna ipoteza la aceasta iteratie pe <i>h<sub>1</sub>=sign</i>({{prag_pentru_eroare_minima_it1_valoare}}-X<sub>1</sub>),
+    separatorul corespunzator fiind dreapta de ecuatie X<sub>1</sub>={{prag_pentru_eroare_minima_it1_valoare}}
+    {%elif valoare_X_it1_prag==2%}
+            Alegem drept cea mai buna ipoteza la aceasta iteratie pe <i>h<sub>1</sub>=sign</i>(X<sub>1</sub>-{{prag_pentru_eroare_minima_it1_valoare}}),
+        separatorul corespunzator fiind dreapta de ecuatie X<sub>1</sub>={{prag_pentru_eroare_minima_it1_valoare}}
+    {%elif valoare_X_it1_prag==3%}
+            Alegem drept cea mai buna ipoteza la aceasta iteratie pe <i>h<sub>1</sub>=sign</i>({{prag_pentru_eroare_minima_it1_valoare}}-X<sub>2</sub>),
+        separatorul corespunzator fiind dreapta de ecuatie X<sub>2</sub>={{prag_pentru_eroare_minima_it1_valoare}}
+    {%elif valoare_X_it1_prag==4%}
+            Alegem drept cea mai buna ipoteza la aceasta iteratie pe <i>h<sub>1</sub>=sign</i>(X<sub>2</sub>-{{prag_pentru_eroare_minima_it1_valoare}}),
+        separatorul corespunzator fiind dreapta de ecuatie X<sub>2</sub>={{prag_pentru_eroare_minima_it1_valoare}}
+    {%endif%}
+{%endif%}
+
+{%if valoare_X_it1_prag%}
+    <br><br>Acum algoritmul trebuie sa pregateasca o noua distributie de ponderi pentru iteratia urmatoare.
+    Pentru a determina noile ponderi, mai intai cautam punctele clasificate gresit de ipoteza <i>h<sub>1</sub></i>.
+    <br> Punctele clasificate corect sunt : <br>
+    {%for i in it1_puncte_clasificate_corect%}
+        {{i}} <br>
+    {%endfor%}
+        <br> Punctele clasificate gresit sunt : <br>
+    {%for i in it1_puncte_clasificate_gresit%}
+        {{i}} <br>
+    {%endfor%}
+    <br> Pentru a determina noua valoare a ponderilor, se iau toate ponderile punctelor clasificare corect, se aduna,
+    rezultatul este inmultit cu o necunoscuta x si se egaleaza cu 1/2. Dupa ce se determina x, toate ponderile punctelor
+    clasificate corect se inmultesc cu variabila x, astfel obtinandu-se noile ponderi. Tot la fel se procedeaza si in
+    cazul punctelor clasificate gresit.<br><br>
+
+<p>Noile ponderi</p>
+<table border="1">
+    <tr>
+        {% for i in range(1, ponderi_it2|length + 1) %}
+            <th>x{{ i }}</th>
+        {% endfor %}
+    </tr>
+    <tr>
+        {% for val in ponderi_it2 %}
+            <td>{{ val }}</td>
+        {% endfor %}
+    </tr>
+</table>
+
+{%endif%}
+
+{%if valoare_X_it1_prag%}
+    <br><br>Acum putem trece la <b>iteratia a doua</b> a algoritmului.
+    Vom proceda similar cu iteratia precedenta, doar ca de data aceasta vom lucra cu o noua distributie de probabilitati
+    ponderate.(acesta fiind doar singurul lucru care se schimba de la o iteratie la alta).
+    <br>Pragurile raman neschimbate(vor mai fi afisate inca odata mai jos):<br><br>
+
+        <p>Pe axa X, pragurile sunt următoarele:</p>
+        <table border="1" cellspacing="0" cellpadding="5">
+            <tr>
+                <th>Nr. prag</th>
+                <th>Prag</th>
+            </tr>
+            {% for i in range(praguriX|length) %}
+                <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ praguriX[i] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+
+            <p>Pe axa Y, pragurile sunt următoarele:</p>
+        <table border="1" cellspacing="0" cellpadding="5">
+            <tr>
+                <th>Nr. prag</th>
+                <th>Prag</th>
+            </tr>
+            {% for i in range(praguriY|length) %}
+                <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ praguriY[i] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <br>
+        Urmatorul pas este calcularea erorilor ponderate la antrenare. Se calculeaza ca si la iteratia precedenta,
+    doar ca se lucreaza cu o distributie de probabilitati diferita de data aceasta. Mai jos este un tabel cu erorile
+    ponderate corespunzatoare atat axei X cat si axei Y(sau axele X<sub>1</sub> si X<sub>2</sub>).<br><br>
+
+     <table border="1">
+    <tr>
+        <td><strong>Prag</strong></td>
+        {% for prag in praguriX %}
+            <td>{{ prag }}</td>
+        {% endfor %}
+    </tr>
+    <tr>
+        <td><strong><i>err<sub>D2</sub>(X<sub>1</sub>&lt;Prag)</i></strong></td>
+        {% for eroare in it2_axa_x_erori1 %}
+            <td>{{ eroare }}</td>
+        {% endfor %}
+    </tr>
+    <tr>
+        <td><strong><i>err<sub>D2</sub>(X<sub>1</sub>&ge;Prag)</i></strong></td>
+        {% for eroare in it2_axa_x_erori2 %}
+            <td>{{ eroare }}</td>
+        {% endfor %}
+    </tr>
+</table>
+    <br><br>
+
+     <table border="1">
+    <tr>
+        <td><strong>Prag</strong></td>
+        {% for prag in praguriY %}
+            <td>{{ prag }}</td>
+        {% endfor %}
+    </tr>
+    <tr>
+        <td><strong><i>err<sub>D2</sub>(X<sub>2</sub>&lt;Prag)</i></strong></td>
+        {% for eroare in it2_axa_y_erori1 %}
+            <td>{{ eroare }}</td>
+        {% endfor %}
+    </tr>
+    <tr>
+        <td><strong><i>err<sub>D2</sub>(X<sub>2</sub>&ge;Prag)</i></strong></td>
+        {% for eroare in it2_axa_y_erori2 %}
+            <td>{{ eroare }}</td>
+        {% endfor %}
+    </tr>
+</table>
+
+    <br>Din tabelul de mai sus, eroarea minima este &epsilon;<sub>2</sub>={{it2_eroare_minima_tabel}}
+        obtinuta pentru compasul de decizie {{prag_pentru_eroare_minima_it2_mesaj}}.
+    <br>
+    &gamma;<sub>2</sub>=1/2-&epsilon;<sub>2</sub>=1/2-{{it2_eroare_minima_tabel}}={{gamma2}}<br>
+    &alpha;<sub>2</sub>=1/2*ln((1-&epsilon;<sub>2</sub>)/&epsilon;<sub>2</sub>)=1/2*ln((1-{{it2_eroare_minima_tabel}})/{{it2_eroare_minima_tabel}})={{alpha2}}
+    <br>
+
+        {%if valoare_X_it2_prag==1%}
+        Alegem drept cea mai buna ipoteza la aceasta iteratie pe <i>h<sub>2</sub>=sign</i>({{prag_pentru_eroare_minima_it2_valoare}}-X<sub>1</sub>),
+    separatorul corespunzator fiind dreapta de ecuatie X<sub>1</sub>={{prag_pentru_eroare_minima_it2_valoare}}
+    {%elif valoare_X_it2_prag==2%}
+            Alegem drept cea mai buna ipoteza la aceasta iteratie pe <i>h<sub>2</sub>=sign</i>(X<sub>1</sub>-{{prag_pentru_eroare_minima_it2_valoare}}),
+        separatorul corespunzator fiind dreapta de ecuatie X<sub>1</sub>={{prag_pentru_eroare_minima_it2_valoare}}
+    {%elif valoare_X_it2_prag==3%}
+            Alegem drept cea mai buna ipoteza la aceasta iteratie pe <i>h<sub>2</sub>=sign</i>({{prag_pentru_eroare_minima_it2_valoare}}-X<sub>2</sub>),
+        separatorul corespunzator fiind dreapta de ecuatie X<sub>2</sub>={{prag_pentru_eroare_minima_it2_valoare}}
+    {%elif valoare_X_it2_prag==4%}
+            Alegem drept cea mai buna ipoteza la aceasta iteratie pe <i>h<sub>2</sub>=sign</i>(X<sub>2</sub>-{{prag_pentru_eroare_minima_it2_valoare}}),
+        separatorul corespunzator fiind dreapta de ecuatie X<sub>2</sub>={{prag_pentru_eroare_minima_it2_valoare}}
+    {%endif%}
+    <br><br>
+
+    <br><br>Acum algoritmul trebuie sa pregateasca o noua distributie de ponderi pentru iteratia urmatoare.
+    Pentru a determina noile ponderi, mai intai cautam punctele clasificate gresit de ipoteza <i>h<sub>2</sub></i>.
+    <br> Punctele clasificate corect sunt : <br>
+    {%for i in it2_puncte_clasificate_corect%}
+        {{i}} <br>
+    {%endfor%}
+        <br> Punctele clasificate gresit sunt : <br>
+    {%for i in it2_puncte_clasificate_gresit%}
+        {{i}} <br>
+    {%endfor%}
+
+    <br><br>
+        <p>Noile ponderi</p>
+        <table border="1">
+        <tr>
+            {% for i in range(1, ponderi_it3|length + 1) %}
+                <th>x{{ i }}</th>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for val in ponderi_it3 %}
+                <td>{{ val }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+
+{%endif%}
+
+
+{%if valoare_X_it1_prag%}
+    <br><br>Acum putem trece la <b>iteratia a treia</b> a algoritmului.
+    Vom proceda similar cu iteratia precedenta, doar ca de data aceasta vom lucra cu o noua distributie de probabilitati
+    ponderate.(acesta fiind doar singurul lucru care se schimba de la o iteratie la alta).
+    <br>Pragurile raman neschimbate(vor mai fi afisate inca odata mai jos):<br><br>
+
+        <p>Pe axa X, pragurile sunt următoarele:</p>
+        <table border="1" cellspacing="0" cellpadding="5">
+            <tr>
+                <th>Nr. prag</th>
+                <th>Prag</th>
+            </tr>
+            {% for i in range(praguriX|length) %}
+                <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ praguriX[i] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+
+            <p>Pe axa Y, pragurile sunt următoarele:</p>
+        <table border="1" cellspacing="0" cellpadding="5">
+            <tr>
+                <th>Nr. prag</th>
+                <th>Prag</th>
+            </tr>
+            {% for i in range(praguriY|length) %}
+                <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ praguriY[i] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <br>
+        Urmatorul pas este calcularea erorilor ponderate la antrenare. Se calculeaza ca si la iteratia precedenta,
+    doar ca se lucreaza cu o distributie de probabilitati diferita de data aceasta. Mai jos este un tabel cu erorile
+    ponderate corespunzatoare atat axei X cat si axei Y(sau axele X<sub>1</sub> si X<sub>2</sub>).<br><br>
+
+     <table border="1">
+    <tr>
+        <td><strong>Prag</strong></td>
+        {% for prag in praguriX %}
+            <td>{{ prag }}</td>
+        {% endfor %}
+    </tr>
+    <tr>
+        <td><strong><i>err<sub>D3</sub>(X<sub>1</sub>&lt;Prag)</i></strong></td>
+        {% for eroare in it3_axa_x_erori1 %}
+            <td>{{ eroare }}</td>
+        {% endfor %}
+    </tr>
+    <tr>
+        <td><strong><i>err<sub>D3</sub>(X<sub>1</sub>&ge;Prag)</i></strong></td>
+        {% for eroare in it3_axa_x_erori2 %}
+            <td>{{ eroare }}</td>
+        {% endfor %}
+    </tr>
+</table>
+    <br><br>
+
+     <table border="1">
+    <tr>
+        <td><strong>Prag</strong></td>
+        {% for prag in praguriY %}
+            <td>{{ prag }}</td>
+        {% endfor %}
+    </tr>
+    <tr>
+        <td><strong><i>err<sub>D3</sub>(X<sub>2</sub>&lt;Prag)</i></strong></td>
+        {% for eroare in it3_axa_y_erori1 %}
+            <td>{{ eroare }}</td>
+        {% endfor %}
+    </tr>
+    <tr>
+        <td><strong><i>err<sub>D3</sub>(X<sub>2</sub>&ge;Prag)</i></strong></td>
+        {% for eroare in it3_axa_y_erori2 %}
+            <td>{{ eroare }}</td>
+        {% endfor %}
+    </tr>
+</table>
+
+    <br>Din tabelul de mai sus, eroarea minima este &epsilon;<sub>3</sub>={{it3_eroare_minima_tabel}}
+        obtinuta pentru compasul de decizie {{prag_pentru_eroare_minima_it3_mesaj}}.
+    <br>
+    &gamma;<sub>3</sub>=1/2-&epsilon;<sub>3</sub>=1/2-{{it3_eroare_minima_tabel}}={{gamma3}}<br>
+    &alpha;<sub>3</sub>=1/2*ln((1-&epsilon;<sub>3</sub>)/&epsilon;<sub>3</sub>)=1/2*ln((1-{{it3_eroare_minima_tabel}})/{{it3_eroare_minima_tabel}})={{alpha3}}
+    <br>
+
+        {%if valoare_X_it3_prag==1%}
+        Alegem drept cea mai buna ipoteza la aceasta iteratie pe <i>h<sub>3</sub>=sign</i>({{prag_pentru_eroare_minima_it3_valoare}}-X<sub>1</sub>),
+    separatorul corespunzator fiind dreapta de ecuatie X<sub>1</sub>={{prag_pentru_eroare_minima_it3_valoare}}
+    {%elif valoare_X_it3_prag==2%}
+            Alegem drept cea mai buna ipoteza la aceasta iteratie pe <i>h<sub>3</sub>=sign</i>(X<sub>1</sub>-{{prag_pentru_eroare_minima_it3_valoare}}),
+        separatorul corespunzator fiind dreapta de ecuatie X<sub>1</sub>={{prag_pentru_eroare_minima_it3_valoare}}
+    {%elif valoare_X_it3_prag==3%}
+            Alegem drept cea mai buna ipoteza la aceasta iteratie pe <i>h<sub>3</sub>=sign</i>({{prag_pentru_eroare_minima_it3_valoare}}-X<sub>2</sub>),
+        separatorul corespunzator fiind dreapta de ecuatie X<sub>2</sub>={{prag_pentru_eroare_minima_it3_valoare}}
+    {%elif valoare_X_it3_prag==4%}
+            Alegem drept cea mai buna ipoteza la aceasta iteratie pe <i>h<sub>3</sub>=sign</i>(X<sub>2</sub>-{{prag_pentru_eroare_minima_it3_valoare}}),
+        separatorul corespunzator fiind dreapta de ecuatie X<sub>2</sub>={{prag_pentru_eroare_minima_it3_valoare}}
+    {%endif%}
+    <br><br>
+
+    <br><br>Acum algoritmul trebuie sa pregateasca o noua distributie de ponderi pentru iteratia urmatoare.
+    Pentru a determina noile ponderi, mai intai cautam punctele clasificate gresit de ipoteza <i>h<sub>3</sub></i>.
+    <br> Punctele clasificate corect sunt : <br>
+    {%for i in it3_puncte_clasificate_corect%}
+        {{i}} <br>
+    {%endfor%}
+        <br> Punctele clasificate gresit sunt : <br>
+    {%for i in it3_puncte_clasificate_gresit%}
+        {{i}} <br>
+    {%endfor%}
+
+    <br><br>
+        <p>Noile ponderi</p>
+        <table border="1">
+        <tr>
+            {% for i in range(1, ponderi_it4|length + 1) %}
+                <th>x{{ i }}</th>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for val in ponderi_it4 %}
+                <td>{{ val }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+{%endif%}
+
+    {%if etichete%}
+    <br>Mai jos este un desen in care sunt reprezentate toate cele trei ipoteze:<br>
+            <img src="data:image/png;base64,{{ desen_final }}" alt="Desen final">
+    {%endif%}
+
+</body>
+</html>

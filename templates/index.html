@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning pentru Studenți</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='IndexPage.css') }}">
+
+</head>
+<body>
+
+    <header>
+        <h1>Machine Learning pentru Studenți</h1>
+        <p>Explorează lumea algoritmilor de învățare automată pas cu pas.</p>
+    </header>
+
+    <section class="intro reveal">
+        <p>
+            Machine learning este un subdomeniu al inteligenței artificiale care permite calculatoarelor
+            să învețe din date și să facă predicții sau să ia decizii fără a fi programate explicit.
+        </p>
+    </section>
+
+    <section class="learn reveal">
+        <h2>Ce vei învăța:</h2>
+        <ul>
+            <li>Concepte de bază în machine learning</li>
+            <li>Algoritmi precum KNN, SVM, Decision Trees</li>
+            <li>Aplicații practice și proiecte reale</li>
+        </ul>
+    </section>
+
+    <section class="algorithms reveal">
+        <h2>Algoritmi populari:</h2>
+        <div class="algo-list">
+            {% for alg in algoritmi %}
+                <a href="{{ url_for(alg) }}" class="algo-button">{{ alg }}</a>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="resources reveal">
+        <h2>Resurse utile:</h2>
+        <p>Studiază și <a href="https://scikit-learn.org" target="_blank">Scikit-learn</a>, <a href="https://www.coursera.org" target="_blank">Coursera</a> sau <a href="https://www.kaggle.com" target="_blank">Kaggle</a>.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 - Creat cu pasiune pentru educație</p>
+    </footer>
+
+</body>
+</html>

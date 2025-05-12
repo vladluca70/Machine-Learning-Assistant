@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Completare tabel</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='AlgorithmExampleInterface.css') }}">
+
+</head>
+<body>
+
+{% if not n and not m %}
+    <h2>Introduceți dimensiunile tabelului</h2>
+    <form method="POST">
+        <label for="n">Număr de rânduri (n):</label>
+        <input type="number" name="n" id="n" required><br><br>
+
+        <label for="m">Număr de coloane (m):</label>
+        <input type="number" name="m" id="m" required><br><br>
+
+        <button type="submit">Generează tabel</button>
+    </form>
+
+{% elif not values %}
+    <h2>Completați tabelul cu {{ n }} rânduri și {{ m }} coloane + 1 coloană K</h2>
+    <form method="POST">
+        <input type="hidden" name="n" value="{{ n }}">
+        <input type="hidden" name="m" value="{{ m }}">
+
+        <table border="1">
+            <thead>
+                <tr>
+                    {% for j in range(m) %}
+                        <th>x{{ j + 1 }}</th>
+                    {% endfor %}
+                    <th>K</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(n) %}
+                    <tr>
+                        {% for j in range(m) %}
+                            <td>
+                                <input type="number" step="any" name="values[]" required>
+                            </td>
+                        {% endfor %}
+                        <td>
+                            <input type="text" name="values[]" required>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <br>
+        <h3>Introduceți un exemplu de predicție (fără K):</h3>
+        <table border="1">
+            <tr>
+                {% for j in range(m) %}
+                    <td>
+                        <input type="number" step="any" name="prediction[]" required>
+                    </td>
+                {% endfor %}
+            </tr>
+        </table>
+
+        <br>
+        <button type="submit">Trimite tabelul</button>
+    </form>
+
+{% else %}
+    <h2>Tabel completat</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                {% for j in range(m) %}
+                    <th>x{{ j + 1 }}</th>
+                {% endfor %}
+                <th>K</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range(n) %}
+                <tr>
+                    {% for j in range(m) %}
+                        <td>{{ values[i][j] }}</td>
+                    {% endfor %}
+                    <td>{{ values[i][m] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+{% if values %}
+    <h2>Formula pentru predicție</h2>
+    Deoarece clasificatorul <i>Bayes Optimal</i> nu lucreaza cu presupunerea de
+    independenta conditionala a atributelor de intrare in raport cu atributul de
+    iesire, el va face predictia folosind formula de mai jos:<br>
+
+    <span style="white-space: nowrap; line-height: 2;">
+        <i>y&#x0302;<sub>JB</sub></i>
+        =<i>argmax</i><sub><i>k &in; {0,1}</i></sub>
+        <i>P</i>(K = k)
+
+        <i>P</i>(
+        {% for j in range(m) %}
+            <i>x<sub>{{ j + 1 }}</sub></i> = {{ prediction[j] }}{% if not loop.last %}, {% endif %}
+        {% endfor %}|K=k) <br>
+    </span> <br> <br>
+{% endif %}
+
+{% if values%}
+<div style="line-height: 1;">
+    Deoarece <i>k &in; {0,1}</i>, formula de mai sus va avea doua forme:<br><br>
+
+    <i>p<sub>0</sub> = P</i>(
+        {% for j in range(m) %}
+            <i>x<sub>{{ j + 1 }}</sub></i> = {{ prediction[j] }}{% if not loop.last %}, {% endif %}
+        {% endfor %}|K=0)&middot;P(K=0)  <br><br>
+
+    <i>p<sub>1</sub> = P</i>(
+        {% for j in range(m) %}
+            <i>x<sub>{{ j + 1 }}</sub></i> = {{ prediction[j] }}{% if not loop.last %}, {% endif %}
+        {% endfor %}|K=1)&middot; P(K=1)
+    <br><br>
+</div>
+
+{% endif %}
+
+
+{% if values%}
+    <div style="line-height: 1;">
+        <br> In calcularea <i>p<sub>0</sub></i> ne vom folosi de valorile din tabel:<br><br>
+
+        <i>p<sub>0</sub> = P</i>(
+        {% for j in range(m) %}
+            <i>x<sub>{{ j + 1 }}</sub></i> = {{ prediction[j] }}{% if not loop.last %}, {% endif %}
+        {% endfor %}|K=0)&middot;P(K=0)=<br><br>
+
+        ={{x0}} &middot;{{k0}}={{p0}}
+
+
+    </div>
+{% endif %}
+
+{% if values%}
+<br>
+    <div style="line-height: 1;">
+        <br> In calcularea <i>p<sub>1</sub></i> ne vom folosi de valorile din tabel:<br><br>
+
+        <i>p<sub>1</sub> = P</i>(
+        {% for j in range(m) %}
+            <i>x<sub>{{ j + 1 }}</sub></i> = {{ prediction[j] }}{% if not loop.last %}, {% endif %}
+        {% endfor %}|K=1)&middot;P(K=1)=<br><br>
+
+        ={{x1}}&middot;{{k1}}={{p1}}
+
+
+    </div>
+{% endif %}
+
+{%if values%}
+    <br><br>
+    {%if p0==p1%}
+        Deoarece <i>p<sub>0</sub>=p<sub>1</sub> ({{p0}}={{p1}})</i>, atunci clasificatorul <i>Bayes Optimal</i> va prezice
+        K=0 sau K=1 cu aceeasi probabilitate(<i>1/2</i>).
+
+    {%elif p0>p1%}
+        Deoarece <i>p<sub>0</sub>&gtp<sub>1</sub> ({{p0}}>{{p1}})</i>, atunci clasificatorul <i>Bayes Optimal</i> va prezice
+        K=0 pentru instanta data cu probilitatea:<br> <br>
+        <i>P</i>(K=0|
+        {% for j in range(m) %}
+            <i>x<sub>{{ j + 1 }}</sub></i> = {{ prediction[j] }}{% if not loop.last %}, {% endif %}
+        {% endfor %})= <br> <br>
+        =\( \displaystyle \frac{p_0}{p_0 + p_1} \)
+        =\( \displaystyle \frac{ {{p0}} }{ {{p0}} + {{p1}} } \)
+        ={{p0_gt_p1}}
+
+    {%else%}
+                Deoarece <i>p<sub>0</sub>&ltp<sub>1</sub> ({{p0}}<{{p1}})</i>, atunci clasificatorul <i>Bayes Optimal</i> va prezice
+        K=1 pentru instanta data cu probilitatea:<br> <br>
+        <i>P</i>(K=1|
+        {% for j in range(m) %}
+            <i>x<sub>{{ j + 1 }}</sub></i> = {{ prediction[j] }}{% if not loop.last %}, {% endif %}
+        {% endfor %})=<br><br>
+        =\( \displaystyle \frac{p_1}{p_1 + p_0} \)
+        =\( \displaystyle \frac{ {{p1}} }{ {{p1}} + {{p0}} } \)
+        ={{p1_gt_p0}}
+
+    {%endif%}
+{%endif%}
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for('static', filename='AlgorithmsInterfacePage.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Regresia Logistica</h1><br><br>
+
+      <p>
+          Algoritmul de regresie logistică este folosit pentru clasificare binară (ex: da/nu, adevărat/fals, 0/1). El estimează probabilitatea ca o instanță să aparțină unei clase, folosind o funcție sigmoidă care transformă orice valoare într-o probabilitate între 0 și 1.<br><br>
+          <br>Pasi cheie:<br>
+        1.Se calculează o combinație liniară a caracteristicilor (ex: z = w₀ + w₁·x₁ + ... + wₙ·xₙ).<br>
+        2.Se aplică funcția sigmoid: σ(z) = 1 / (1 + e<sup>−z</sup>), care returnează o probabilitate între 0 și 1.<br>
+        3.Dacă probabilitatea este ≥ 0.5, se clasifică ca 1; altfel, ca 0.<br>
+        4.Se ajustează coeficienții folosind funcția de cost (log-loss) și algoritmul de gradient descent.<br>
+      </p>
+
+    <p>
+        ✝️Versete biblice care reflecta principiile Regresiei Logistice:<br>
+        1. Matei 25:32<br>
+        „Toate neamurile vor fi adunate înaintea Lui. El îi va despărți pe unii de alții, cum desparte păstorul oile de capre.”<br>
+        🧠 Legătura cu K-Means:<br>
+        Algoritmul K-Means face exact asta: separă datele în grupuri distincte în funcție de trăsăturile lor. Nu există confuzie — fiecare punct este separat clar, ca oile de capre.
+        <br><br>
+
+        2. Romani 12:4-5<br>
+        „Căci, după cum într-un singur trup avem multe mădulare, iar mădularele nu au toate aceeași funcție, tot așa și noi, deși suntem mulți, suntem un singur trup în Hristos și, fiecare în parte, mădulare unii altora.”<br>
+        Legătura cu K-Means:<br>
+        Acest verset reflectă ideea de specializare și colaborare în cadrul unui grup, similar cu modul în care punctele dintr-un cluster contribuie la definirea centrului comun în K-Means.
+        <br><br>
+
+        3. Psalmul 133:1<br>
+        „Iată, ce bine și ce plăcut este ca frații să locuiască împreună în unitate!”<br>
+        Legătura cu K-Means:<br>
+        Versetul subliniază frumusețea unității, analog cu modul în care K-Means grupează puncte similare, creând clustere armonioase.
+        <br><br>
+
+        4. Coloseni 3:14<br>
+        „Și mai presus de toate acestea, îmbrăcați-vă cu dragostea, care leagă totul într-o armonie perfectă.”<br>
+        Legătura cu K-Means:<br>
+        Dragostea ca liant reflectă modul în care centrul unui cluster în K-Means acționează ca punct de coeziune pentru toate punctele din grup.
+        <br><br>
+
+        5. 1 Petru 3:8<br>
+        „În sfârșit, fiți toți cu aceleași gânduri, simțind cu alții, iubind ca frații, miloși, smeriți.”<br>
+        Legătura cu K-Means:<br>
+        Acest verset subliniază empatia și armonia, reflectând modul în care K-Means grupează puncte similare pentru a forma clustere omogene.
+        <br><br>
+    </p>
+
+    <p>
+        Termeni utilizati<br>
+        1.<b>Functia sigmoid</b>- Transformă orice valoare reală într-o probabilitate între 0 și 1.<br>
+        2.<b>Greutati (weights)</b>- Coeficientii <i><b>w<sub>1</sub>,w<sub>2</sub>,..,w<sub>n</sub></b></i> asociati fiecarei caracteristici, sunt invatati in timpul antrenarii.<br>
+        3.<b>Bias(termen liber)</b>- Constanta <i>w<sub>0</sub></i> adaugata la combinatia liniara care deplaseaza functia de decizie.<br>
+        4.<b>Functia de cost</b>- Măsoară cât de departe sunt predicțiile de valorile reale. Este convexă și favorizează probabilități apropiate de eticheta reală.<br>
+        5.<b>Gradient descendent</b>- Algoritm de optimizare folosit pentru a minimiza funcția de cost prin actualizarea treptată a greutăților.<br>
+        6.<b>Overfitting</b>- Situație în care modelul se potrivește prea bine pe datele de antrenare și generalizează prost pe date noi.<br>
+    </p>
+    <br>
+    <a href="{{url_for('LogisticRegressionExample')}}">exemplu practic</a>
+    <a href="{{ url_for('home') }}" class="btn-back">🏠 Go Back Home</a>
+</body>
+</html>

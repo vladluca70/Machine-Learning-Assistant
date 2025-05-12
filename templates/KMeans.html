@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='AlgorithmsInterfacePage.css') }}">
+</head>
+<body>
+    <h1>Algoritmul K-Means</h1><br>
+
+    <p>
+        K-Means este un algoritm de învățare nesupravegheată folosit pentru gruparea (clustering) datelor. <br>
+        Scopul lui este să împartă datele în K grupuri (clustere), în funcție de cât de apropiate sunt între ele.<br><br>
+
+        🧠 Cum funcționează K-Means:<br>
+        1.Alegem aleatoriu K centre (centroizi).<br>
+
+        2.Fiecare punct este alocat celui mai apropiat centru.<br>
+
+        3.Se recalculează centrul fiecărui grup ca media punctelor din acel grup.<br>
+
+        4.Se repetă pașii 2–3 până când centrele nu se mai schimbă (convergență).<br>
+    </p>
+
+    <p>
+        ✝️Versete biblice care reflecta principiile K-Means:<br>
+
+        1. Matei 25:32<br>
+        „Toate neamurile vor fi adunate înaintea Lui. El îi va despărți pe unii de alții, cum desparte păstorul oile de capre.”<br>
+
+        Legătura cu K-Means:<br>
+        Algoritmul K-Means face exact asta: separă datele în grupuri distincte în funcție de trăsăturile lor. Nu există confuzie — fiecare punct este separat clar, ca oile de capre.
+        <br><br>
+
+        2. Romani 12:4-5<br>
+        „Căci, după cum într-un singur trup avem multe mădulare, iar mădularele nu au toate aceeași funcție, tot așa și noi, deși suntem mulți, suntem un singur trup în Hristos și, fiecare în parte, mădulare unii altora.”
+        <br>
+        Legătura cu K-Means:<br>
+        Acest verset reflectă ideea de specializare și colaborare în cadrul unui grup, similar cu modul în care punctele dintr-un cluster contribuie la definirea centrului comun în K-Means.
+        <br><br>
+
+         3. Psalmul 133:1<br>
+        „Iată, ce bine și ce plăcut este ca frații să locuiască împreună în unitate!”<br>
+
+        Legătura cu K-Means:<br>
+        Versetul subliniază frumusețea unității, analog cu modul în care K-Means grupează puncte similare, creând clustere armonioase.
+        <br><br>
+
+         4. Coloseni 3:14<br>
+        „Și mai presus de toate acestea, îmbrăcați-vă cu dragostea, care leagă totul într-o armonie perfectă.”<br>
+        Legătura cu K-Means:<br>
+        Dragostea ca liant reflectă modul în care centrul unui cluster în K-Means acționează ca punct de coeziune pentru toate punctele din grup.
+        <br><br>
+
+        5. 1 Petru 3:8<br>
+        „În sfârșit, fiți toți cu aceleași gânduri, simțind cu alții, iubind ca frații, miloși, smeriți.”<br>
+        Legătura cu K-Means:<br>
+        Acest verset subliniază empatia și armonia, reflectând modul în care K-Means grupează puncte similare pentru a forma clustere omogene.
+        <br><br>
+    </p>
+
+    <p>
+        Termeni utilizati:<br>
+        1.<b>k</b>- Numărul de clustere dorite. Trebuie specificat înainte de a rula algoritmul k-means.<br>
+        2.<b>Centroid</b>- Punctul central al unui cluster – este media tuturor punctelor din acel cluster.<br>
+        3.<b>Cluster</b>- Grup de puncte similare, apropiate în spațiul caracteristicilor, care împărtășesc un centroid comun.<br>
+        4.<b>Initializare aleatoare</b>- Centroidele sunt alese aleatoriu la început. Poate afecta negativ rezultatul dacă inițializarea este slabă.<br>
+        5.<b>K-Means++</b>- Metodă inteligentă de inițializare a centroidelor, care reduce riscul de a ajunge la un minim local slab.<br>
+        6.<b>Convergenta</b>- Algoritmul k-means oprește execuția când centroizii nu se mai schimbă sau modificările sunt sub un prag dat.<br>
+        7.<b>Invatare nesupervizata</b>- Algoritmul k-means oprește execuția când centroidele nu se mai schimbă sau modificările sunt sub un prag dat.<br>
+        8.<b>K-partitie</b>- Împărțirea setului de date în k clustere disjuncte.<br>
+        9.<b>K-configuratie</b>- Setul centroids-urilor care definesc o anumită partiție.<br>
+        10.<b>Criteriul J</b>Funcția obiectiv a algoritmului k-means: suma pătratelor distanțelor dintre fiecare punct și centroidul său.<br>
+        11.<b>Criteriul Elbow</b>- Ajută la alegerea optimă a lui k analizând grafic scăderea erorii (inertia) în funcție de k. Punctul în care această scădere încetinește brusc (cotul) indică valoarea potrivită pentru k.<br>
+
+    </p>
+
+    <a href="{{url_for('KMeansExample')}}">exemplu practic</a>
+    <a href="{{ url_for('home') }}" class="btn-back">🏠 Go Back Home</a>
+</body>
+</html>

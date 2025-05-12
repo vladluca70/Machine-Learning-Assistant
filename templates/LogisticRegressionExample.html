@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Introducere numere si elemente</title>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='AlgorithmExampleInterface.css') }}">
+
+</head>
+<body>
+    <h1>Introduceti doua numere n si m</h1>
+    <form method="POST">
+        <label for="n">n: </label>
+        <input type="number" name="n" id="n" required><br><br>
+
+        <label for="m">m: </label>
+        <input type="number" name="m" id="m" required><br><br>
+
+        <button type="submit">Generare elemente</button>
+    </form>
+
+    {% if n and m %}
+        <h2>Introduceti {{ n }} linii si {{ m }} coloane pentru x (x1, x2, ..., xm) si y</h2>
+        <form method="POST">
+            <input type="hidden" name="n" value="{{ n }}">
+            <input type="hidden" name="m" value="{{ m }}">
+
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>i</th>
+                        {% for j in range(m) %}
+                            <th>x{{ j + 1 }}</th>
+                        {% endfor %}
+                        <th>y</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in range(n) %}
+                        <tr>
+                            <td>{{ i + 1 }}</td>
+                            {% for j in range(m) %}
+                                <td><input type="number" name="elements[]" required></td>
+                            {% endfor %}
+                            <td><input type="number" name="elements[]" required></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br>
+            <button type="submit">Trimite elementele</button>
+        </form>
+    {% endif %}
+
+
+        {%if elements%}
+            <table border="1" style="margin-top: 3cm;">
+                <tr>
+                    <td>i</td>
+                    {% for i in range(m) %}
+                        <td>x{{i+1}}</td>
+                    {% endfor %}
+                    <td>y</td>
+                </tr>
+
+                {%for i in range(n)%}
+                <tr>
+                {% set elmnt = elements[i] %}
+                    <td>{{i+1}}</td>
+                    {%for k in elmnt%}
+                        <td>{{k}}</td>
+                    {%endfor%}
+                </tr>
+                {%endfor%}
+
+            </table>
+        {% endif %}
+
+    {%if elements%}
+      <p>Primul pas este cel de calculare a functiei de log-verosimilitate. Formula este urmatoarea:</p>
+    <p>
+    \[
+    \ell(w) = \sum_{i=1}^{n} y^{(i)} \ln \sigma(w \cdot x^{(i)}) + (1 - y^{(i)}) \ln(1 - \sigma(w \cdot x^{(i)}))
+    \]
+  </p>
+
+    <p>Deoarece in tabelul nostru avem {{n}} instante, formula va fi urmatoarea:</p>
+        <p>
+        \[
+        \ell(w) = \sum_{i=1}^{{n}} y^{(i)} \ln \sigma(w \cdot x^{(i)}) + (1 - y^{(i)}) \ln(1 - \sigma(w \cdot x^{(i)}))
+        \]
+        </p>
+
+        <p>Variabila y ia valorile 0 sau 1. Asta inseamna ca pentru fiecare instanta din tabel, formula va fi
+            <span class="formula">\(\ y^{(i)} \ln \sigma(w \cdot x^{(i)}) \)</span> atunci cand y este egal cu 1 si
+            <span class="formula">\(\ (1 - y^{(i)}) \ln(1 - \sigma(w \cdot x^{(i)})) \)</span> atunci cand y este 0.
+            De mentionat faptul ca \(y^{(i)}\) reprezinta valoarea lui y de pe linia i. A nu se confunda \(y^{(i)}\) cu
+            \(y^{i}\) (\(y\) la puterea i)!
+        </p>
+
+    {% endif %}
+
+{% if elements %}
+    <p>
+        Pentru a determina functia de log-verosimilitate, parcurgem fiecare linie(instanta) din tabel si aplicam formula.
+    </p>
+    {%for x in explicatii_functie_log_verosimilitare%}
+        {%for i in range(x|length)%}
+            {%if i==4%}
+                <!-- Do nothing -->
+            {%elif i==5%}
+                <!-- Do nothing -->
+            {%elif i==6%}
+                <!-- Do nothing -->
+            {%elif i!=3%}
+                <p>{{x[i]}}</p>
+            {%else%}
+                {%if x[6]==1%}
+                <span class="formula">Aplicand formula, vom obtine \(\ \ln(\sigma(\)</span>
+                {%for ind in x[i]%}
+                    {%if ind==0%}
+                        <span class="formula">w<sub>0</sub></span>
+                    {%else%}
+                        <span class="formula"> + w<sub>{{ind}}</sub>x<sub>{{ind}}</sub><sup>({{x[4]}})</sup> </span>
+                    {%endif%}
+                {%endfor%}
+                <span class="formula">)).</span>
+
+                <span class="formula">Inlocuind cu valorile din tabel, vom obtine \(\ \ln(\sigma(\)</span>
+                {%for ind in range(x[i]|length)%}
+                    {%if ind==0%}
+                        <span class="formula">w<sub>0</sub></span>
+                    {%else%}
+                        <span class="formula"> +{{x[5][ind-1]}}&middot;w<sub>{{x[i][ind]}}</sub></span>
+                    {%endif%}
+                {%endfor%}
+                <span class="formula">)). </span>
+                {%else%}
+
+                                    <span class="formula">Aplicand formula, vom obtine \(\ \ln(1-\sigma(\)</span>
+                {%for ind in x[i]%}
+                    {%if ind==0%}
+                        <span class="formula">w<sub>0</sub></span>
+                    {%else%}
+                        <span class="formula"> + w<sub>{{ind}}</sub>x<sub>{{ind}}</sub><sup>({{x[4]}})</sup> </span>
+                    {%endif%}
+                {%endfor%}
+                <span class="formula">)).</span>
+
+                <span class="formula">Inlocuind cu valorile din tabel, vom obtine \(\ \ln(1-\sigma(\)</span>
+                {%for ind in range(x[i]|length)%}
+                    {%if ind==0%}
+                        <span class="formula">w<sub>0</sub></span>
+                    {%else%}
+                        <span class="formula"> +{{x[5][ind-1]}}&middot;w<sub>{{x[i][ind]}}</sub></span>
+                    {%endif%}
+                {%endfor%}
+                <span class="formula">)). </span>
+
+                {%endif%}
+            {%endif%}
+        {%endfor%}
+    {%endfor%}
+{% endif %}
+
+{% if rez_final_log_ver %}
+    <p>Adunand toti logaritmii de mai sus, vom obtine forma finala a functiei de log-verosimilitate:</p>
+    <p>
+        \( l(w) \) =
+        {% for i in range(rez_final_log_ver|length) %}
+            ln(
+            {% if rez_final_log_ver[i][-1] == 1 %}
+                \( \sigma \)(w<sub>0</sub>
+            {% else %}
+                1 - \( \sigma \)(w<sub>0</sub>
+            {% endif %}
+            {% for j in range(rez_final_log_ver[i]|length - 1) %}
+                {% if rez_final_log_ver[i][j] != 0 %}
+                    + {{ rez_final_log_ver[i][j] }} &middot; w{{ j+1 }}
+                {% endif %}
+            {% endfor %}
+            )
+            {% if not loop.last %}+{% endif %}
+        {% endfor %}
+    </p>
+{% endif %}
+
+
+    {%if elements%}
+      <p>In cele ce urmeaza, vom calcula vectorul gradient pentru functia de log-verosimilitate de mai sus. Formula este urmatoarea:</p>
+        <p>
+        \[
+        \nabla_w \ell(w) = \sum_{i=1}^{n} \left[ y^{(i)} - \sigma(w \cdot x^{(i)}) \right] x^{(i)}
+        \]
+        </p>
+
+        <p>Deoarece in tabelul nostru avem {{n}} instante, formula va fi urmatoarea:</p>
+
+        <p>
+        \[
+        \nabla_w \ell(w) = \sum_{i=1}^{{n}} \left[ y^{(i)} - \sigma(w \cdot x^{(i)}) \right] x^{(i)}
+        \]
+        </p>
+
+        <p>Este important sa subliniem din nou ca \(y^{(i)}\) este total diferit de \(y^{i}\). Prima reprezinta valoarea lui
+        \(y\) de pe linia \(i\), iar a doua reprezinta \(y\) la puterea \(i\). Determinarea vectorului gradient consta in doi pasi:
+            <br>1.aplicarea formulei pentru fiecare din cei {{n}} termeni in parte
+            <br>2.descompunerea fiecarui termen, folosindu-ne de vectorul transpus
+            <br>Primul pas in determinarea vectorului gradient:<br>
+            <alla></alla>
+        </p>
+    {%endif%}
+
+{% if elements %}
+    <p>
+        {% for i in range(elements|length) %}
+            {% if i == 0 and elements[i][m] == 1 %}
+                [1-\( \sigma \)(w<sub>0</sub>
+            {% elif i == 0 and elements[i][m] == 0 %}
+                -[\( \sigma \)(w<sub>0</sub>
+            {% elif i != 0 and elements[i][m] == 1 %}
+                +[1- \( \sigma \) (w<sub>0</sub>
+            {% else %}
+                - [\( \sigma \)(w<sub>0</sub>
+            {% endif %}
+            {% for j in range(elements[i]|length - 1) %}
+                {%if elements[i][j]!=0%}
+                    + {{ elements[i][j] }} * w{{ j+1 }}
+                {%endif%}
+            {% endfor %}
+        )]{{vector_gradient[i][1]}}
+        {% endfor %}
+    </p>
+{% endif %}
+
+{% if elements %}
+    <p>Aplicand formula pentru cele {{n}} instante din tabel, vom obtine: </p>
+    {% for i in range(elements|length) %}
+        <p>
+            <p>Linia {{i+1}} din tabel:</p>
+            {% if i == 0 and elements[i][m] == 1 %}
+                [1-\( \sigma \)(w<sub>0</sub>
+            {% elif i == 0 and elements[i][m] == 0 %}
+                -[\( \sigma \)(w<sub>0</sub>
+            {% elif i != 0 and elements[i][m] == 1 %}
+                +[1- \( \sigma \) (w<sub>0</sub>
+            {% else %}
+                - [\( \sigma \)(w<sub>0</sub>
+            {% endif %}
+            {% for j in range(elements[i]|length - 1) %}
+                {% if elements[i][j] != 0 %}
+                    + {{ elements[i][j] }} * w{{ j+1 }}
+                {% endif %}
+            {% endfor %}
+            )]{{ vector_gradient[i][1] }}
+            {%if i==0%}
+            <p>{{ vector_gradient[i][1] }} reprezinta vectorul coloana(adica transpunerea vectorului linie), primul
+            element din acest vector reprezinta termenul de bias (\(w\)<sub>0</sub> este bias-ul, iar 1 este valoarea lui fixa in
+                vectorul de caracteristici. Acest bias ajuta modelul sa se "deplaseze" sus sau jos, permitand o potrivire
+                mai buna a functiei de activare, in cazul regresiei logistice fiind functia sigmoid. In vectorul gradient,
+                aceasta prima pozitie controleaza cum se ajusteaza bias-ul in timpul antrenarii modelului).</p>
+            Celelalte {{m}} elemente din vectorul transpus reprezinta valorile lui \(x\) de pe linia respectiva din tabel.
+            {%endif%}
+        </p>
+    {% endfor %}
+{% endif %}
+
+{% if elements %}
+    <p>Adunand termenii obtinuti mai sus, obtinem prima forma a vectorului gradient:</p>
+    <p>
+        \( \nabla_w l(w) \)=
+        {% for i in range(elements|length) %}
+            {% if i == 0 and elements[i][m] == 1 %}
+                [1-\( \sigma \)(w<sub>0</sub>
+            {% elif i == 0 and elements[i][m] == 0 %}
+                -[\( \sigma \)(w<sub>0</sub>
+            {% elif i != 0 and elements[i][m] == 1 %}
+                +[1- \( \sigma \) (w<sub>0</sub>
+            {% else %}
+                - [\( \sigma \)(w<sub>0</sub>
+            {% endif %}
+            {% for j in range(elements[i]|length - 1) %}
+                {%if elements[i][j]!=0%}
+                    + {{ elements[i][j] }} * w{{ j+1 }}
+                {%endif%}
+            {% endfor %}
+        )]{{vector_gradient[i][1]}}
+        {% endfor %}
+    </p>
+{% endif %}
+
+{%if elements%}
+    {%for i in range(x_coloane|length)%}
+        <p>Facem inmultirea cu elementul de pe pozitia {{i+1}} din vectorii transpusi:</p>
+        {%for j in range(x_coloane[i]|length)%}
+            {%if x_coloane[i][j]!=0%}
+                {%if valori_y[j]!=0%}
+                    <span>+1-ln(w<sub>0</sub>
+                        {%for k in range(linie_tabel_fara_y[j]|length)%}
+                            {%if linie_tabel_fara_y[j][k]!=0%}
+                                +{{linie_tabel_fara_y[j][k]}}*w<sub>{{k+1}}</sub>
+                            {%endif%}
+                        {%endfor%}
+                        )
+                    </span>
+                {%else%}
+                    <span>-ln(w<sub>0</sub>
+                        {%for k in range(linie_tabel_fara_y[j]|length)%}
+                            {%if linie_tabel_fara_y[j][k]!=0%}
+                               +{{linie_tabel_fara_y[j][k]}}*w<sub>{{k+1}}</sub>
+                            {%endif%}
+                        {%endfor%}
+                        )
+                    </span>
+                {%endif%}
+            {%endif%}
+        {%endfor%}
+    {%endfor%}
+{%endif%}
+
+
+
+{%if elements%}
+    <p>Forma finala a vectorului gradient va fi:</p>
+            \( \nabla_w l(w) \)=[
+    {%for i in range(x_coloane|length)%}
+        {%for j in range(x_coloane[i]|length)%}
+            {%if x_coloane[i][j]!=0%}
+                {%if valori_y[j]!=0%}
+                    <span>+1-ln(w<sub>0</sub>
+                        {%for k in range(linie_tabel_fara_y[j]|length)%}
+                            {%if linie_tabel_fara_y[j][k]!=0%}
+                                +{{linie_tabel_fara_y[j][k]}}*w<sub>{{k+1}}</sub>
+                            {%endif%}
+                        {%endfor%}
+                        )
+                    </span>
+                {%else%}
+                    <span>-ln(w<sub>0</sub>
+                        {%for k in range(linie_tabel_fara_y[j]|length)%}
+                            {%if linie_tabel_fara_y[j][k]!=0%}
+                               +{{linie_tabel_fara_y[j][k]}}*w<sub>{{k+1}}</sub>
+                            {%endif%}
+                        {%endfor%}
+                        )
+                    </span>
+                {%endif%}
+
+            {%endif%}
+
+        {%endfor%}
+               , <br>
+    {%endfor%}
+    ]
+{%endif%}
+
+{%if elements%}
+    <br><br>
+    In cele ce urmeaza, vom calcula matricea hesiana. Formula ei este urmatoarea:
+     <p>
+        \[
+        H_w = -\sum_{i=1}^{n} \sigma(w \cdot x^{(i)}) \left( 1 - \sigma(w \cdot x^{(i)}) \right) x^{(i)} \left( x^{(i)} \right)^{T}
+        \]
+        </p>
+
+        Deoarece avem {{n}} instante in tabel, formula va deveni:
+        <p>
+        \[
+        H_w = -\sum_{i=1}^{{n}} \sigma(w \cdot x^{(i)}) \left( 1 - \sigma(w \cdot x^{(i)}) \right) x^{(i)} \left( x^{(i)} \right)^{T}
+        \]
+        </p>
+        <p>
+            In mod informal si pentru o intelegere mai usoara, vom avea {{n}} perechi de forma:
+            <span id="formula1">\(\sigma(w \cdot x^{(i)}) (1 - \sigma(w \cdot x^{(i)}))\)</span>
+            inmultite cu un vector de {{m+1}} elemente(unde primul element este bias-ul si celelalte reprezinta valorile variabilelor x din tabel de pe o linie) si inmultite tot cu acelasi vector, dar transpus.
+
+        </p>
+
+
+{%endif%}
+
+{%if elements%}
+    Cei {{n}} termeni vor fi explicati mai jos, urmand ca la final sa ii adunam.
+    {%for i in range(linie_tabel_fara_y|length)%}
+        <p>Linia {{i+1}}</p>
+        <p>
+            &sigma;(w<sub>0</sub>
+            {%for j in range(linie_tabel_fara_y[i]|length)%}
+                {%if linie_tabel_fara_y[i][j]!=0%}
+                    +{{linie_tabel_fara_y[i][j]}}*w<sub>{{j+1}}</sub>
+                {%endif%}
+            {%endfor%}
+            ) &middot;
+            [1-&sigma;(w<sub>0</sub>
+            {%for j in range(linie_tabel_fara_y[i]|length)%}
+                {%if linie_tabel_fara_y[i][j]!=0%}
+                    +{{linie_tabel_fara_y[i][j]}}*w<sub>{{j+1}}</sub>
+                {%endif%}
+            {%endfor%}
+            )] &middot;(1
+
+            {%for j in range(linie_tabel_fara_y[i]|length)%}
+                    , {{linie_tabel_fara_y[i][j]}}
+            {%endfor%}
+            )<sup>T</sup> &middot; (1
+
+            {%for j in range(linie_tabel_fara_y[i]|length)%}
+                    , {{linie_tabel_fara_y[i][j]}}
+            {%endfor%}
+            )
+        </p>
+    {%endfor%}
+{%endif%}
+
+{%if elements%}
+    Adunand toti termenii de mai sus, obtinem forma finala a matricei hesiene:<br>
+    H<sub>w</sub>=-{
+    {%for i in range(linie_tabel_fara_y|length)%}
+
+        <p>
+            {%if i==0%}
+                &sigma;(w<sub>0</sub>
+            {%else%}
+                +&sigma;(w<sub>0</sub>
+            {%endif%}
+            {%for j in range(linie_tabel_fara_y[i]|length)%}
+                {%if linie_tabel_fara_y[i][j]!=0%}
+                    +{{linie_tabel_fara_y[i][j]}}*w<sub>{{j+1}}</sub>
+                {%endif%}
+            {%endfor%}
+            ) &middot;
+            [1-&sigma;(w<sub>0</sub>
+            {%for j in range(linie_tabel_fara_y[i]|length)%}
+                {%if linie_tabel_fara_y[i][j]!=0%}
+                    +{{linie_tabel_fara_y[i][j]}}*w<sub>{{j+1}}</sub>
+                {%endif%}
+            {%endfor%}
+            )] &middot;(1
+
+            {%for j in range(linie_tabel_fara_y[i]|length)%}
+                    , {{linie_tabel_fara_y[i][j]}}
+            {%endfor%}
+            )<sup>T</sup> &middot; (1
+
+            {%for j in range(linie_tabel_fara_y[i]|length)%}
+                    , {{linie_tabel_fara_y[i][j]}}
+            {%endfor%}
+            )
+        </p>
+    {%endfor%}
+    }
+    <br><br>
+{%endif%}
+
+{%if elements%}
+    In cele ce urmeaza, va fi calculata functia de cost a carei formula este:
+    <p>
+        \[
+        J(w) = \frac{1}{n} \sum_{i=1}^{n} \ln\left( 1 + \exp\left( -y^{'(i)} w \cdot x^{(i)} \right) \right)
+        \]
+    </p>
+    Deoarece avem {{n}} instante in tabel, formula va fi:
+    <p>
+        \[
+        J(w) = \frac{1}{{n}} \sum_{i=1}^{n} \ln\left( 1 + \exp\left( -y^{'(i)} w \cdot x^{(i)} \right) \right)
+        \]
+    </p>
+
+        Vom aplica formula pentru fiecare din cele {{n}} instante din tabel, urmand ca la final sa le adunam pentru a obtine
+        forma finala a functiei de cost.
+
+        {%for i in range(linie_tabel_fara_y|length)%}
+            <p>Linia {{i+1}} din tabel:</p>
+            {%if valori_y[i]==0%}
+                ln(1+exp(w<sub>0</sub>
+                    {%for j in range(linie_tabel_fara_y[i]|length)%}
+                        {%if linie_tabel_fara_y[i][j]!=0%}
+                            +{{linie_tabel_fara_y[i][j]}}*w<sub>{{j+1}}</sub>
+                        {%endif%}
+                    {%endfor%}
+                    )
+            {%else%}
+                    ln(1+exp(-(w<sub>0</sub>
+                    {%for j in range(linie_tabel_fara_y[i]|length)%}
+                        {%if linie_tabel_fara_y[i][j]!=0%}
+                            +{{linie_tabel_fara_y[i][j]}}*w<sub>{{j+1}}</sub>
+                        {%endif%}
+                    {%endfor%}
+                    ))
+            {%endif%}
+        {%endfor%}
+{%endif%}
+
+{% if elements %}
+    <p>Insumand toate elementele de mai sus, obtinem forma functiei de cost care este urmatoarea:</p>
+
+    \[
+    J(w) = \frac{1}{n} \left(
+    {% for i in range(linie_tabel_fara_y|length) %}
+        {% if valori_y[i] == 0 %}
+            \ln(1 + \exp(w_0
+            {% for j in range(linie_tabel_fara_y[i]|length) %}
+                {% if linie_tabel_fara_y[i][j] != 0 %}
+                    + {{ linie_tabel_fara_y[i][j] }} &middot; w_{{ j+1 }}
+                {% endif %}
+            {% endfor %}
+            ))
+        {% else %}
+            \ln(1 + \exp(-(w_0
+            {% for j in range(linie_tabel_fara_y[i]|length) %}
+                {% if linie_tabel_fara_y[i][j] != 0 %}
+                    + {{ linie_tabel_fara_y[i][j] }} &middot; w_{{ j+1 }}
+                {% endif %}
+            {% endfor %}
+            )))
+        {% endif %}
+        {% if not loop.last %} + {% endif %}
+    {% endfor %}
+    \right)
+    \]
+{% endif %}
+
+</body>
+</html>

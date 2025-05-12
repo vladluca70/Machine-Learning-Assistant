@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Introducere numere si coordonate</title>
+            <link rel="stylesheet" href="{{ url_for('static', filename='AlgorithmExampleInterface.css') }}">
+
+</head>
+<body>
+    {% if not n and not m %}
+        <h1>Introduceti cele doua numere</h1>
+        <form method="POST">
+            <label for="n">Numarul de puncte: </label>
+            <input type="number" name="n" id="n" required><br><br>
+
+            <label for="m">Numarul de centroizi: </label>
+            <input type="number" name="m" id="m" required><br><br>
+
+            <button type="submit">Continuă</button>
+        </form>
+    {% elif not first_table and not second_table %}
+        <h2>Introduceti coordonatele celor {{ n }} puncte</h2>
+        <form method="POST">
+            <input type="hidden" name="n" value="{{ n }}">
+            <input type="hidden" name="m" value="{{ m }}">
+
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>i</th>
+                        <th>x</th>
+                        <th>y</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in range(n) %}
+                        <tr>
+                            <td>{{ i + 1 }}</td>
+                            <td><input type="number" step="any" name="first_table[]" required></td>
+                            <td><input type="number" step="any" name="first_table[]" required></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <br>
+
+            <h2>Introduceti coordonatele celor {{ m }} centroizi</h2>
+
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>i</th>
+                        <th>x</th>
+                        <th>y</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in range(m) %}
+                        <tr>
+                            <td>{{ i + 1 }}</td>
+                            <td><input type="number" step="any" name="second_table[]" required></td>
+                            <td><input type="number" step="any" name="second_table[]" required></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <br>
+            <button type="submit">Trimite coordonatele</button>
+        </form>
+    {% else %}
+        <h2 style="margin-top: 2cm;">Tabelul 1</h2>
+        <table border="1">
+            <tr>
+                <th>i</th>
+                <th>x</th>
+                <th>y</th>
+            </tr>
+            {% for i in range(n) %}
+                <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ first_table[i][0] }}</td>
+                    <td>{{ first_table[i][1] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <h2 style="margin-top: 2cm;">Tabelul 2</h2>
+        <table border="1">
+            <tr>
+                <th>i</th>
+                <th>x</th>
+                <th>y</th>
+            </tr>
+            {% for i in range(m) %}
+                <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ second_table[i][0] }}</td>
+                    <td>{{ second_table[i][1] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+{%if first_table and second_table%}
+    &nbsp;Algoritmul K-Means se opreste in doua situatii:<br>
+    1.s-au efectuat numarul de iteratii stabilite de noi<br>
+    2.distanta dintre centroizi intre doua iteratii succesive este foarte mica<br>
+    Mai jos este prezentat un tabel cu punctele si centroizii in pasul initial.
+{%endif%}
+
+{% if first_table and second_table %}
+    <h2>Graficul Punctelor</h2>
+    <img src="data:image/png;base64,{{ imagine_initiala }}" alt="Grafic puncte și centroizi">
+{% endif %}
+
+
+{% if kmeans_grafic_1 %}
+    <h2>Iteratia 1</h2>
+    <img src="data:image/png;base64,{{ kmeans_grafic_1 }}" alt="Grafic Iteratia 1">
+
+    <h3>Repartizare Iteratia 1:</h3>
+    <table border="1" cellpadding="5" cellspacing="0">
+        <tr>
+            <th>Cluster</th>
+            <th>Puncte (x, y)</th>
+        </tr>
+        {% for cluster, points in repartizare_iteratia_1.items() %}
+            <tr>
+                <td>{{ cluster+1 }}</td>
+                <td>
+                    {% for point in points %}
+                        ({{ point[0] }}, {{ point[1] }}){% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Calculul centroizilor Iteratia 1:</h3>
+    <ul>
+        {% for cluster, points in repartizare_iteratia_1.items() %}
+            <li>
+                <strong>Cluster {{ cluster +1}}:</strong>
+                <br>
+                Suma coordonatelor x: {{ calcul_suma_x_iteratia_1[cluster] }} <br>
+                Suma coordonatelor y: {{ calcul_suma_y_iteratia_1[cluster] }} <br>
+                Cardinalul (numărul de puncte): {{ points|length }} <br>
+                Calculul centroizilor: <br>
+                Centroid x = {{ (calcul_suma_x_iteratia_1[cluster] / points|length)|round(2) }} <br>
+                Centroid y = {{ (calcul_suma_y_iteratia_1[cluster] / points|length)|round(2) }} <br>
+
+            </li>
+        {% endfor %}
+    </ul>
+
+
+
+{% endif %}
+
+{% if kmeans_grafic_2 %}
+    <h2>Iteratia 2</h2>
+    <img src="data:image/png;base64,{{ kmeans_grafic_2 }}" alt="Grafic Iteratia 2">
+
+    <h3>Repartizare Iteratia 2:</h3>
+    <table border="1" cellpadding="5" cellspacing="0">
+        <tr>
+            <th>Cluster</th>
+            <th>Puncte (x, y)</th>
+        </tr>
+        {% for cluster, points in repartizare_iteratia_2.items() %}
+            <tr>
+                <td>{{ cluster +1}}</td>
+                <td>
+                    {% for point in points %}
+                        ({{ point[0] }}, {{ point[1] }}){% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Calculul centroizilor Iteratia 2:</h3>
+    <ul>
+        {% for cluster, points in repartizare_iteratia_2.items() %}
+            <li>
+                <strong>Cluster {{ cluster+1 }}:</strong>
+                <br>
+                Suma coordonatelor x: {{ calcul_suma_x_iteratia_2[cluster] }} <br>
+                Suma coordonatelor y: {{ calcul_suma_y_iteratia_2[cluster] }} <br>
+                Cardinalul (numărul de puncte): {{ points|length }} <br>
+                Calculul centroizilor: <br>
+                Centroid x = {{ (calcul_suma_x_iteratia_2[cluster] / points|length)|round(2) }} <br>
+                Centroid y = {{ (calcul_suma_y_iteratia_2[cluster] / points|length)|round(2) }} <br>
+            </li>
+        {% endfor %}
+    </ul>
+
+
+{% endif %}
+
+{% if kmeans_grafic_3 %}
+    <h2>Iteratia 3</h2>
+    <img src="data:image/png;base64,{{ kmeans_grafic_3 }}" alt="Grafic Iteratia 3">
+
+    <h3>Repartizare Iteratia 3:</h3>
+    <table border="1" cellpadding="5" cellspacing="0">
+        <tr>
+            <th>Cluster</th>
+            <th>Puncte (x, y)</th>
+        </tr>
+        {% for cluster, points in repartizare_iteratia_3.items() %}
+            <tr>
+                <td>{{ cluster+1 }}</td>
+                <td>
+                    {% for point in points %}
+                        ({{ point[0] }}, {{ point[1] }}){% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Calculul centroizilor Iteratia 3:</h3>
+    <ul>
+        {% for cluster, points in repartizare_iteratia_3.items() %}
+            <li>
+                <strong>Cluster {{ cluster+1 }}:</strong>
+                <br>
+                Suma coordonatelor x: {{ calcul_suma_x_iteratia_3[cluster] }} <br>
+                Suma coordonatelor y: {{ calcul_suma_y_iteratia_3[cluster] }} <br>
+                Cardinalul (numărul de puncte): {{ points|length }} <br>
+                Calculul centroizilor: <br>
+                Centroid x = {{ (calcul_suma_x_iteratia_3[cluster] / points|length)|round(2) }} <br>
+                Centroid y = {{ (calcul_suma_y_iteratia_3[cluster] / points|length)|round(2) }} <br>
+
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endif %}
+
+</body>
+</html>
+
+
+
+</body>
+</html>

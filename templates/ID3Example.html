@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Introducere numere si elemente</title>
+</head>
+<body>
+    <h1>Introduceti numarul de linii si coloane</h1>
+    <form method="POST">
+        <label for="n">Numar de linii (n): </label>
+        <input type="number" name="n" id="n" value="{{ n if n is not none else '' }}" required><br><br>
+
+        <label for="m">Numar de coloane (m): </label>
+        <input type="number" name="m" id="m" value="{{ m if m is not none else '' }}" required><br><br>
+
+        <button type="submit">Generare Tabel</button>
+    </form>
+
+    {% if n and m %}
+        <h2>Introduceti valorile pentru tabel</h2>
+        <form method="POST">
+            <input type="hidden" name="n" value="{{ n }}">
+            <input type="hidden" name="m" value="{{ m }}">
+
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>i</th>
+                        {% for j in range(m) %}
+                            <th>x{{ j + 1 }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Header</td>
+                        {% for j in range(m) %}
+                            <td><input type="text" name="header[]" value="{{ header[j] if header else '' }}" required></td>
+                        {% endfor %}
+                    </tr>
+                    {% for i in range(n) %}
+                        <tr>
+                            <td>{{ i + 1 }}</td>
+                            {% for j in range(m) %}
+                                <td><input type="number" name="elements[{{ i }}][{{ j }}]" value="{{ elements[i][j] if elements else 0 }}" min="0" max="1" required></td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br>
+            <button type="submit">Trimite tabelul</button>
+        </form>
+    {% endif %}
+
+    {% if header %}
+        <h2>Header-ul completat:</h2>
+        <ul>
+            {% for h in header %}
+                <li>{{ h }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if elements %}
+        <h2>Tabelul completat:</h2>
+        <table border="1" style="margin-top: 3cm;">
+            <tr>
+                <td>i</td>
+                {% for j in range(m) %}
+                    <td>{{ header[j] if header else 'Header' }}</td>
+                {% endfor %}
+            </tr>
+            {% for i in range(n) %}
+                <tr>
+                    <td>{{ i + 1 }}</td>
+                    {% for j in range(m) %}
+                        <td>{{ elements[i][j] }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+</body>
+</html>

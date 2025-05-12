@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Generare tabel</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='AlgorithmExampleInterface.css') }}">
+
+</head>
+<body>
+    <h1>Introduceti un numar n</h1>
+    <form method="POST">
+        <label for="n">n: </label>
+        <input type="number" name="n" id="n" required><br><br>
+        <button type="submit">Generare tabel</button>
+    </form>
+
+   {% if n %}
+    <h2>Introduceti {{ n }} linii si 3 coloane</h2>
+    <form method="POST">
+        <input type="hidden" name="n" value="{{ n }}">
+
+        <label for="x1">x1: </label>
+        <input type="number" name="x1" id="x1" required><br><br>
+
+        <label for="y1">y1: </label>
+        <input type="number" name="y1" id="y1" required><br><br>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>i</th>
+                    <th>x</th>
+                    <th>y</th>
+                    <th>Eticheta</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(n) %}
+                    <tr>
+                        <td>{{ i + 1 }}</td>
+                        <td><input type="number" name="elements[]" required></td>
+                        <td><input type="number" name="elements[]" required></td>
+                        <td><input type="number" name="elements[]" required></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <button type="submit">Trimite elementele</button>
+    </form>
+{% endif %}
+
+
+ {% if elements %}
+        <h2>Datele tabelului</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>i</th>
+                    <th>x</th>
+                    <th>y</th>
+                    <th>Eticheta</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(n) %}
+                    <tr>
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ elements[i][0] }}</td>
+                        <td>{{ elements[i][1] }}</td>
+                        <td>{{ elements[i][2] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{%if elements%}
+    <img src="data:image/png;base64,{{ image }}" alt="Grafic generat">
+{%endif%}
+
+
+{%if elements%}
+    {%if n%2==0%}
+        <p>Deoarece avem un numar par de puncte, putem avea k maxim {{k_maxim}} ca sa putem clasifica punctul.
+        Daca am lua k ca fiind numar par, am ajunge in situatia in care jumatate din puncte sunt clasificte pozitiv
+            si jumatate clasificate negativ, caz in care nu putem clasifica punctul nostru.
+        </p>
+        {%else%}
+        <p>Avand numar impar de puncte, putem avea k maxim {{k_maxim}}. </p>
+    {%endif%}
+    <p>In cazul nostru putem calcula
+        {%for i in range(k_lista|length)%}
+            {%if i==0%}
+                {{k_lista[i]}}-NN
+            {%else%}
+                , {{k_lista[i]}}-NN
+            {%endif%}
+        {%endfor%}.
+    </p>
+{%endif%}
+
+{%if elements%}
+    {%for i in range(k_lista|length)%}
+        {%if i!=0%}
+            <p>In tabelul de mai jos este prezentata classificarea pentru {{k_lista[i]}}-NN</p>
+            <img src="data:image/png;base64,{{ imagini_clasificare[i] }}" alt="Grafic generat">
+            <br>
+        {%else%}
+            <p>In tabelul de mai jos este prezentata classificarea pentru {{k_lista[i]}}-NN.
+            </p>
+            <img src="data:image/png;base64,{{ imagini_clasificare[i] }}" alt="Grafic generat">
+            <br>
+        {%endif%}
+            <p>Punctele cele mai apropiate de punctul nostru sunt:</p>
+            {%for j in range(k_lista[i])%}
+                <p>P{{ordonare_pentru_clasificare[j][0]+1}} de coordonate
+
+                  ({{elements[ordonare_pentru_clasificare[j][0]][0]}},
+                    {{elements[ordonare_pentru_clasificare[j][0]][1]}})
+
+                    {%if elements[ordonare_pentru_clasificare[j][0]][2]==1%}
+                        <b style="color: green;">clasificat pozitiv</b>
+                    {%else%}
+                        <b style="color:blue;">clasificat negativ</b>
+                    {%endif%}
+
+
+                    cu distanta de {{ordonare_pentru_clasificare[j][1]}} unitati dintre
+                    punctul nostru de coordonate ({{x1}}, {{y1}}) si P{{ordonare_pentru_clasificare[j][0]+1}} .
+
+                <p>Formula distanței dintre două puncte este \( d((x1,y1),(x2,y2)) = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2} \).</p>
+                <p>Punctul nostru are coordonatele ({{x1}}, {{y1}}) deci \( x \)<sub>1</sub>={{x1}} si \( y \)<sub>1</sub>={{y1}},
+                iar punctul P{{ordonare_pentru_clasificare[j][0]+1}} are coordonatele ({{elements[ordonare_pentru_clasificare[j][0]][0]}},
+                                {{elements[ordonare_pentru_clasificare[j][0]][1]}})
+                    deci \( x \)<sub>2</sub>={{elements[ordonare_pentru_clasificare[j][0]][0]}}
+                    si \( y \)<sub>2</sub>={{elements[ordonare_pentru_clasificare[j][0]][1]}}.
+                </p>
+
+
+
+                <p>Inlocuind in formula, obtinem
+                    {% set diferenta_prima = elements[ordonare_pentru_clasificare[j][0]][0] - x1 %}
+                    {% set diferenta_a_doua = elements[ordonare_pentru_clasificare[j][0]][1] - y1 %}
+                    {% set primul_patrat = diferenta_prima * diferenta_prima %}
+                    {% set al_doilea_patrat = diferenta_a_doua * diferenta_a_doua %}
+                    {%set suma_patrate=primul_patrat+al_doilea_patrat%}
+
+                    \( d \) (P,P{{ ordonare_pentru_clasificare[j][0] + 1 }})=
+                    \( d(({{ x1 }},{{ y1 }}),({{ elements[ordonare_pentru_clasificare[j][0]][0] }}, {{ elements[ordonare_pentru_clasificare[j][0]][1] }})) =
+                    \sqrt{({{ elements[ordonare_pentru_clasificare[j][0]][0] }} - {{ x1 }})^2 + ({{ elements[ordonare_pentru_clasificare[j][0]][1] }} - {{ y1 }})^2} \)=
+
+                    \(\sqrt{({{ diferenta_prima }})^{2} + ({{ diferenta_a_doua }})^{2}} \) =
+                    \(\sqrt{ {{ primul_patrat }} + {{ al_doilea_patrat }} } \)=
+                \(\sqrt{{ suma_patrate }}\)
+                &approx; {{ordonare_pentru_clasificare[j][1]}}
+                </p>
+
+
+
+                </p> <br>
+            {%endfor%}
+
+            {%if clasificare_knn[i]==1%}
+                <p>Deoarece avem mai multe puncte clasificate pozitiv decat puncte clasificate negativ,
+                    atunci si punctul nostru tot pozitiv va fi clasificat.
+                </p>
+                {%else%}
+                    <p>Deoarece avem mai multe puncte clasificate negativ decat puncte clasificate pozitiv,
+                    atunci si punctul nostru tot negativ va fi clasificat.
+                </p>
+            {%endif%}
+    {%endfor%}
+{%endif%}
+</body>
+</html>

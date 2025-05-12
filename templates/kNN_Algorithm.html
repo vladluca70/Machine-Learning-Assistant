@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='AlgorithmsInterfacePage.css') }}">
+
+</head>
+<body>
+    <h1>Algoritmul k-NN</h1> <br>
+
+    <p>
+    K-NN este un algoritm de clasificare. Când primește un exemplu nou (un punct cu caracteristici necunoscute), caută în setul de date cei mai apropiați „vecini” și decide la ce categorie aparține exemplul nou, pe baza majorității vecinilor săi.
+    <br>
+    Cum funcționează pas cu pas:<br>
+
+    1.Se dă un punct nou (necunoscut).<br>
+
+    2.Se calculează distanțele față de toate celelalte puncte.<br>
+
+    3.Se aleg cei mai apropiați K vecini.<br>
+
+    4.Se „votează” pentru cea mai frecventă clasă dintre vecini.<br>
+
+    5.Se atribuie acea clasă punctului necunoscut.<br>
+    </p>
+
+    <p>
+        ✝️Versete biblice care reflecta principiile K-NN:<br>
+    1. Proverbe 13:20<br>
+    „Cine umblă cu înțelepții devine înțelept, dar tovarășul nebunilor suferă pagubă.”<br>
+    Legătura cu K-NN:<br>
+    Clasificarea se face în funcție de vecinii apropiați. Dacă aceștia sunt "înțelepți", adică de o anumită clasă, noul exemplu va fi asociat cu acea clasă.
+    <br>
+    2. 1 Corinteni 15:33<br>
+    „Nu vă înșelați: tovărășiile rele strică obiceiurile bune.”<br>
+    Legătura cu K-NN:<br>
+    Influența celor din jur determină categoria în care ești încadrat. Vecinii contează, chiar dacă tu ești diferit – modelul te clasifică după ei.
+    <br>
+    3. Psalmul 1:1<br>
+    „Ferice de omul care nu se duce la sfatul celor răi, nu se oprește pe calea celor păcătoși și nu se așază pe scaunul celor batjocoritori.”<br>
+    Legătura cu K-NN:<br>
+    Evocă importanța alegerii vecinătății. În algoritm, cine îți sunt vecinii determină ce ești și tu. Vecinătatea e clasificatoare.
+    <br>
+    </p>
+
+    <p>
+        Termeni utilizati:<br>
+        1.<b>k (numărul de vecini)</b> – numărul de vecini cei mai apropiați luați în considerare pentru a face predicția.<br>
+        2.<b>Distanță Euclidiană</b> – cea mai comună metrică folosită pentru a calcula distanța între puncte; măsoară "lungimea" liniei drepte dintre două puncte.<br>
+        3.<b>Spațiu de caracteristici (feature space)</b> – reprezentarea datelor ca puncte într-un spațiu n-dimensional, unde fiecare dimensiune corespunde unei caracteristici.<br>
+        4.<b>Clasificare</b> – una dintre sarcinile pentru care se folosește k-NN; presupune atribuirea unei clase unui nou exemplu pe baza majorității dintre vecinii săi.<br>
+        5.<b>Majoritate (majority voting)</b> – metoda prin care se stabilește clasa unui exemplu nou: cea mai frecventă clasă dintre vecini este aleasă.<br>
+        6.<b>Curse of Dimensionality(Blestemul marilor dimensiuni)</b> – fenomen în care creșterea numărului de dimensiuni (features) poate reduce eficiența k-NN, deoarece distanțele devin mai puțin semnificative.<br>
+        7.<b>Overfitting</b> – apare când k este prea mic (ex: k=1), iar modelul învață prea specific, captând zgomotul din date.<br>
+    </p>
+
+    <a href="{{url_for('kNN_AlgorithmExample')}}">exemplu practic</a>
+    <a href="{{ url_for('home') }}" class="btn-back">🏠 Go Back Home</a>
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+/* Reset de bază */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+    color: #1a1a1a;
+    animation: fadeSlideDown 1s ease-out;
+}
+
+header h1 {
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.85;
+}
+
+/* Secțiuni */
+section {
+    padding: 2.5rem;
+    margin: 2rem auto;
+    max-width: 850px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+section:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+/* Listă frumoasă */
+ul {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+ul li {
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 2rem;
+}
+
+ul li::before {
+    content: "★";
+    position: absolute;
+    left: 0;
+    color: #ff9800;
+    font-size: 1.2rem;
+}
+
+/* Butoane algoritmi */
+.algo-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.algo-button {
+    text-decoration: none;
+    background: linear-gradient(45deg, #36d1dc, #5b86e5);
+    padding: 0.8rem 1.2rem;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.algo-button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(45deg, #5b86e5, #36d1dc);
+}
+
+/* Linkuri */
+a {
+    color: #e91e63;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ad1457;
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: #222;
+    color: white;
+    font-size: 0.9rem;
+}
+
+/* Buton temă – fără funcționalitate reală */
+.theme-toggle {
+    display: inline-block;
+    margin: 1rem;
+    padding: 0.6rem 1.2rem;
+    background: #ff4081;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: not-allowed; /* doar decorativ */
+    opacity: 0.7;
+}
+
+/* Animație la încărcare */
+@keyframes fadeSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .algo-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    section {
+        margin: 1rem;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+}
