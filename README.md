@@ -77,7 +77,7 @@ Watch a detailed presentation of the project here:
 
 
 ## 📂 Project Structure
-
+```
 machine-learning-assistant/
 │
 ├── static/ # CSS, images, and other static files
@@ -86,7 +86,7 @@ machine-learning-assistant/
 ├── requirements.txt # Python dependencies
 └── README.md # This documentation
 
-
+```
 
 ---
 
