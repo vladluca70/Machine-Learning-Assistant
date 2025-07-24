@@ -100,9 +100,9 @@ This project is a work in progress and I welcome feedback, ideas, and contributi
 
 If you want to learn more or discuss this project, reach out via:  
 **Email:** vladluca70@gmail.com  
-**LinkedIn:** [yourprofile](https://www.linkedin.com/in/lucavladut2003/)
+**LinkedIn:** [Luca Vladut](https://www.linkedin.com/in/lucavladut2003/)
 
 ---
 
 Thank you for visiting! I hope this assistant helps you unlock the fascinating world of Machine Learning. 🚀🤖  
-— *Your Name*  
+— *Vladut*  
