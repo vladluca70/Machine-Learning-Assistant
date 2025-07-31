@@ -1,0 +1,1121 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[romanian]{babel}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{times}
+\usepackage{breakurl}
+
+\usepackage{hyperref}
+\usepackage[hyphens]{url}
+
+\usepackage{graphicx}
+\geometry{a4paper, margin=2.5cm}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \textbf{UNIVERSITATEA "ALEXANDRU IOAN CUZA" DIN IAȘI} \\
+        \textbf{FACULTATEA DE INFORMATICĂ}
+
+        \vspace{2cm}
+
+        \includegraphics[width=0.4\linewidth]{logofii.png}
+
+        \vspace{2cm}
+
+        \Huge\textbf{Lucrare de licență}\\
+
+        \vfill
+
+        \Large
+        Coordonator științific: Dr. Bogdan Pătruț \\
+        Coordonator științific: Dr. Anca Ignat \\
+        Absolvent: Luca Vlăduț
+
+        \vfill
+
+        \large
+        Iași, 2025
+    \end{center}
+\end{titlepage}
+
+\newpage
+\thispagestyle{empty}
+\null
+\newpage
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{5cm} 
+
+        {\Huge \textbf{Machine Learning Assistant}}
+
+        \vspace*{5cm}  % spațiu de jos pentru echilibru
+    \end{center}
+\end{titlepage}
+
+
+\clearpage
+\section*{Anexa II}
+
+\vspace{0.5cm}
+
+\noindent \textbf{Avizat,}\\
+Îndrumător Lucrare de Licenţă / Diplomă / Disertație / Absolvire
+
+\vspace{0.3cm}
+
+\noindent Titlul, Numele și prenumele: \rule{10cm}{0.4pt}
+
+\vspace{0.3cm}
+
+\noindent Data: \rule{4cm}{0.4pt} \hfill Semnătura: \rule{5cm}{0.4pt}
+
+\vspace{1cm}
+\section*{DECLARAȚIE\\privind autenticitatea conținutului lucrării de licență}
+
+\noindent Subsemnatul(a) \rule{13cm}{0.4pt},
+
+\vspace{0.2cm}
+\noindent domiciliat(ă) în \rule{13cm}{0.4pt},
+
+\vspace{0.2cm}
+\noindent născut(ă) la data de \rule{5cm}{0.4pt}, identificat(ă) prin CNP \rule{3.3cm}{0.4pt},
+
+\vspace{0.2cm}
+\noindent absolvent(ă) al(a) Universității „Alexandru Ioan Cuza” din Iași, Facultatea de Informatică, specializarea
+
+\vspace{0.2cm}
+\noindent \rule{13cm}{0.4pt}, promoția \rule{1cm}{0.4pt},
+
+\medskip
+\noindent declar pe propria răspundere, cunoscând consecințele falsului în declarații în sensul art. 326 din Noul Cod Penal și dispozițiile Legii Educației Naționale nr. 1/2011 art. 143 alin. 4 și 5 referitoare la plagiat, că lucrarea de licență / diplomă / disertație / absolvire cu titlul:
+
+\vspace{0.2cm}
+\noindent \rule{\textwidth}{0.4pt}
+
+\vspace{0.2cm}
+\noindent \rule{\textwidth}{0.4pt}
+
+\vspace{0.2cm}
+\noindent elaborată sub îndrumarea dlui / dnei \rule{10cm}{0.4pt},
+
+\medskip
+\noindent este autentică, îmi aparține și îmi asum conținutul său în întregime.
+
+\medskip
+\noindent De asemenea, declar că sunt de acord ca lucrarea mea de licență să fie verificată prin orice modalitate legală pentru confirmarea autenticității, consimțind inclusiv la introducerea conținutului său într-o bază de date în acest scop. Declar că lucrarea de față are exact același conținut cu lucrarea în format electronic pe care profesorul îndrumător a verificat-o prin intermediul software-ului de detectare a plagiatului.
+
+\medskip
+\noindent Am luat la cunoștință despre faptul că este interzisă comercializarea de lucrări științifice în vederea facilitării falsificării de către cumpărător a calității de autor al unei lucrări de licență, de diplomă sau de disertație și în acest sens declar pe proprie răspundere că lucrarea de față nu a fost copiată, ci reprezintă rodul cercetării pe care am întreprins-o.
+
+\vspace{2cm}
+
+\noindent Data: \rule{5cm}{0.4pt} \hfill Semnătura student: \rule{6cm}{0.4pt}
+
+\clearpage
+\section*{Anexa III\\ 
+DECLARAȚIE DE CONSIMȚĂMÂNT}
+
+Prin prezenta declar că sunt de acord ca Lucrarea de licență cu titlul:
+
+\medskip
+\noindent\makebox[\textwidth]{\hrulefill}
+
+\medskip
+\noindent codul sursă al programelor și celelalte conținuturi (grafice, multimedia, date de test etc.) care însoțesc această lucrare să fie utilizate în cadrul Facultății de Informatică.
+
+De asemenea, sunt de acord ca Facultatea de Informatică de la Universitatea „Alexandru Ioan Cuza” din Iași să utilizeze, modifice, reproducă și să distribuie în scopuri necomerciale programele-calculator, format executabil și sursă, realizate de mine în cadrul prezentei lucrări de licență.
+
+\vspace{2cm}
+
+\begin{flushright}
+Iași, \underline{\hspace{4cm}} % pentru data
+\end{flushright}
+
+\vspace{1.5cm}
+
+\noindent Absolvent Prenume Nume 
+
+\vspace{1cm}
+
+\noindent\makebox[\textwidth]{\hrulefill}
+
+\vspace{1.5cm}
+
+\noindent Semnatura
+
+\vspace{1cm}
+
+\noindent\makebox[\textwidth]{\hrulefill}
+
+
+\chapter*{Cuprins}
+\begin{flushleft}
+\textbf{Introducere} \\
+\hspace*{1em}Contextul și motivația proiectului \\
+\hspace*{1em}Scopul aplicației \\
+\hspace*{1em}Structura lucrării \\[1em]
+
+\textbf{Noțiuni teoretice} \\
+\hspace*{1em}Definirea învățării automate \\
+\hspace*{1em}Tipuri de învățare \\
+\hspace*{1em}Prezentare generală a algoritmilor selectați \\
+
+\textbf{Descrierea generală a aplicației} \\
+\hspace*{1em}Scopul și funcționalitatea principală \\
+\hspace*{1em}Fluxul logic pentru utilizator \\
+\hspace*{1em}Exemplificare scenarii de utilizare \\[1em]
+
+\textbf{Tehnologii utilizate} \\
+\hspace*{1em}Python, Flask \\
+\hspace*{1em}Matplotlib \\
+\hspace*{1em}HTML, CSS \\
+\hspace*{1em}Alte unelte relevante \\[1em]
+
+\textbf{Arhitectura aplicației} \\
+\hspace*{1em}Structura folderelor și fișierelor \\
+\hspace*{1em}Rutarea Flask \\
+\hspace*{1em}Explicația modului MVC sau similar \\
+\hspace*{1em}Gestionarea template-urilor și interacțiunea cu backend-ul \\[1em]
+
+\textbf{Prezentarea algoritmilor integrați} \\
+\hspace*{1em}Pentru fiecare algoritm: \\
+\hspace*{2em}Prezentare teoretică  \\
+\hspace*{2em}Implementare  \\
+\hspace*{2em}Cum este explicat în aplicație  \\[1em]
+
+\textbf{Interfața cu utilizatorul} \\
+\hspace*{1em}Prezentarea UI \\
+\hspace*{1em}Explicarea funcționalităților interactive \\
+
+\textbf{Testare și validare} \\
+\hspace*{1em}Modul de testare a aplicației \\
+\hspace*{1em}Testarea rezultatelor algoritmilor \\
+
+\textbf{Concluzii și direcții viitoare} \\
+\hspace*{1em}Ce ai învățat din proiect \\
+\hspace*{1em}Ce poate fi îmbunătățit \\
+\hspace*{1em}Propuneri pentru extindere \\[1em]
+
+\textbf{Bibliografie} \\
+\hspace*{1em}Cărți, cursuri, articole online, tutoriale \\[1em]
+
+\end{flushleft}
+
+\newpage
+\section*{1. Introducere \\} 
+\addcontentsline{toc}{section}{Introducere} 
+\setcounter{section}{1}
+\subsection*{\texorpdfstring{\textbullet\ Contextul și motivația proiectului}{Contextul și motivația proiectului}}
+    Acest proiect a fost realizat din dorinta de a explica modul de functionare al algoritmilor de Machine Learning persoanelor(in special studentilor) care doresc sa invete despre acest domeniu. Totul a inceput in prima saptamana de facultate din anul 3 cand am avut primul contact cu acest domeniu, nestiind nimic de el pana atunci. Pe tot parcursul semestrului cat am studiat aceasta materie am intalnit tot felul de dificultati in intelegerea anumitor algoritmi si a modului lor de rulare, doar ca nu doar eu, ci si mai multi dintre colegii mei. Din acest motiv, m-am hotarat sa fac o lista cu lucrurile care ne-au pus pe mine si colegii mei in dificultate, anumite lucruri care nu se deduc usor din notatii si formule si sa le explic prin intermediul unei aplicatii web care pe baza unui set de date oferit de utilizator, trece prin toti pasii algoritmului oferind informatii si explicatii. In afara de explicatii, mai sunt prezentate tabele si grafice care au rolul sa faca utilizatorul sa inteleaga mai usor evolutia de la o iteratie la alta. \\
+
+\subsection*{\texorpdfstring{\textbullet\ Scopul aplicatiei}{Scopul aplicatiei}}
+    Scopul acestei aplicatii este de a ajuta studentii sa inteleaga mai usor cum functioneaza algoritmii de machine learning prin explicarea fiecarui pas din algoritmi, explicarea termenilor cheie intr-un mod informal si mai usor de inteles si intelegerea mai usoara prin utilizarea de grafice. Pentru cei carora le place sa faca asocieri in scopul de a retine sau invata mai usor, au fost adaugate in sectiunea de notiuni teoretice a fiecarui algoritm cateva versete biblice care au stransa legatura cu modul in care algoritmii functioneaza. Pentru a face mai placuta interactiunea utilizator-aplicatie, paginile isi pot schimba tema si culoarea, atat pentru a oferi un confort ochilor(tema luminoasa si culori deschise pe timp de zi, respectiv tema intunecata si culori inchise pe timp de noapte) cat si pentru a atrage studentii pe aceasta aplicatie avand posibilitatea sa incerce ceva nou de fiecare data.\\
+
+\subsection*{\texorpdfstring{\textbullet\ Structura lucrarii}{Structura lucrarii}}
+    In aceasta lucrare vor fi prezentate aspecte legate de aplicatia web precum limbajele de programare utilizate, modul in care a fost gandita aceasta aplicatie, modul in care fiecare algoritm a fost explicat si cum au fost prelucrate datele, notiuni teoretice despre fiecare algoritm, imagini cu interfata grafica si bucati de cod importante. Vor fi prezentate explicatii cat mai multe despre cod si modul de prelucrare al datelor, acestea fiind insotite si de imagini. 
+
+
+\newpage
+\section*{2. Notiuni teoretice \\} 
+\addcontentsline{toc}{section}{Notiuni teoretice} 
+\setcounter{section}{1}
+\subsection*{\texorpdfstring{\textbullet\ Definirea invatarii automate}{Definirea invatarii automate}}
+    Invatarea automata este un subdomeniu al informaticii care se ocupa cu prelucrarea datelor in scopul de a "invata" din ele si pentru a lua decizii in situatii asemanatoare sau diferite prin analiza unor seturi mari de date si gasirea unui model in acestea. Odata ce modelele de invatare automata au acces la cat mai multe date si sunt folosite din ce in ce mai des, acestea devin din ce in ce mai precise, avand o acuratete foarte mare in raspunsul oferit.\\
+
+\subsection*{\texorpdfstring{\textbullet\ Tipuri de invatare}{Tipuri de invatare}}
+    \underline{\textbf{Invatare supervizata}}: in acest tip de invatare datele sunt etichetate, acestea fiind reprezentate de perechi input-output unde cunoastem valoarea output-ului, adica eticheta. Algoritmii care folosesc acest tip de invatare sunt regresia liniara, regresia logistica, K-NN, SVM, retelele neuronale. In viata de zi cu zi, invatarea supervizata este folosita in clasificarea e-mailurilor ca fiind spam sau non-spam, recunoastere vocala sau detectarea de boli.\\ \\
+    \underline{\textbf{Invatare nesupervizata}}: in acest tip de invatare datele nu sunt etichetate, acestea neavand o valoare la output. Scopul acestui tip de invatare este de a se lega de toate datele oferite si de a incerca sa creeze modele. Algoritmii care folosesc invatarea nesupervizata sunt K-Means si cei de clusterizare ierarhica. In viata de zi cu zi, invatarea nesupervizata este utilizata in securitatea cibernetica, recunoasterea faciala sau analiza social media.\\ \\
+    \underline{\textbf{Invatare semi-supervizata}}: in acest tip de invatare sunt combinate cantitati mici de date etichetate cu o cantitate mare de date neetichetate, scopul fiind de a da un punct de start in gasirea unui model sau in gasirea mai usoara a acestuia. Printre algoritmii care folosesc acest tip de invatare enumeram S3VM si GMMs. In practica, acest tip de invatare este folosita in analiza medicala, recunoasterea scrisului de mana sau clasificarea de imagini.\\ \\
+    \underline{\textbf{Invatare prin reintarire(Reinforcement Learning)}}: in acest tip de invatare este vorba de un agent care interactioneaza cu o situatie si primeste o recompensa sau o penalizare in functie de alegerile pe care le face, ducand la formarea unei strategii cat mai buna. Algoritmii care folosesc acest tip de invatare sunt Q-Learning si Deep Q Networks. In practica, invatarea prin reintarire este folosita in gasirea celor mai bune strategii pentru jocuri precum sah, Go sau table.\\
+
+\newpage
+\subsection*{\texorpdfstring{\textbullet\ Prezentare generala a algoritmilor selectati}{Prezentare generala a algoritmilor selectati}}  
+\underline{\textbf{Algoritmul AdaBoost}} \\ \\
+AdaBoost(Adaptive Boosting) este un algoritm de invatare supervizat care are rolul de a clasifica datele combinand mai multe modele slabe(ex: compasi de decizie) in unul puternic. Acest algoritm a fost propus de Yoav Freund si Robert Schapire in anul 1995.\\ \\
+Modul de functionare este unul nici prea simplu dar nici prea complicat. Se incepe cu initializarea ponderilor. Fiecare punct primeste o pondere(greutate) care este echivalenta cu 1 supra numarul total de puncte. Aceasta asignare este valida doar in prima iteratie a algoritmului. Urmatorul pas este cel de stabilire a granitelor. Rolul granitelor este de a arata unde sunt puncte diferite pe grafic(daca un punct etichetat pozitiv este urmat de un punct etichetat negativ sau invers, atunci aici este un loc unde este necesara trasarea unei granite).\\ Aceste granite se traseaza la jumatatea distantei dintre doua cele mai apropiate puncte cu etichete diferite. Un lucru important la acest algoritm este trasarea unei granite sau a unor granite(depinde de spatiul numerelor), fara de care algoritmul ar functia gresit si ar oferi rezultate eronate. Aceasta granita se pune ori dupa ultimul punct de pe grafic, ori inainte de primul punct, fiind o mica distanta intre cele doua. Urmatorul pas este cel de calculare al erorilor pentru fiecare punct de pe grafic in raport cu granitele de decizie si determinarea erorii minime. Granitele de decizie sunt compasi de decizie care ajuta modelul sa clasifice datele.\\ La fiecare iteratie a algoritmului este ales cate un nou compas. Gasirea erorii minime determina si compasul de decizie la iteratia respectiva. Odata ce compasul de decizie a fost selectat, se pregatesc ponderile pentru iteratia urmatoare. Astfel, punctele clasificate corect primesc o pondere mare iar punctele clasificare gresit primesc o pondere mai mica. Deci, la o iteratie urmatoare, punctele clasificate gresit vor fi luate in evidenta avand eroarea cea mai mica. Se observa faptul ca doar in pasul initial punctele primesc pondere echivalenta cu 1 supra numarul total de puncte iar in iteratiile urmatoare ponderile au legatura cu punctele clasificate gresit si corect.\\ Acesti pasi se repeta pana cand toate punctele sunt clasificate corect sau pana cand s-a atins numarul de iteratii stabilite la inceput, acestea doua reprezentand doua criterii importante in oprirea rularii algoritmului.\\ \\
+Printre avantajele acestui algoritm se enumera gestionarea datelor zgomotoase si a outlier-elor si oferirea de rezultate cu o acuratete foarte mare. Ca si dezavantaje, algoritmul poate conduce la overfitting daca clasificatorii slabi sunt prea complexi, timp costisitor in cazul in care setul de date este unul destul de mare si sensibilitate la date zgomotoase si outliere care nu sunt preprocesate.\\
+In practica, acest algoritm este utilizat in recunoasterea faciala, determinarea daca un e-mail poate fi incadrat ca fiind spam sau non-spam sau clasificarea de date si imagini.\\
+Acest algoritm a fost dezvoltat si imbunatatit in decursul anilor, asttfel aparand mai multe versiuni si variante precum Discrete AdaBoost, Real AdaBoost, LogitBoost sau Gentle AdaBoost.
+
+
+\newpage
+\underline{\textbf{Algoritmul ID3}} \\ \\
+\\ Algoritmul ID3(Iterative Dichotomiser 3) este a treia versiune a algoritmilor creati de J. Ross Quinlan in anul 1980. Acesta este un algoritm de clasificare a datelor bazandu-se pe cosntructia de arbori de decizie.\\ \\
+Modul de functionare este unul nici prea simplu dar nici prea complicat. Este important ca datele sa fie cat mai bine structurate intr-un tabel, tabel care detine informatii despre un anumit obiect sau lucru indiferent de mediul acestuia de provenienta, informatii numite caracteristici si valori. Unul dintre cei mai importanti termeni care are legatura cu acest algoritm este cel de entropie care semnifica nivelul mediu de incertitudine sau a impuritatii intr-un set de date. O valoare mare a entropiei inseamna un set de date mai amestecat. \\
+Primul pas in algoritm este cel de calculare a entropiei mari, adica entropia variabilei tinta. Dupa urmeaza calcularea entropiei pentru fiecare atribut din tabel, iar pentru fiecare atribut se calculeaza entropiile tinand cont si de atribute. Odata ce toate entropiile sunt calculate, pentru fiecare atribut in parte se calculeaza castigul de informatie ca fiind diferenta dintre entropia mare si entropiile atributelor in functie de variabile inmultite cu un raport dintre numarul de variabile corespunzatoare atributului si cardinalul atributului. Dupa ce toate castigurile de informatie au fost calculate, se compara pentru a se determina care atribut are castigul de informatie cel mai mare. Atributul respectiv este ales ca radacina a arborelui de decizie. \\
+La pasul urmator, atributul ales la pasul precedent nu mai este luat in considerare si se aplica acelasi procedeu(calculare entropii, calculare castig de informatie, determinarea atributului cu castig de informatie maxim) pana cand tabelul ramane fara atribute si arborele este construit complet. Nodurile arborelui contin in interior numele atributelor din tabel si sunt legate prin arce pe care sunt notate atributele nodului parinte. In nodurile frunza sunt trecute valorile atributelor, valori care reprezinta raspunsul algoritmului in clasificarea altor date. Odata ce arborele este creat, se pot clasifica si alte date. Este necesar sa se inceapa de la radacina arborelui si sa se parcurga arborele tinand cont de ce atribute si valori are noua instanta de clasificat. Parcurgerea are loc pana cand se ajunge intr-un nod frunza, moment in care algoritmul se opreste si se ia decizia in privinta raspunsului oferit. \\ \\
+Acest algoritm are avantaje precum construirea unui arbore simplu, scurt si rapid si verificarea intreg setului de date pentru a construi arborele de decizie. Printre dezavantaje se enumera gestionarea doar datelor categoriale, prioritizarea atributelor cu mai multe valori sau negestionarea seturilor de date nebalansate si a valorilor lipsa. In practica, acest algoritm este utilizat in luarea de decizii in domeniul medical, clasificarea e-mailurilor ca fiind spam sau non-spam sau a sistemelor de recomandare.\\ Algoritmul ID3 are mai multe versiuni precum C4.5, C5.0, CART, ID4, ID5, Oblique Decision Trees, Random Forest, Chi-Squared Automatic Interaction Detector si Cost-Sensitive ID3.
+
+\newpage
+\underline{\textbf{Algoritmul k-NN}} \\ \\
+\\ Algoritmul k-NN este un algoritm de invatare supervizat, non-parametric, care face clasificare pe baza celor mai apropiate instante. A fost dezvoltat de Evelyn Fix si Joseph Hodges in anul 1951, urmand ca mai tarziu sa fie explicat de Thomas Cover. Acest algoritm poate fi generalizat si pentru regresie.\\ \\
+Modul de functionare al acestui algoritm este unul foarte simplu. Datele sunt reprezentate sub forma de puncte intr-un grafic impreuna cu etichetele acestora. De obicei, punctele sunt reprezentate de o bulina neagra daca au eticheta negativa si bulina alba daca au eticheta pozitiva. Apoi se alege o metrica de distanta.\\ Alegerea acesteia este un pas important deoarece folosirea de metrici de distanta diferita schimba si acuratetea modelului. Cea mai folosita metrica este distanta Euclidiana care se calculeaza ca radical din suma patratelor diferentei dintre coordonatele corespunzatoare axei Ox, respectiv Oy. Alte doua metrici foarte folosite sunt distanta Manhattan si distanta Chebyshev. Alte metrici mai putin intalnite sunt distantele Minkowski, Cosinus Distance, Hamming, Mahalanobis, Jaccard, Levenshtein.\\ Odata ce metrica de distanta a fost aleasa, trebuie aleasa o valoare pentru variabila k. Aceasta variabila reprezinta cati vecini vor fi luati in calcul in determinarea modelului. Daca k este ales ca fiind 5, atunci eticheta punctului pe care vrem sa il clasificam va fi determinata de etichetele celor mai apropiati 5 vecini. In determinarea clasificarii punctului dorit, se vor face doua multimi, prima reprezentand multimea vecinilor din cei k cei mai apropiati vecini care au etichete pozitive si a doua multime formata din vecinii din cei k cei mai apropiati vecini care au etichete negative. Multimea cu cardinalul mai mare va da eticheta punctului care se doreste a fi clasificat. Spre exemplu, daca din cei 5 cei mai apropiati vecini ai unui punct pe care dorim sa il clasificam 3 vecini au eticheta pozitiva iar 2 au eticheta negativa, atunci punctul nostru va avea si el tot eticheta pozitiva deoarece multimea vecinilor cu eticheta pozitiva domina.\\ Este important ca atunci cand se alege valoarea pentru variabila k, aceasta sa reprezinte un numar impar. Daca variabila k ar fi ales un numar par, atunci este foarte posibil sa se intample cazul in care exact jumatate dintre vecini sunt etichetati pozitiv si jumatate sunt etichetati negativ, caz in care nu se poate lua o decizie asupra etichetei care i se potriveste punctului ce trebuie clasificat. Aceasta este o ambiguitate care trebuie evitata deoarece algoritmul este in imposibilitatea de a oferi un raspuns. \\ \\
+Printre avantajele de folosire ale acestui algoritm se enumera usurinta de intelegere a acestuia, implementarea simpla, adaptabilitatea la noi date, eficienta pe seturi mici de date. Ca si dezavantaje, acest algoritm necesita multa memorie si sensibilitatea la caracteristici irelevante. In viata de zi cu zi, acest algoritm este folosit in diagnosticul medical, recunoasterea scrisului de mana, recunoastere faciala si imagini. Ca si versiuni ale acestui algoritm avem Weighted k-NN, Distance-weighted k-NN, Condensed k-NN, Edited k-NN sau Fuzzy k-NN.
+
+\newpage
+\underline{\textbf{Algoritmul K-Means}} \\ \\
+\\ Algoritmul K-Means este un algoritm de invatare nesupervizata dezvoltat de Stuart Lloyd in anul 1955, fiind mai apoi dezvoltat si imbunatatit pe parcursul anilor. Acest algoritm are ca scop principal gruparea datelor(clustering).\\ \\
+Modul sau de functionare este moderat ca dificultate. Primul pas este cel de a se stabili cu ce valoare este initializata variabila k. Alegerea acestei valori este foarte importanta deoarece o valoare diferita poate influenta precizia si acuratetea modelului. Un k prea mic ar grupa multe date diferite impreuna iar un k prea mare ar grupa date care sunt foarte asemanatoare la un loc. Una dintre metodele de alegere a valorii pentru variabila k este metoda cotului(Elbow). Aceasta metoda presupune rularea algoritmului pe mai multe valori posibile ale lui k. Rezultatele sunt reprezentate intr-un grafic pe care se cauta un "cot", adica un punct unde scaderea erorii devine cat mai mica posibil. O alta metoda utilizata este Silhouette care functioneaza pe baza unui scor acordat punctelor. \\
+Odata ce k este ales, trebuie alesi cei k centroizi. In acest caz, centroizii pot fi chiar si punctele din grafic sau pot fi puncte care nu se regasesc in grafic. Urmeaza alegerea metricii de distanta care este un pas important, folosirea unei metrici diferite poate schimba si acuratetea modelului. Cea mai folosita metrica este distanta Euclidiana care se calculeaza ca radical din suma patratelor diferentei dintre coordonatele corespunzatoare axei Ox, respectiv Oy. Alte doua metrici foarte folosite sunt distanta Manhattan si distanta Chebyshev. Alte metrici mai putin intalnite sunt distantele Minkowski, Cosinus Distance, Hamming, Mahalanobis, Jaccard, Levenshtein. \\
+In cele ce urmeaza trebuie calculata distanta dintre fiecare punct si cei k centroizi. Se ia cate un punct pe rand, se calculeaza distanta dintre el si cei k centroizi, de aici rezultand k lungimi de distanta. Apoi se compara cele k lungimi urmand ca punctul sa fie asignat centroidului de care este cel mai apropiat. Dupa ce toate punctele au fost asignate unui centroid, urmeaza sa fie recalculate pozitiile centroizilor. Modul de a determina noua pozitie a fiecarui centroid este una destul de simpla. Se aduna toate coordonatele punctelor corespunzatoare clusterului in care au fost alocate si se imparte la numarul total de puncte din multime, astfel obtinandu-se noile coordonate ale centroidului. Cu alte cuvinte, centroidul este un centru de greutate. In acest punct se termina o iteratie a algoritmului.\\ Urmeaza ca algoritmul sa se repete, dar de data asta cu alte coordonate ale centroizilor. In functie de marimea setului de date, centroizii se pot schimba foarte frecvent sau aproape deloc. Daca vorbim de un dataset mic, undeva la 10-15 puncte, e posibil ca centroizii  sa se schimbe doar intre una sau doua iteratii sau sa nu se schimbe deloc intre nicio iteratie. In cazul in care datasetul este foarte mare, centroizii isi vor schimba pozitiile intre multe iteratii, sansa ca centroizii sa fie fixati in pozitia potrivita din prima fiind foarte mica.\\
+Algoritmul se opreste in doua situatii. Prima e atunci cand se atinge numarul de iteratii fixat la inceputul algoritmului iar a doua e atunci cand centroizii nu isi mai schimba pozitia intre doua iteratii succesive sau isi schimba pozitia dar foarte putin. \\ \\
+Acest algoritm are ca avantaje simplitatea implementarii lui, scalarea la seturi mari de date sau generalizarea la clustere de diferite forme si marimi precum clusterele eliptice. Ca si dezavantaje, k trebuie ales manual, dificultatea clusterizarii datelor de diferite marimi si densitati fara generalizare sau dificultatea scalarii cu numar de dimensiuni. Ca si versiuni ale acestui algoritm putem enumera K-Medoids, Lloyd's K-Means, MacQueen's K-Means, Hartingan-Wong K-Means, K-Means++ sau Kernel K-Means.
+
+\newpage
+\underline{\textbf{Algoritmul de Regresie Logistica}} \\ \\
+\\ Algoritmul de Regresie Logistica este un algoritm de invatare supervizata dezvoltat in anul 1880 si integrat in machine learning dupa anii 1950, algoritm la care au contribuit Francis Galton, Karl Pearson si Ronald Fisher. Acest algoritm are ca scop prezicerea probabilitatii ca un element, obiect, sa apartina unei clase.\\ \\
+Modul de functionare al acestui algoritm poate parea putin mai dificil, acest lucru datorandu-se si de prezenta notiunilor si formulelor matematice. Acest algoritm foloseste o functie speciala, numita functia sigmoid. Aceasta este o functie non-liniara care are ca scop transformarea output-ului modelului de regresie logistica intr-o probabilitate. Aceasta functie este aleasa in detrimentul altor functii deoarece este stabila, mai usor de interpretat si mult mai comuna. \\
+Alta functie utilizata este functia de log-verosimilitate. Aceasta are rolul de a maximiza scorul. Aceasta functie trateaza fiecare instanta din setul de date, comportandu-se diferit doar atunci cand output-ul difera. In aceasta formula intervine termenul de bias care este o valoare constanta(de obicei 1) care se aduna. Vectorul gradient, alta componenta importanta in aplicarea algoritmului, arata directia in care creste functia de log-verosimilitate. Acest vector are cardinalul egal cu numarul de instante din setul de date. Poate fi calculat ca fiind derivata partiala a functiei de log-verosimilitate in raport cu w. Matricea Hessiana este o matrice care contine derivatele de ordin doi si pe care se pot aplica alte metode de optimizare. \\
+Odata ce functia de log-verosimilitate, vectorul gradient si matricea Hessiana au fost determinate, se pot face predictii pentru alte seturi noi de date. Pentru acest lucru, se initializeaza n ponderi cu 0, unde n reprezinta numarul de instante din setul de date, apoi folosindu-ne de valorile din vectorul gradient si una dintre metoda gradientului ascendent sau descendent, se poate aplica formula pentru a face predictia. Formula se aplica pana la convergenta. Valorile din noul vector obtinut dupa aplicarea formulei sunt inmultite cu valorile instantei ce se doreste a fi clasificata, apoi toate aceste produse sunt adunate. Daca suma reprezinta un numar negativ, atunci algoritmul va produce output-ul 0, iar daca suma este reprezentata de un numar pozitiv, output-ul produs de regresia logistica va fi 1. \\ \\
+In practica mai este folosit si un alt tip de regresie, fiind vorba de cea liniara. Diferenta dintre cele doua este data de rezultatul pe care il ofera si contextul in care sunt folosite. Regresia liniara este folosita pentru pentru a prezice valori precum temperatura, pretul, inaltime, dimensiune, pe cand regresia logistica face o predictie ca un anumit obiect, eveniment sa se incadreze intr-o categorie.\\
+Printre avantajele acestui algoritm avem usurinta de a fi implementat, inteles si interpretat, eficient in antrenare, poate fi usor extins la alte clase. Printre dezavantaje, problemele non-liniare nu pot fi rezolvate cu acest algoritm, este greu de a obtine legaturi complexe si poate fi folosit doar pentru a prezice functii discrete. \\
+Algoritmul de regresie logistica are mai multe variante precum cea binara, multiclasa, penalizata sau cea cu interactiuni. 
+
+\newpage
+\underline{\textbf{Algoritmii Bayes Naiv si Bayes Optimal}} \\ \\
+\\ Algoritmii Bayes Naiv si Bayes Optimal sunt doi algoritmi de invatare automata dezvoltati dupa anul 1990, fiind algoritmi de clasificare care se bazeaza pe probabilitati in oferirea unui raspuns. \\ \\
+Modul de functionare al acestor algoritmi este unul destul de simplu deoarece se bazeaza pe calcularea unor probabilitati. In cazul algoritmului Bayes Naiv se foloseste Teorema lui Bayes si se face presupunerea ca toate atributele sunt independente intre ele, avand rolul de a simplifica cat mai mult si de a face calculul unul cat mai simplu. In schimb, in cazul algoritmului Bayes Optimal, acesta ia in calcul absolut toate probabilitatile pentru a oferi un rezultat cat mai precis. Din punct de vedere al corectitudinii si acuratetii, Bayes Optimal este cel mai bun. Dar din punct de vedere al complexitatii, Bayes Naiv este preferat in detrimentul acestuia. \\
+In cazul celor doi algoritmi, odata ce probabilitatile au fost calculate, se poate incepe determinarea predictiei pentru o instanta ce se doreste a fi clasificata. Se calculeaza doua probabilitati, una cand noua instanta ar apartine clasei 0 si inca o probabilitate atunci cand noua instanta ar apartine clasei 1. Daca una dintre clase are o probabilitate mai mare decat cealalta, atunci aceasta clasa va oferi output-ul algoritmului, adica in ce clasa poate fi incadrata noua instanta. Cateodata, din cauza setului de date, se intampla ca ambele probabilitati sa fie egale. In acest caz algoritmul nu poate decide daca noua instanta apartine clasei 0 sau 1. Pentru a rezolva aceasta problema se foloseste o metoda numita Laplace. Aceasta metoda adauga constanta 1 la numarator si mai aduna o constanta la numitorul fractiei, constanta care reprezinta numarul total de valori posibile pentru acea variabila. Cu ajutorul acestei metode este evitat cazul in care avem doua probabilitati egale si algoritmul nu poate decide carei clase apartine instanta ce se vrea a fi clasificata. Tot cu aceasta metoda este evitat si cazul in care in calculul probabilitatilor se poate ajunge ca una dintre ele sa fie 0. \\
+In cazul celor doi algoritmi difera doar modul in care sunt calculate probabilitatile. Dezavantajul major al algoritmului Bayes Naiv este ca de cele mai multe ori presupunerea de independenta conditionata este falsa, asta ducand la rezultate imprecise si o acuratete mai slaba decat a altor algoritmi de clasificare utilizati in machine learning. In schimb, acest algoritm compenseaza cu rapiditatea si usurinta calculelor. Algoritmul Bayes Optimal are ca dezavantaj spatiul de memorie pe care il foloseste deoarece ia in calcul toate probabilitatile, el neluand in calcul presupunerea independentei conditionate intre variabile. Cu toate ca ofera rezultate mult mai precise, in practica nu este preferat din cauza resurselor utilizate. \\ \\
+In viata de zi cu zi, doar algoritmul Bayes Naiv este folosit. Aceste este utilizat in clasificarea e-mailurilor ca fiind spam sau non-spam, diagnostic medical sau filtrarea comentariilor si textelor din social media. Algoritmul Bayes Optimal este dorit a fi utilizat doar in scop teoretic si educational. \\
+Bayes Naiv a dezvoltat pe parcursul timpului mai multe variante/versiuni precum cel Gaussian, multinomial, Bernoulli sau cel categorial. Bayes Optimal are versiuni precum modelul averaging sau maximum a posteriori(clasificatorul MAP).
+
+
+\newpage
+\section*{3. Descrierea generala a aplicatiei \\} 
+\addcontentsline{toc}{section}{Descrierea generala a aplicatiei} 
+\setcounter{section}{1}
+\subsection*{\texorpdfstring{\textbullet\ Scopul si functionalitatea principala}{Scopul si functionalitatea principala}}
+    Scopul acestei aplicatii web este de a familiariza pe cei noi in domeniu cu conceptele de invatare automata si despre modul in care algoritmii utilizati in acest domeniu functioneaza. Explicarea algoritmilor este facuta pas cu pas, explicatiile fiind insotite de imagini, grafice, tabele sau asocieri biblice. Partea grafica are scopul de a atrage utilizatorul si pentru a-i ajuta pe cei care au o memorie vizuala sa retina unele lucruri mai usor. \\
+    Functionalitatea principala a acestei aplicatii este cea de prelucrare a datelor. Datele pot fi introduse intr-un tabel de catre utilizator in interfata grafica, acestea urmand sa fie trimise pe backend, loc in care sunt prelucrate si trimise inapoi catre interfata grafica unde sunt afisate intr-un mod cat mai placut. 
+
+
+\subsection*{\texorpdfstring{\textbullet\ Fluxul logic pentru utilizator}{Fluxul logic pentru utilizator}}
+    Utilizatorul trebuie sa acceseze pagina principala a aplicatiei. In cest loc(Figura 1) ii este prezentat pe scurt ce inseamna termenul de invatare automata si ce va descoperi in acest site.
+    
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth, height=0.4\textheight]{images/1.png}
+    \caption{Pagina de start- informatii}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+
+    
+    In ultima sectiune a paginii(Figura 2) va gasi link-uri catre site-uri utile care il pot ajuta sa invete si mai multe lucruri despre acest domeniu, link-uri catre carti scrise de persoane importante care se ocupa de acest domeniu sau link-uri catre site-uri cu seturi de date in caz ca utilizatorul doreste sa isi faca o idee despre ce este acela un set de date, cat de mare poate fie sau daca vrea sa aplice unul dintre algoritmii de machine learning pe un dataset.\\
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth, height=0.3\textheight]{images/2.png}
+    \caption{Pagina de start- resurse utile}
+    \label{fig:eticheta_imagine}
+\end{figure}    
+
+    
+    Inainte de aceasta sectiune se mai afla o sectiune cu algoritmii(Figura 3) pe care pagina web ii explica. Este nevoie doar ca utilizatorul sa selecteze ce algoritm doreste sa aprofundeze sau despre care sa invete cum ruleaza.  
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth, height=0.3\textheight]{images/3.png}
+    \caption{Pagina de start- algoritmi}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Odata ce utilizatorul isi alege un algoritm, acesta va fi redirectionat catre pagina dedicata algoritmului(Figura 4). In partea de inceput a paginii, utilizatorul va gasi informatii despre modul in care algoritmul ruleaza, pasii algoritmului fiind explicati cat mai simplu pastrandu-se doar ideea principala fara a incarca pagina cu informatii care nu sunt necesare. 
+\newpage
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth, height=0.3\textheight]{images/4.png}
+    \caption{Pagina dedicata algoritmilor- modul de functionare}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Dupa aceasta sectiune, utilizatorul va gasi o noua sectiune cu versete biblice(Figura 5). Scopul acestor versete biblice este de a face o legatura intre sensul lor si modul de functionare al algoritmilor. Aceasta metoda vine in ajutorul celor care vor sa invete despre ce fac algoritmii, ajutandu-i pe cei care au o metoda vizuala sau celor carora le plac asocierile ca sa retina mai usor. Fiecare verset are o stransa legatura cu ceea ce face algoritmul, acestea fiind apoi explicate si prezentata legatura pe care o au. \\
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth, height=0.3\textheight]{images/5.png}
+    \caption{Pagina dedicata algoritmilor- versete biblice}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+In penultima sectiune a paginii(Figura 6) sunt prezentati termeni si cuvinte cheie care au legatura cu algoritmul respectiv. Acesti termeni sunt explicati intr-un mod informal, fara cuvinte complicate pentru a facilita intelegerea mai usoara a utilizatorului. Pe parcursul rularii algoritmului respectiv acesti termeni vor fi utilizati destul de des, motiv pentru care studierea acestei pagini este esentiala. 
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth, height=0.25\textheight]{images/6.png}
+    \caption{Pagina dedicata algoritmilor- termeni si cuvinte cheie}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Odata ce aceste sectiuni au fost parcurse, utilizatorul ajunge la ultima sectiunii a paginii(Figura 7), cea care ii permite sa navigheze intre pagini. Aici are posibilitatea de a se reintoarce la pagina principala, avand butonul "Go Back Home". Celalalt buton, "exemplu practic", conduce utilizatorul catre o pagina noua, pagina unde poate introduce ce date doreste. Scopul algoritmilor este de a primi un set de date si o instanta, iar pe baza modelului format dupa acel set de date sa faca o clasificare sau o predictie pentru noua instanta. \\
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth, height=0.15\textheight]{images/7.png}
+    \caption{Pagina dedicata algoritmilor- navigarea intre pagini}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Din moment ce utilizatoru apasa butonul "exemplu practic" va fi redirectionat catre o pagina (Figura 8) unde va trebui sa completeze informatii despre cat de multe instante(linii) doreste sa aiba tabelul cu date sau cu cate atribute(coloane). De preferat ar fi sa se completeze cu un set de date luat de pe un site care ofera aceste tipuri de dataseturi. Daca este completat cu un dataset random cu valori total la intamplare atunci si modelul creat si predictia vor avea un comportament total neasteptat. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth, height=0.3\textheight]{images/8.png}
+    \caption{Pagina completare informatii- dimensiuni tabel, numar de puncte}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+\newpage
+Dupa ce utilizatorul a completat informatiile despre ce dimensiune vreau sa aiba tabelul sau(numar de instante, numar de coloane, numar de centroizi etc.) va fi redirectionat catre o noua pagina(Figura 9), pagina unde va fi necesara introducerea datelor. Aici se vor introduce datele, coordonata cu coordonata, apoi daca este cazul se vor introduce si datele instantei ce se doreste a fi clasificata. Abia dupa ce datele au fost introduse, utilizatorul poate vizualiza modul de functionare al algoritmului. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth, height=0.35\textheight]{images/9.png}
+    \caption{Pagina completare informatii- coordonate puncte, coordonate instanta ce urmeaza sa fie clasificata}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Abia dupa ce toate datele au fost introduse, utilizatorul va fi redirectionat catre o pagina unde algoritmul respectiv este aplicat pe toate liniile din tabel, oferind explicatii, grafice, tabele si rezultatul final, clasificarea instantei dorite.
+
+
+\subsection*{\texorpdfstring{\textbullet\ Exemplificare scenarii de utilizare}{Exemplificare scenarii de utilizare}}
+Aplicatia este destinata tuturor persoanelor care vor sa invete cum ruleaza si functioneaza algoritmii de Machine Learning dar nu stiu de unde sa inceapa si ce material sa foloseasca. Ca si scenarii de utilizare, aplicatia poate fi folosita de studentii de anul 2 care vor sa ia materia din timp ca pe parcursul anului 3 sa aiba mai mult timp liber, studentii de anul 3 carora li se par prea complicate notatiile si explicatiile din cartile de specialitate, studentii de master care doresc sa isi reaminteasca notiunile folosite, profesori care vor sa imbine predatul la tabla cu lumea digitala sau persoanele noi in domeniul informaticii care doresc sa dobandeasca informatii si cunostiinte in acest subdomeniu. \\ 
+
+
+\newpage
+\section*{4.  Tehnologii utilizate\\} 
+\addcontentsline{toc}{section}{Tehnologii utilizate} 
+\setcounter{section}{1}
+\subsection*{\texorpdfstring{\textbullet\ Python, Flask}{Python, Flask}}
+    Aceasta aplicatie web a putut fi posibila cu ajutorul framework-ului Flask, un micro-framework destinat realizatii de aplicatii web. Este caracterizat prin usurinta sa de a crea pagini, oferind toate lucrurile esentiale in dezvoltarea unei pagini. Spre deosebire de alte framework-uri, acesta ne ofera strict doar lucrurile de care avem nevoie, pastrand simplitatea. Acest framework permite definirea de rute cu decoratori care mapeaza URL-urile in functii. Vine impreuna cu libraria Jinja2, o librarie ce permite combinarea codului HTML cu secvente de cod asemanatoare cu o combinatie intre limbajele Python si Bash, transformand pagina intr-una cat mai dinamica. Flask vine impreuna si cu alte librarii, "render\_template" si "request" (Figura 10), prima librarie avand rol de a punce in lasare o pagina HTML sau de a trimite anumiti parametri catre acea pagina care mai apoi sa fie prelucratie, iar a doua librarie are rolul de a prelua datele din formularele HTML de pe frontend. Acest limbaj a fost ales deoarece ofera librarii precum cele de creare a graficelor sau pentru usurinta cu care datele sunt memorate si prelucrate pe backend. \\ \\
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.35\textheight]{images/10.png}
+    \caption{Cod Python- Flask, render\_template, request}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+
+\subsection*{\texorpdfstring{\textbullet\ Matplotlib}{Matplotlib}}
+Matplotlib este o librarie din limbajul de programare Python, librarie cu ajutorul careia se pot crea grafice(Figura 11). Pe aceste grafice se pot adauga puncte de diferite dimensiuni si culori, se pot trage linii atat drepte cat si punctate, se pot trage mediane, mediatoare si multe alte lucruri. In acest proiect s-a optat pentru folosirea acestei librarii in scopul de a crea grafice care sa faca faza rularii algoritmului pas cu pas mult mai usoara si pentru a vizualiza datele intr-un plan, situatie in care utilizatorului ii este creata o perspectiva. In cod, sunt create diferite functii de creare a graficelor, functii care primesc parametrii necesari precum lista coordonatelor punctelor sau punctul unde este necesara trasarea unei linii orizontale sau verticale, urmand ca la finalul functiei imaginea creata sa fie returnata sub o forma comprimata. Aceasta imagine este apoi trimisa de pe backend pe frontend, acolo unde este afisata in pagina cu ajutorul HTML si Jinja2.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth, height=0.3\textheight]{images/11.png}
+    \caption{Cod Python- Matplotlib}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+\subsection*{\texorpdfstring{\textbullet\ HTML, CSS}{HTML, CSS}}
+Fiind o aplicatie web, este evidenta folosirea limbajelor de programare HTML(HyperText Markup Language) si CSS(Cascading Style Sheets). HTML(Figura 12) este cel care afiseaza cuvintele si formularele pe pagina iar CSS(Figura 13) este cel care ofera culoare, dimensiune, pozitionare a tuturor elementelor, animatii si se ocupa ca un site sa fie responsive.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth, height=0.3\textheight]{images/12.png}
+    \caption{Cod HTML- formular}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+
+Toate cele trei limbaje au o stransa legatura. CSS "da viata" codului afisat de HTML. Python comunica foarte mult cu HTML prin primirea de date prin intermediul formularelor, memorarea lor in liste, prelucrarea lor si trimiterea lor inapoi intr-o forma ce poate fi afisata si inteleasa de utilizator. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth, height=0.28\textheight]{images/13.png}
+    \caption{Cod CSS- design pagina}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+
+\subsection*{\texorpdfstring{\textbullet\ Alte unelte relevante}{Alte unelte relevante}}
+    O unealta foarte importanta este sintaxa Jinja2(Figura 14). Aceasta pare la prima vedere o combinatie dintre Python(deoarece sintaxa este asemanatoare) si Bash(deoarece pentru orice instructiune trebuie specificat foarte clar unde incepe si unde se termina). Alt lucru important este ca aceasta sintaxa nu tine cont de indentare, permitandu-se ca mai multe operatii sa fie scrise pe acelasi rand, un lucru care este recomandat a fi evitat. Aceasta este responsabila de prelucrarea si afisarea datelor pe pagina intr-un mod dinamic. De pe backend se pot primi liste cu elemente, liste ale caror elemente pot fi parcurse si afisate in pagina. Pot fi primite si imagini comprimate care mai apoi sunt afisate pe frontend. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth, height=0.27\textheight]{images/14.png}
+    \caption{Cod HTML impreuna cu Jinja2- afisare dinamica in pagina}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+
+\newpage
+\section*{5.  Arhitectura aplicatiei\\} 
+\addcontentsline{toc}{section}{Arhitectura aplicatiei} 
+\setcounter{section}{1}
+\subsection*{\texorpdfstring{\textbullet\ Structura folderelor si a fisierelor}{Structura folderelor si a fisierelor}}
+Toate componentele acestei aplicatii sunt impartite intr-un folder(Figura 15). Prima componenta este ".venv" care reprezinta mediul virtual. Urmatoarele componente sunt folderul "static" in care se afla fisierele cu cod CSS si folderul "templates" in care e afla fisierele cu cod HTML. Framework-ul Flask impune folosirea de doua foldere separate cu aceasta denumire pentru a face diferenta intre fisiere. A patra componenta este fisierul "app.py", un fisier care contine cod Python si care se ocupa de logica programului fiind cel care preia datele, le memoreaza, le prelucreaza si apoi le trimite inapoi la frontend. Ultima componenta este "External Libraries" care contine librarii externe, librarii care sunt aduse odata cu instalarea librariei Flask. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth, height=0.27\textheight]{images/15.png}
+    \caption{Structura folderelor}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Folderul "static"(Figura 16) este cel care contine fisierele CSS. Aceste fisiere cu cod sunt cele care ofera o culoare de fundal paginii, modifica dimensiune, culoarea si pozitionarea textului, creeaza animatii si se ocupa ca pagina sa fie responsive. Este important ca numele fisierului sa fie "static", asta fiind una dintre conditiile ca framework-ul Flask sa recunoasca paginile. S-a optat pentru folosirea unui fisier CSS mai complex si care ofera mai multa mobilitate, in interiorul acestuia fiind declarate mai multe teme astfel incat daca utilizatorul vrea sa schimbe tema paginii, o va putea face cu usurinta. La fel ca in cazul folderului "static", si folderul care contine fisierele cu cod HTML trebuie sa poarte o denumire specifica impusa de Flask, si anume "templates". Fara aceste denumiri si plasarea fisierelor in aceste foldere, framework-ul nu ar putea recunoaste fisierele si ar da eroare. In acest folder se afla paginile care au stransa legatura cu algoritmii. Fisierele care doar poarta nume de algoritm(de exemplu AdaBoost.html) sunt paginile care ofera informatii despre cum algoritmul functioneaza, pasii de rulare, versetele biblice care au o legatura cu modul lor de a se comporta si cuvintele cheie si importante folosite in contextul lor. Al doilea tip de fisier HTML este cel care poarta numele algoritmului urmat de cuvantul "Example"(de exemplu AdaBoostExample.html), aceasta fiind pagina unde utilizatorul poate introduce informatii despre dimensiunea setului de date (numar de instante, linii, coloane, numar de centroizi) si setul de date(coordonate ale punctelor, etichete, instanta ce se doreste a fi clasificata). Tot pe acest tip de pagina sunt afisate explicatii despre cum algoritmul functioneaza, toti pasii algoritmului aplicati linie cu linie pe toate instantele din setul de date, grafice si tabele pentru o mai usoara vizualizare si intelegere. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth, height=0.65\textheight]{images/16.png}
+    \caption{Structura folderelor "static" si "templates"}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+\subsection*{\texorpdfstring{\textbullet\ Rutarea Flask}{Rutarea Flask}}
+O functionalitate foarte importanta a acestui framework este rutarea. Aceasta permite ca o functie scrisa in Python sa fie legata de un URL(link)(Figura 17). Incepurul rutarii este marcata de simbolul @, urmat de numele aplicatiei asa cum este trecut in codul Python si de cuvantul cheie "route". Urmeaza ca apoi sa fie trecut intre o pereche de paranteze rotunde si o pereche de ghilimele linku-ul corespunzator paginii respective. Un exemplu de link este @app.route("/")  care ne indica faptul ca aplicatia se numeste "app" iar simbolul "/" este corespunzator paginii principale, adica prima pagina care se afiseaza atunci cand aplicatia este pornita. Alt exemplu este @app.route("/LogisticRegression") care ne arata ca s-a navigat de la pagina principala catre o alta pagina numita "LogisticRegression". Odata ce se face trecerea de la o pagina la alta, link-ul ori se va schimba complet ori va pastra linku-ul de la pagina anterioara la care se mai adauga niste cuvinte cheie separate de "/". La rutare este permisa si folosirea metodelor GET si POST ca in link-ul @app.route("/LogisticRegressionExample", methods=["GET", "POST"]) unde ni se indica faptul ca aplicatia va primi si trimite date si va utiliza una dintre aceste metode. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.15\textheight]{images/17.png}
+    \caption{Rutarea Flask}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+\subsection*{\texorpdfstring{\textbullet\ Gestionarea template-urilor și interacțiunea cu backend-ul
+}{Gestionarea template-urilor și interacțiunea cu backend-ul
+}}
+Template-urile sunt fisiere cu cod HTML la care se poate adauga si cod Python. Unul dintre scopurile principale este cel de a prelua datele si a le trimite catre backend unde urmeaza sa fie prelucrate. Acest lucru se intampla prin completarea cu date intr-un formular ce este creat in HTML. Odata ce datele sunt introduse, ele vor fi trimise catre backend unde vor fi preluate prin intermediul librariei "request"(Figura 18).  
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.15\textheight]{images/18.png}
+    \caption{Libraria "request"}
+    \label{fig:eticheta_imagine}
+\end{figure}
+Din momentul in care datele sunt prelucrate, ele pot fi trimise inapoi catre frontend prin intermediul librariei "render\_template"(Figura 19). Aceasta este o librarie care odata ce este accesata, va incarca o pagina HTML. Incarcarea paginii are loc in doua moduri, primul mod fiind fara parametri. In acest caz, pagina este incarcata fara a fi modificata. Al doilea caz este cel in care pagina este incarcata dar primeste si parametri. Parametrii reprezinta date ce au fost prelucrate cu ajutorul functiilor si a codului de Python. Pagina nu este imediat incarcata deoarece in codul HTML al paginii pot fi prelucrari de date, verificari de conditii daca anumite lucruri au fost prelucrate corect. Este posibil ca pagina sa nu se incarce datorita parametrilor primiti, un caz fiind cel in care datele nu sunt prelucrate corect pe backend si conditia de verificare a parametrilor trimisi prin intermediul librariei "render\_template" este incalcata. Atunci cand se trimite un parametru cu ajutorul acestei librarii, trebuie mai intai sa specificam ce nume vrem sa poarte variabila noastra astfel incat sa fie recunoscuta pe frontend in momentul trimiterii. Pe langa asta, mai trebuie sa specificam ce valoare ii asignam variabilei, indiferent ca este o valoare constanta, o valoare intreaga, o lista, un set, un dictionar sau o imagine comprimata. Odata ce variabilele au fost trimise catre a fi afisate in interfata grafica, trebuie facuta o verificare. Aceasta verificare se face in continuu pana cand variabila a fost primita. Din momentul in care s-a primit variabila, se poate intra in blocul de cod aferent prelucrarii variabilei respective. Variabila poate fi accesata prin utilizarea numelui folosit atunci cand a fost trimisa cu "render\_template" intre doua perechi de acolade. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.7\textheight]{images/19.png}
+    \caption{Libraria "request"}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+\newpage
+\section*{6.  Prezentarea algoritmilor integrati\\} 
+\addcontentsline{toc}{section}{Prezentarea algoritmilor integrati} 
+\setcounter{section}{1}
+\subsection*{\texorpdfstring{\textbullet\ Algoritmul AdaBoost}{Algoritmul AdaBoost}}
+AdaBoost(Adaptive Boosting) este un algoritm de invatare supervizata care are rolul de a clasifica datele combinand mai multe modele slabe cum ar fi compasii de decizie. \\
+Algoritmul, din punct de vedere teoretic, functioneaza astfel: iecare punct primeste o pondere(greutate) care este echivalenta cu 1 supra numarul total de puncte, acesta fiind pasul initial. Aceasta asignare este valida doar in prima iteratie a algoritmului. Urmatorul pas este cel de stabilire a granitelor. Rolul granitelor este de a arata unde sunt puncte diferite pe grafic(daca un punct etichetat pozitiv este urmat de un punct etichetat negativ sau invers, atunci aici este un loc unde este necesara trasarea unei granite).\\ Aceste granite se traseaza la jumatatea distantei dintre doua cele mai apropiate puncte cu etichete diferite. Un lucru important la acest algoritm este trasarea unei granite sau a unor granite(depinde de spatiul numerelor), fara de care algoritmul ar functia gresit si ar oferi rezultate eronate. Aceasta granita se pune ori dupa ultimul punct de pe grafic, ori inainte de primul punct, fiind o mica distanta intre cele doua. Urmatorul pas este cel de calculare al erorilor pentru fiecare punct de pe grafic in raport cu granitele de decizie si determinarea erorii minime. Granitele de decizie sunt compasi de decizie care ajuta modelul sa clasifice datele.\\ La fiecare iteratie a algoritmului este ales cate un nou compas. Gasirea erorii minime determina si compasul de decizie la iteratia respectiva. Odata ce compasul de decizie a fost selectat, se pregatesc ponderile pentru iteratia urmatoare. Astfel, punctele clasificate corect primesc o pondere mare iar punctele clasificare gresit primesc o pondere mai mica. Deci, la o iteratie urmatoare, punctele clasificate gresit vor fi luate in evidenta avand eroarea cea mai mica. Se observa faptul ca doar in pasul initial punctele primesc pondere echivalenta cu 1 supra numarul total de puncte iar in iteratiile urmatoare ponderile au legatura cu punctele clasificate gresit si corect.\\ Acesti pasi se repeta pana cand toate punctele sunt clasificate corect sau pana cand s-a atins numarul de iteratii stabilite la inceput, acestea doua reprezentand doua criterii importante in oprirea rularii algoritmului.\\ \\
+
+In cod, mai exact in primul fisier HTML, prima parte ofera informatii despre modul in care algoritmul functioneaza(Figura 20). Aici sunt prezentati pasii de functionare a algoritmului, fiind prezentati intr-un mod informal, cat mai usor de inteles si fara cuvinte care ar putea ingreuna utilizatorul in a intelege modul de functionare. Pasii de rulare ai algoritmului au fost prezentati cat mai pe scurt deoarece cuvintele complicate si frazele lungi ar plictisi utilizatorul, aceasta pagina web dorind ca acest lucru sa fie evitat. In realizarea acestei aplicatii s-a dorit abordarea unei solutii noi si unice in a ajuta utilizatorii sa retina unele informatii mai usor, adica folosirea de versete biblice(Figura 21). In unele versete biblice regasim un comportament sau unele lucruri foarte specifice algoritmilor de Machine Learning. Din acest motiv, au fost adaugate cateva versete biblice care au o stransa legatura cu modul de functionarea al algoritmului, insotite de explicatii si de o interpretare. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth, height=0.4\textheight]{images/20.png}
+    \caption{Algoritmul AdaBoost- mod de functionare}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth, height=0.35\textheight]{images/21.png}
+    \caption{Algoritmul AdaBoost- versete biblice}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+\clearpage
+In ultima sectiune a paginii se vor gasi termeni cheie explicati, termeni care sunt des folositi in contextul algoritmului AdaBoost(Figura 22). Acesti termeni au fost explicati intr-o maniera cat mai simpla, evitand sa fie date informatii si detalii care doar ar ingreuna procesul de intelegere. Printre termenii explicati, regasim clasificatorul slab si cel puternic, greutatile si coeficientul de incredere. \\
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.2\textheight]{images/22.png}
+    \caption{Algoritmul AdaBoost- termeni importanti}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+In cel de-al doilea fisier HTML corespunzator algoritmului AdaBoost, mai exact cel in care se pot introduce date si se afiseaza pasii de executie ai algoritmului, utilizatorului i se cer date despre dataset. Aceste date pot fi completate si trimise cu ajutorul unui formular creat in HTML(Figura 23).
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.45\textheight]{images/23.png}
+    \caption{Algoritmul AdaBoost- formular informatii despre dataset}
+    \label{fig:eticheta_imagine}
+\end{figure}
+In acest formular se va introduce valoarea variabilei n, cea care ne spune cate instante(linii) va avea tabelul. Aceasta variabila este trimisa catre backend, unde va fi preluata cu ajutorul librariei "request" si memorata(Figura 24). 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.05\textheight]{images/24.png}
+    \caption{Algoritmul AdaBoost- preluarea numarului de instante}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Aceasta variabila va fi trimisa inapoi prin intermediul librariei "render\_template". In codul HTML, cu ajutorul sintaxei Jinja2, se va verifica daca variabila a fost primita. De abia dupa ce variabila a fost primita, se va crea un nou tabel cu n linii ce va trebui completat de utilizator cu setul de date(Figura 25).
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth, height=0.35\textheight]{images/25.png}
+    \caption{Algoritmul AdaBoost- formulat pentru completare date}
+    \label{fig:eticheta_imagine}
+\end{figure}
+In acest punct, utilizatorul va trebui sa completeze noul tabel(Figura 26) cu setul de date, urmand ca dupa sa apese pe butnoul "Trimite date", urmand ca datele sa fie trimise catre backend iar utilizatorul sa fie redirectionat catre o noua pagina. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.15\textheight]{images/26.png}
+    \caption{Algoritmul AdaBoost- formulat pentru completare date}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+
+
+\clearpage
+Dupa ce setul de date a fost completat iar utilizatorul a apasat butonul de trimitere a datelor, acestea vor fi trimise catre backend. Aici toate datele vor fi preluate si memorate in liste (Figura 27), urmand ca mai apoi sa fie prelucrate. Aici este si partea unde sunt declarate variabile care vor ajuta mai tarziu la memorarea si prelucrarea de date. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.45\textheight]{images/27.png}
+    \caption{Algoritmul AdaBoost- preluate dataset}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Ajuns in acest pas, primul lucru este cel de a crea un grafic. Pentru ca utilizatorul sa inteleaga mai usor, se va face un grafic cu reprezentarea in plan xOy a punctelor primite, impreuna cu etichetele lor. Pentru acest lucru, s-a creat o functie aparte (Figura 28) care primeste ca parametri doua liste, prima reprezentand coordonatele punctelor iar a doua reprezentand etichetele lor. Graficul este creat cu ajutorul librariei matplotlib, o librarie destinata vizualizarii si crearii de grafice. Graficul va avea punctele reprezentate intr-un grafic, punctele cu etichete negative fiind reprezentare de cerculete goale iar cele cu eticheta pozitiva de cerculete pline. Odata creat graficul, va fi returnat intr-o forma comprimata astfel incat sa poata fi trimis inapoi pe frontend. Dupa ce se termina de executat functia, imaginea va fi trimisa catre frontend unde va fi afisata in pagina (Figura 29). Pentru a fi afisata in pagina, este necesara verificarea unei conditii, aceea ca imaginea sa fie deja creata. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.45\textheight]{images/28.png}
+    \caption{Algoritmul AdaBoost- creare grafic folosind matplotlib}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.45\textheight]{images/29.png}
+    \caption{Algoritmul AdaBoost- grafic afisat in pagina}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+\clearpage
+Urmeaza sa se determine granitele de decizie. Acestea au rolul de a separa doua puncte apropiate cu etichete diferite. Se cauta in grafic unde sunt doua puncte apropiate, indiferent daca e vorba de plan orizontal sau vertical, si se traseaza o dreapta punctata la jumatatea distantei dintre ele. Acest lucru este facut cu ajutorul unei functii care primeste ca parametri coordonatele si etichetele, aranjeaza in ordine crescatoare atat in functie de axa Ox cat si de Oy punctele si returneaza doua liste. Prima lista contine split-urile(granitele) corespunzatoare axei orizontale iar a doua corespunzatoare axei verticale (Figura 20).  
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.1\textheight]{images/30.png}
+    \caption{Algoritmul AdaBoost- granite de decizie}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Dupa ce cele doua liste au fost returnate de functie, ele sunt trimise ca si parametru catre alta functie care are scopul de a crea alt grafic. Aceasta functie primeste ca parametri coordonatele punctelor, etichetele lor, granitele de decizie corespunzatoare axelor Ox si Oy, urmand ca apoi sa realizeze un desen cu punctele si granitele. Dupa ce graficul este creat, este returnat sub o forma comprimata si urmeaza ca sa fie exportat de pe backend catre frontend. Aici, daca este indeplinita conditia de verificare, adica daca imaginea exista si a fost creata, se va afisa pe pagina imaginea (Figura 31). 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.3\textheight]{images/31.png}
+    \caption{Algoritmul AdaBoost- granite de decizie}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+S-au utilizat culori, verde pentru granitele verticale si rosu pentru granitele orizontale pentru o mai buna vizualizare. In grafic s-au utilizat unitati mici de masura, totul pentru a fi cat mai bine vizualizat. 
+
+\clearpage
+Unul dintre pasii importanti ai algoritmului este cel de determinare a erorilor. Pentru acest lucru, se ia fiecare punct in parte si se verifica daca este corect clasificat in functie de in ce parte a granitei este pozitionat. Aceste erori sunt memorate intr-o lista si apoi trimisa catre frontend unde cu ajutorul unei instructiuni repetitive (Figura 33), lista este parcursa iar erorile sunt afisate in pagina sub forma tabelara (Figura 32).
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.1\textheight]{images/32.png}
+    \caption{Algoritmul AdaBoost- erori}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Erorile sunt parcurse cu ajutorul instructiunii repetitive "for". Initial este creat un tabel, iar pentru fiecare eroare este alocata cate o casuta in tabelul respectiv. Ca si pas initial, pe prima linie se afiseaza valorile din tabel unde au loc granitele, apoi pe prima coloana erorile. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.5\textheight]{images/33.png}
+    \caption{Algoritmul AdaBoost- afisare tabelara a erorilor}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Aceste informatii au fost alese sa fie reprezentate intr-un tabel pentru ca reprezinta niste informatii importante si pentru a fi vizualizate mai usor.
+
+\clearpage
+Dupa ce au fost oferite toate informatiile necesare, algoritmul va trebui sa se pregateasca pentru pasul urmator. Acesta este reprezentat de recalcularea ponderilor, oferind ponderi noi pentru pasul urmator. Acestea sunt calculate folosind ponderile de la pasul precedent si erorile din tabelul prezentat anterior. Acestea vor fi calculate iterativ, tinandu-se cont de faptul daca au fost clasificate corect sau gresit la pasul respectiv. In timp ce sunt calculate, acestea sunt memorate intr-o lista, urmand sa fie trimise catre frontend. In momentul primirii acestei liste, cu ajutorul instructiunii "for" din Jinja2, se parcurge lista iar ponderile sunt afisate in format tabelar pe ecran (Figura 34). \\
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.08\textheight]{images/34.png}
+    \caption{Algoritmul AdaBoost- afisare tabelara a erorilor}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Deoarece scopul acestei aplicatii este unul educational, s-a optat ca algoritmul sa se opreasca dupa trei iteratii. Daca i s-ar fi permis algoritmului sa execute mai multe iteratii, pagina ar fi intampinat probleme de performanta si timp deoarece prelucrarea datelor si crearea de imagini este costisitoare, iar utilizatorul si-ar fi pierdut interesul sa citeasca absolut toate explicatiile de la toate iteratiile algoritmului. Pe parcursul rularii celor trei iteratii, toate datele importante sunt memorate in variabile care au fost declarate la inceputul codului. S-a optat pentru folosirea cat mai multor variabile pentru a nu mai fi necesara parcurgerea de liste sau de liste care contin liste, asta complicand codul. Dupa ce toate datele au fost colectate, vor fi trimise ca parametri catre o functie bazata pe matplotlib ce va construi un grafic in care este reprezentat modul in care punctele au fost clasificate. Acest grafic va fi returnat sub o forma comprimata, urmand ca apoi sa fie trimis catre frontend si afisat in pagina. Cele trei ipoteze au fost colorate diferit iar semnele "+" si "-" reprezinta cum clasifica modelul punctele in zona respectiva. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth, height=0.34\textheight]{images/35.png}
+    \caption{Algoritmul AdaBoost- clasificarea datelor}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+\newpage
+\subsection*{\texorpdfstring{\textbullet\ Algoritmul k-NN}{Algoritmul k-NN}}
+Algoritmul k-NN este un algoritm de invatare supervizata care face clasificare pe baza celor mai apropiate instante.\\
+Din punct de vedere teoretic, algoritmul functioneaza astfel: datele sunt reprezentate sub forma de puncte intr-un grafic impreuna cu etichetele acestora. De obicei, punctele sunt reprezentate de o bulina neagra daca au eticheta negativa si bulina alba daca au eticheta pozitiva. Apoi se alege o metrica de distanta.\\ Alegerea acesteia este un pas important deoarece folosirea de metrici de distanta diferita schimba si acuratetea modelului. Cea mai folosita metrica este distanta Euclidiana care se calculeaza ca radical din suma patratelor diferentei dintre coordonatele corespunzatoare axei Ox, respectiv Oy. Alte doua metrici foarte folosite sunt distanta Manhattan si distanta Chebyshev. Alte metrici mai putin intalnite sunt distantele Minkowski, Cosinus Distance, Hamming, Mahalanobis, Jaccard, Levenshtein.\\ Odata ce metrica de distanta a fost aleasa, trebuie aleasa o valoare pentru variabila k. Aceasta variabila reprezinta cati vecini vor fi luati in calcul in determinarea modelului. Daca k este ales ca fiind 5, atunci eticheta punctului pe care vrem sa il clasificam va fi determinata de etichetele celor mai apropiati 5 vecini. In determinarea clasificarii punctului dorit, se vor face doua multimi, prima reprezentand multimea vecinilor din cei k cei mai apropiati vecini care au etichete pozitive si a doua multime formata din vecinii din cei k cei mai apropiati vecini care au etichete negative. Multimea cu cardinalul mai mare va da eticheta punctului care se doreste a fi clasificat. Spre exemplu, daca din cei 5 cei mai apropiati vecini ai unui punct pe care dorim sa il clasificam 3 vecini au eticheta pozitiva iar 2 au eticheta negativa, atunci punctul nostru va avea si el tot eticheta pozitiva deoarece multimea vecinilor cu eticheta pozitiva domina.\\ Este important ca atunci cand se alege valoarea pentru variabila k, aceasta sa reprezinte un numar impar. Daca variabila k ar fi ales un numar par, atunci este foarte posibil sa se intample cazul in care exact jumatate dintre vecini sunt etichetati pozitiv si jumatate sunt etichetati negativ, caz in care nu se poate lua o decizie asupra etichetei care i se potriveste punctului ce trebuie clasificat. Aceasta este o ambiguitate care trebuie evitata deoarece algoritmul este in imposibilitatea de a oferi un raspuns. \\ \\
+
+
+In primul fisier HTML corespunzator acestui algoritm se regasesc informatii despre modul lui de functionare (Figura 36). Sunt explicate pe rand etapele pe care algoritmul le parcurge pana la oferirea rezultatului final. Sunt explicati pasii in cuvinte cat mai simple, totul fiind enumerat. Ca si abordare a unei solutii unice, s-a ales introducerea de versete biblice (Figura 37) care au transa legatura cu modul de functionare a algoritmului. Aceste versete au fost alese cu atentie astfel incat sa reflecteze legatura intre cele doua. In pagina este prezentat versetul, informatii despre unde se gaseste in Biblie, legatura cu algoritmul si interpretarea acestuia. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.25\textheight]{images/36.png}
+    \caption{Algoritmul k-NN- mod de functionare}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+\newpage
+Algoritmul k-NN clasifica punctele in functie de etichetele vecinilor. Daca majoritatea punctelor sunt pozitive, atunci si punctul care se doreste a fi clasificat tot pozitiv va fi, in caz contrar acesta va fi negativ. Acest lucru se regaseste si in versetele prezentate care ne spun ca cine umbla cu inteleptii va deveni si el unul. Prin aceasta analogie se doreste crearea unei legaturi si intelegerea mai buna a modului de functionare a algoritmului k-NN de catre utilizator. \\
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.25\textheight]{images/37.png}
+    \caption{Algoritmul k-NN- versete biblice}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Ultima sectiune(Figura 38) din pagina este cea dedicata termenilor explicati. Aici se regasesc termeni importanti utilizati in contextul acestui algoritm. Termenii sunt explicati in maxim o fraza, intr-un mod simplu si informal fara ca sa complice procesul de invatare al utilizatorului. Tot in ultima sectiune a paginii se regaseste un dataset preluat din cartile de specialitate, fiind pus in cazul in care utilizatorul doreste sa vada cum ruleaza programul dar intampina probleme in gasirea unui dataset.
+
+\clearpage
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.2\textheight]{images/38.png}
+    \caption{Algoritmul k-NN- versete biblice}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+In josul paginii se regasesc doua butoane, unul care trimite utilizatorul de pe pagina respectiva catre pagina principala si inca un buton care trimite utilizatorul catre pagina unde va testa si primi informatii despre algoritm. In momentul apasarii pe butonul "exemplu practic", se va naviga de la pagina actuala la pagina unde utilizatorul va completa un chenar cu o valoare pentru variabila n (Figura 39), variabila care reprezinta numarul de linii pe care il va avea dataset-ul. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.45\textheight]{images/39.png}
+    \caption{Algoritmul k-NN- tabel informatii dataset}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Variabila n este trimisa catre backend, memorata intr-o variabila, apoi urmand sa se creeze un tabel cu n linii(Figura 40) pe care utilizatorul sa il completeze cu date. Pe langa acel tabel ce trebuie completat cu coordonatele punctelor si etichetele lor, mai trebuie completat si instanta ce trebuie clasificata. In cazul acesteia, se vor trece doar coordonatele urmand ca eticheta sa fie determinata de algoritm. 
+
+\clearpage
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.4\textheight]{images/40.png}
+    \caption{Algoritmul k-NN- interfata tabel informatii dataset}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Dupa ce punctele impreuna cu coordonatele si etichetele au fost trimise catre backend, aici vor fi memorate in liste separate. La inceput se va crea un grafic cu toate aceste puncte pentru o vizualizare mai usoara. Acest lucru este posibil cu ajutorul unei functii(Figura 43) ce foloseste libraria matplotlib si primeste ca parametri mai multe liste ce reprezinta coordonatele punctelor si etichetelor. Dupa ce imaginea este creata, se va returna si apoi va fi trimisa catre frontend unde ii va fi afisata utilizatorului (Figura 42). Pentru ca imaginea sa fie afisata utilizatorului, mai intai trebuie sa indeplineasca o conditie(Figura 41), cea de a fi creata si de a fi primita. De abia dupa ce aceste lucruri se intampla, utilizatorul va putea vizualiza imaginea. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.15\textheight]{images/43.png}
+    \caption{Algoritmul k-NN- conditie de verificare}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth, height=0.25\textheight]{images/41.png}
+    \caption{Algoritmul k-NN- grafic cu setul de date}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+\newpage
+Pentru a fi vizualizate mai usor si pentru o intelegere mai simpla, s-a ales ca punctele pozitive sa fie reprezentate de un cerc negru, cele negative de un cerc gol iar punctul ce se doreste a fi clasificat este reprezentat de un cerculet de culoare rosie. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.4\textheight]{images/42.png}
+    \caption{Algoritmul k-NN- codul aferent functiei de creare a graficului}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Imaginea este returnata de functie in format comprimat pentru a putea fi trimisa cu ajutorul librariei "render\_template" catre backend.
+
+\clearpage
+Algoritmul va face mai multe iteratii in functie de dimensiunea setului de date primit. Cu cat setul de date este mai mare, cu atat si numarul de iteratii creste. Daca de exemplu setul de date are 10 instante, atunci vom avea 5 iteratii. In schimb daca setul de date are o dimensiune mai mare, spre exemplu 100, numarul de iteratii creste la 50. La fiecare iteratie a algoritmului se va lua un k impar. Acest lucru este foarte important in gasirea rezultatului final. Daca k este impar, atunci cand multimea se va imparti in doua submultimi de vecini, mereu va exista o submultime care are macar un vecin in plus, de unde va rezulta si clasificarea punctului. Daca k ar fi par, atunci se poate ajunge la cazul in care impartirea multimii un doua ar duce la doua submultimi cu cardinal egal, caz in care algoritmul nu poate lua o decizie in ceea ce priveste clasificarea punctului. Pentru fiecare iteratie in parte, se vor determina cei mai apropiati k vecini ai punctului respectiv si se vor memora intr-o lista. Apoi in liste separate se vor memora distantele intre puncte, coordonatele, etichetele, urmand ca aceste elemente sa fie trimise pe frontend. Odata primite aceste elemente, cu ajutorul unei instructiuni repetitive se va itera printre aceste liste si se vor afisa intr-un mod placut in pagina. \\
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.4\textheight]{images/44.png}
+    \caption{Algoritmul k-NN- afisarea in pagina a modului de calculare a distantelor }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Fiecare pas este foarte detaliat explicat si evidentiat. Punctele clasificate pozitiv sunt evidentiate prin folosirea culorii verde iar cele negative prin culoarea albastru. Pe baza coordonatelor punctelor, formula de distanta Euclidiana este aplicata pas cu pas, nefacandu-se simplificari pana la rezultatul final. Acest lucru a fost posibil prin parcurgerea listelor primite de pe backend, liste in care s-au memorat calcule deja facute, singurul lucru ramas fiind doar afisarea intr-un mod placut si aranjat in pagina. Facerea calculelor din timp si memorarea lor in liste a fost necesara deoarece Jinja2 nu permite atribuirea de valori variabilelor.La final este oferita o mica explicatie din care reiese de ce punctul a fost clasificat intr-un anume fel.
+
+\newpage
+\subsection*{\texorpdfstring{\textbullet\ Algoritmul K-Means}{Algoritmul K-Means}}
+Algoritmul K-Means este un algoritm de invatare nesupervizata, avand ca scop principal gruparea datelor. \\
+Modul de functionare este urmatorul: primul pas este cel de a se stabili cu ce valoare este initializata variabila k. Alegerea acestei valori este foarte importanta deoarece o valoare diferita poate influenta precizia si acuratetea modelului. Un k prea mic ar grupa multe date diferite impreuna iar un k prea mare ar grupa date care sunt foarte asemanatoare la un loc. Una dintre metodele de alegere a valorii pentru variabila k este metoda cotului(Elbow). Aceasta metoda presupune rularea algoritmului pe mai multe valori posibile ale lui k. Rezultatele sunt reprezentate intr-un grafic pe care se cauta un "cot", adica un punct unde scaderea erorii devine cat mai mica posibil. O alta metoda utilizata este Silhouette care functioneaza pe baza unui scor acordat punctelor. \\
+Odata ce k este ales, trebuie alesi cei k centroizi. In acest caz, centroizii pot fi chiar si punctele din grafic sau pot fi puncte care nu se regasesc in grafic. Urmeaza alegerea metricii de distanta care este un pas important, folosirea unei metrici diferite poate schimba si acuratetea modelului. Cea mai folosita metrica este distanta Euclidiana care se calculeaza ca radical din suma patratelor diferentei dintre coordonatele corespunzatoare axei Ox, respectiv Oy. Alte doua metrici foarte folosite sunt distanta Manhattan si distanta Chebyshev. Alte metrici mai putin intalnite sunt distantele Minkowski, Cosinus Distance, Hamming, Mahalanobis, Jaccard, Levenshtein. \\
+In cele ce urmeaza trebuie calculata distanta dintre fiecare punct si cei k centroizi. Se ia cate un punct pe rand, se calculeaza distanta dintre el si cei k centroizi, de aici rezultand k lungimi de distanta. Apoi se compara cele k lungimi urmand ca punctul sa fie asignat centroidului de care este cel mai apropiat. Dupa ce toate punctele au fost asignate unui centroid, urmeaza sa fie recalculate pozitiile centroizilor. Modul de a determina noua pozitie a fiecarui centroid este una destul de simpla. Se aduna toate coordonatele punctelor corespunzatoare clusterului in care au fost alocate si se imparte la numarul total de puncte din multime, astfel obtinandu-se noile coordonate ale centroidului. Cu alte cuvinte, centroidul este un centru de greutate. In acest punct se termina o iteratie a algoritmului.\\ Urmeaza ca algoritmul sa se repete, dar de data asta cu alte coordonate ale centroizilor. In functie de marimea setului de date, centroizii se pot schimba foarte frecvent sau aproape deloc. Daca vorbim de un dataset mic, undeva la 10-15 puncte, e posibil ca centroizii  sa se schimbe doar intre una sau doua iteratii sau sa nu se schimbe deloc intre nicio iteratie. In cazul in care datasetul este foarte mare, centroizii isi vor schimba pozitiile intre multe iteratii, sansa ca centroizii sa fie fixati in pozitia potrivita din prima fiind foarte mica.\\
+Algoritmul se opreste in doua situatii. Prima e atunci cand se atinge numarul de iteratii fixat la inceputul algoritmului iar a doua e atunci cand centroizii nu isi mai schimba pozitia intre doua iteratii succesive sau isi schimba pozitia dar foarte putin.\\ \\
+
+Prima parte a fisierului HTML ce reprezinta acest algoritm este cea in care se regasesc informatii despre modul in care acest algoritm functioneaza (Figura 45). Pasii de executie au fost explicati pe scurt, fiind enuntati in patru idei. Motivul pentru care aplicatia ofera informatii intr-un mod informat si cat mai scurte este sa faca utilizatorul sa inteleaga mai bine si mai usor cum functioneaza un algoritm. Scopul este cel de a intelege, nu de a memora definitii si informatii pe de rost. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.3\textheight]{images/45.png}
+    \caption{Algoritmul K-Means- modul de functionare }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+\newpage
+Multe dintre versete(Figura 46) ilustreaza situatii si comportamente asemanatoare modului de functionare al algoritmilor. Oferind aceste versete impreuna cu o interpretare, utilizatorul poate alege daca sa fie de acord cu interpretarea oferita sau sa vina cu interpretarea personala. In cele mai multe cazuri, aceasta metoda functioneaza foarte bine, ajutand pentru o viziune putin mai diferita. Dupa cum am mentionat anterior, scopul este de a intelege si invata, nu de a memora robotic niste definitii. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.35\textheight]{images/46.png}
+    \caption{Algoritmul K-Means- modul de functionare }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+\clearpage
+In pasii de executie ai algoritmului se vor intalni termeni specifici, motiv pentru care in ultima sectiune a paginii s-au pus explicatii pentru cuvintele mai importante(Figura 47). Printre termenii explicati regasim centroidul, clusterul, convergenta, invatarea nesupervizata, criteriul J sau criteriul Elbow. Termenii sunt explicati simplu, intr-o fraza de cateva cuvinte si cu cuvinte cat mai simple.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.2\textheight]{images/47.png}
+    \caption{Algoritmul K-Means- termeni importanti }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Dupa ce utilizatorul a studiat notiunile teoretice, poate trece la partea practica. Acest lucru se intampla prin apasarea butonului "exemplu practic" care il va conduce catre o noua pagina unde va trebui sa introduca niste date informative (Figura 48) despre setul de date ce urmeaza o fi introdus. Pe noua pagina i se va cere sa introduca informatii despre numarul de instante ce va urma sa fie introdus si numarul de centroizi pe care algoritmul ii va folosi in realizarea clasificarii. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth, height=0.25\textheight]{images/48.png}
+    \caption{Algoritmul K-Means- informatii despre dimensiunea setului de date }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Dupa ce va introduce datele respective, acestea vor fi primite de backend si memorate in variabile separate. Pe pagina va aparea un nou tabel (Figura 49) ce va trebui completat cu setul de date, mai specific coordonatele punctelor si coordonatele centroizilor. Dupa ce utilizatorul a completat toate casutele tabelelor cu date, acestea vor fi trimise catre backend urmand sa fie modelate. 
+
+
+\clearpage
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth, height=0.35\textheight]{images/49.png}
+    \caption{Algoritmul K-Means- informatii despre date si centroizi }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+In momentul in care pe backend datele sunt primite, acestea sunt memorate in liste si variabile separate pentru o mai usoara prelucrare. Prima data se doreste crearea unui grafic pentru o mai buna vizualizare. Cu ajutorul unei functii ce foloseste libraria matplotlib, se creeaza un grafic corespunzator. Datele, adica coordonatele punctelor si ale centroizilor sunt trimise ca si parametri in liste separate, apoi functia creeaza graficul pe baza informatiilor primite. Punctele sunt reprezentate intr-un plan xOy, avand forma unui cerculet de culoare neagra. Apoi centroizii sunt reprezentati in acelasi plan dar cu o forma diferita, sub forma unui X de culoare rosie. S-au ales aceste culori pentru a se evidentia contrastul dintre cele doua tipuri de date diferite. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth, height=0.3\textheight]{images/50.png}
+    \caption{Algoritmul K-Means- reprezentarea grafica a datelor si centroizilor }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Dupa ce imaginea este creata (Figura 50), este returnata intr-o forma comprimata si trimisa catre frontend unde va fi afisata in pagina.
+
+\clearpage
+Dupa ce graficul a fost creat, urmeaza modelarea datelor. Cu ajutorul unei functii separate de calculare a distantei dintre doua puncte ce primeste ca parametri coordonatele punctelor sub forma de liste, se va itera prin toate punctele pentru a se determina distantele dintre acestea si centroizi. Scopul este de a gasi centroidul cel mai apropiat de un punct si incadrarea punctului intr-un anumit cluster. Toate informatiile sunt memorate in liste care mai apoi vor fi trimise catre alta functie. Noua functie primeste coordonatele punctelor, ale centroizilor si componenta clusterelor. Functia va crea un nou grafic in care plaseaza punctele, acestea neschimbandu-si pozitia pe tot parcursul rularii algoritmului. In grafic sunt desenati si centroizii, acestia avand forma de X dar colorati diferit pentru a se deosebi. Pe langa astea, se mai adauga si o mediatoare intre centroizi pentru a se indica modul in care se grupeaza punctele.\\ 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.45\textheight]{images/51.png}
+    \caption{Algoritmul K-Means- reprezentarea grafica a centroizilor dupa o iteratie }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Functia de desenare a graficului isi termina executia, urmand ca aceasta sa fie returnata intr-o forma comprimata. De pe backend este trimisa cu ajutorul librariei "render\_template" catre frontend. Aici, cu ajutorul unei instructiuni de decizie se verifica daca imaginea a fost creata, exista si daca a fost primita. Odata ce conditia este indeplinita, imaginea poate si afisata in pagina web (Figura 51). \\
+Pentru a se trasa aceste "delimitatoare" care indica grupurile si modul in care datele sunt grupate, se trage o linie dreapta intre doi centroizi iar pe linia respectiva se trage o mediatoare, adica o linie perpendiculara cu dreapta trasata care trece exact prin mijlocul acesteia. In functie de cati centroizi exista, numarul de mediatoare poate creste sau scadea. \\
+Din moment ce toate datele sunt prelucrate, acestea sunt trimise pe frontend. Astfel, informatii precum componenta clusterelor insotita de coordonatele punctelor, pozitia noilor centroizi sau cardinalul multimilor sunt afisate in pagina.
+
+\newpage
+\subsection*{\texorpdfstring{\textbullet\ Algoritmul de Regresie Logistica}{Algoritmul de Regresie Logistica}}
+Algoritmul de Regresie Logistica este un algoritm de invatare supervizata care are ca scop prezicerea probabilitatii ca un element sa apartina unei clase.\\
+Modul de functionare este urmatorul: acest algoritm foloseste o functie speciala, numita functia sigmoid. Aceasta este o functie non-liniara care are ca scop transformarea output-ului modelului de regresie logistica intr-o probabilitate. Aceasta functie este aleasa in detrimentul altor functii deoarece este stabila, mai usor de interpretat si mult mai comuna. \\
+Alta functie utilizata este functia de log-verosimilitate. Aceasta are rolul de a maximiza scorul. Aceasta functie trateaza fiecare instanta din setul de date, comportandu-se diferit doar atunci cand output-ul difera. In aceasta formula intervine termenul de bias care este o valoare constanta(de obicei 1) care se aduna. Vectorul gradient, alta componenta importanta in aplicarea algoritmului, arata directia in care creste functia de log-verosimilitate. Acest vector are cardinalul egal cu numarul de instante din setul de date. Poate fi calculat ca fiind derivata partiala a functiei de log-verosimilitate in raport cu w. Matricea Hessiana este o matrice care contine derivatele de ordin doi si pe care se pot aplica alte metode de optimizare. \\
+Odata ce functia de log-verosimilitate, vectorul gradient si matricea Hessiana au fost determinate, se pot face predictii pentru alte seturi noi de date. Pentru acest lucru, se initializeaza n ponderi cu 0, unde n reprezinta numarul de instante din setul de date, apoi folosindu-ne de valorile din vectorul gradient si una dintre metoda gradientului ascendent sau descendent, se poate aplica formula pentru a face predictia. Formula se aplica pana la convergenta. Valorile din noul vector obtinut dupa aplicarea formulei sunt inmultite cu valorile instantei ce se doreste a fi clasificata, apoi toate aceste produse sunt adunate. Daca suma reprezinta un numar negativ, atunci algoritmul va produce output-ul 0, iar daca suma este reprezentata de un numar pozitiv, output-ul produs de regresia logistica va fi 1.\\ \\
+
+In prima parte a fisierului HTML corespunzator acestui algoritm sunt prezentati pasii de executie ai algoritmului (Figura 52). 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.2\textheight]{images/52.png}
+    \caption{Regresia Logistica- modul de executie }
+    \label{fig:eticheta_imagine}
+\end{figure}
+Acestia sunt pasii elementari pe care algoritmul de regresie logistica ii aplica in oferirea raspunsului final. A fost prezentata ideea de baza a algoritmului insotita de pasii de rulare enumerati in patru idei simple. 
+
+\clearpage
+Ca si la algoritmii precedenti, si la acest algoritm s-au pus in evidenta cateva versete care au o legatura cu modul algoritmului de a functiona (Figura 53). Acestea au rolul de a oferi o asemanare intre cele doua oferind si o interpretare a versetului respectiv dar lasand si utilizatorul sa vina cu propria interpretare. Acestea au fost adaugate cu scopul de a adauga aplicatiei un strop de originalitate si pentru a se diferentia de alte aplicatii care ofera informatii despre algoritmii de Machine Learning. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.3\textheight]{images/53.png}
+    \caption{Regresia Logistica- modul de executie }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+In penultima sectiune a paginii (Figura 54) se afla termeni importanti folositi atunci cand se aplica acest algoritm. Acesti termeni au fost explicati pe cat de simplu posibil si intr-un mod putin mai informal. Printre termenii explicati se regasesc functia sigmoid, bias-ul, gradientul descendent sau overfitting-ul. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.3\textheight]{images/54.png}
+    \caption{Regresia Logistica- termeni importanti }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Acesti termeni au un rol foarte important, necunoasterea lor duce la confuzii si neintelegeri in explicatiile oferite mai tarziu de aceasta aplicatie web. 
+
+\clearpage
+
+In ultima sectiune a paginii (Figura 55), este oferit un set de date ca exemplu. Setul de date este preluat din cartea "Exercitii de invatare automata" scrisa de Dr. Liviu Ciortuz. Acesta se poate folosi de utilizator pentru a vedea cum ruleaza algoritmul.\\ 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.3\textheight]{images/55.png}
+    \caption{Regresia Logistica- dataset oferit ca exemplu }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Dupa ce utilizatorul a parcurs pagina cu informatii teoretice, poate trece la pagina urmatoare. Acest lucru se face prin apasarea butonului "exemplu practic" care il va conduce catre o noua pagina unde va trebui sa ofere anumite informatii. Aici va trebui sa completeze doua chenare ce reprezinta numarul de linii si de coloane din tabelul ce il va da mai tarziu ca input.\\ In momentul in care completeaza aceste date, ele vor fi trimise catre backend si memorate in doua variabile separate. Din acest punct, utilizatorului ii va fi dat un nou tabel de completat, anume cel cu setul de date (Figura 56). Aici va avea la dispozitie n linii si m+1 coloane, cele m coloane fiind acordate variabilelor x iar ultima coloana variabilei y care are valoarea 0 sau 1. Dupa ce completeaza acest tabel, datele vor fi preluate de backend care le va memora in liste separate.  \\
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.15\textheight]{images/56.png}
+    \caption{Regresia Logistica- dataset oferit ca input }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+
+\clearpage
+Din acest punct, datele incep sa fie prelucrate. Tot in acelasi timp pe frontend incep sa apara informatii precum formule, notatii si explicatii. \\
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.25\textheight]{images/57.png}
+    \caption{Regresia Logistica- informatii scrise in HTML }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Formulele sunt scrise si prelucrate in HTML cu ajutorul librariei mathjax, o librarie care permite afisarea in pagina de simboluri si notatii matematice (Figura 57). Aceste informatii incep sa apara in pagina (Figura 58) odata cu prelucrarea datelor pe backend. Pana cand nu se incepe prelucrarea datelor si primele date modelate nu sunt trimise de backend, in pagina nu se va afisa absolut nimic, nici formula matematica care nu depinde la nivel teoretic de natura datelor. \\
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.25\textheight]{images/58.png}
+    \caption{Regresia Logistica- informatii afisate in pagina }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Pe pagina vor aparea informatii precum formule corespunzatoare functiei de log-verosimilitate, a vectorului gradient, a functiei de cost sau pentru matricea Hessiana. Pe langa formule, se va explica cum aceste formule se aplica pe fiecare linie din setul de date si care este rezultatul final. 
+
+\newpage
+\subsection*{\texorpdfstring{\textbullet\ Algoritmii Bayes Naiv si Bayes Optimal}{Algoritmii Bayes Naiv si Bayes Optimal}}
+Algoritmii Bayes Naiv si Bayes Optimal sunt doi algoritmi de invatare automata de clasificare care se bazeaza pe probabilitati in oferirea unui raspuns.\\
+In cazul algoritmului Bayes Naiv se foloseste Teorema lui Bayes si se face presupunerea ca toate atributele sunt independente intre ele, avand rolul de a simplifica cat mai mult si de a face calculul unul cat mai simplu. In schimb, in cazul algoritmului Bayes Optimal, acesta ia in calcul absolut toate probabilitatile pentru a oferi un rezultat cat mai precis. Din punct de vedere al corectitudinii si acuratetii, Bayes Optimal este cel mai bun. Dar din punct de vedere al complexitatii, Bayes Naiv este preferat in detrimentul acestuia. \\
+In cazul celor doi algoritmi, odata ce probabilitatile au fost calculate, se poate incepe determinarea predictiei pentru o instanta ce se doreste a fi clasificata. Se calculeaza doua probabilitati, una cand noua instanta ar apartine clasei 0 si inca o probabilitate atunci cand noua instanta ar apartine clasei 1. Daca una dintre clase are o probabilitate mai mare decat cealalta, atunci aceasta clasa va oferi output-ul algoritmului, adica in ce clasa poate fi incadrata noua instanta. Cateodata, din cauza setului de date, se intampla ca ambele probabilitati sa fie egale. In acest caz algoritmul nu poate decide daca noua instanta apartine clasei 0 sau 1. Pentru a rezolva aceasta problema se foloseste o metoda numita Laplace. Aceasta metoda adauga constanta 1 la numarator si mai aduna o constanta la numitorul fractiei, constanta care reprezinta numarul total de valori posibile pentru acea variabila. Cu ajutorul acestei metode este evitat cazul in care avem doua probabilitati egale si algoritmul nu poate decide carei clase apartine instanta ce se vrea a fi clasificata. Tot cu aceasta metoda este evitat si cazul in care in calculul probabilitatilor se poate ajunge ca una dintre ele sa fie 0. \\
+In cazul celor doi algoritmi difera doar modul in care sunt calculate probabilitatile. Dezavantajul major al algoritmului Bayes Naiv este ca de cele mai multe ori presupunerea de independenta conditionata este falsa, asta ducand la rezultate imprecise si o acuratete mai slaba decat a altor algoritmi de clasificare utilizati in machine learning. In schimb, acest algoritm compenseaza cu rapiditatea si usurinta calculelor. Algoritmul Bayes Optimal are ca dezavantaj spatiul de memorie pe care il foloseste deoarece ia in calcul toate probabilitatile, el neluand in calcul presupunerea independentei conditionate intre variabile. Cu toate ca ofera rezultate mult mai precise, in practica nu este preferat din cauza resurselor utilizate. \\ \\
+
+Ca si in cazul algoritmilor precedenti, paginile HTML ale celor doi algoritmi au ca prima sectiune o parte unde algoritmul este explicat pe scurt. Este prezentata ideea principala a algoritmului insotita de pasii de rulare enumerati pe scurt. \\
+Ca si la ceilalti algoritmi, si la acesti doi algoritmi au fost adaugate versete biblice insotite de interpretare dar care lasa loc si interpretarilor utilizatorului. Acestea au rolul de a ajuta persoana care doreste sa invete din aceasta aplicatie sa retina mai usor, de a oferi un prilej ca utilizatorul sa isi readuca aminte mai bine si mai repede anumite informatii. Acestea au scop educational si faciliteaza invatarea si memorarea mai simpla, dar care vrea sa ocoleasca memorarea fortata(robotica). Ambele pagini dedicate acestor algoritmi ofera explicatii pentru cuvinte cheie, termeni importanti, fara de care explicarea iteratiilor algoritmilor ar fi una destul de dificila. 
+
+\clearpage
+In momentul in care utilizatorul a parcurs aparatul teoretic si il stapanaeste, poate trece la pagina urmatoare, cea dedicata preluarii de date, aplicarea algoritmului si oferirea de informatii si explicatii.\\
+Pe noua pagina (Figura 59) unde va fi redirectionat va trebui sa asigneze variabilelor n si m doua valori. Variabila n reprezinta cate linii va avea tabelul iar variabila m ne spune cate coloane. Dupa ce aceste date au fost introduse, ele sunt trimise catre backend unde sunt memorate in doua variabile diferite. Urmeaza ca utilizatorul sa completeze un nou tabel, de dimensiune n*m. Pe langa aceste date, mai trebuie completate si informatii despre instanta ce se doreste a fi clasificata. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.22\textheight]{images/59.png}
+    \caption{Bayes Naiv si Bayes Optimal- set de date oferit ca input }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Din moment ce toate datele au fost introduse, ele vor fi trimise catre backend. Aici sunt memorate si prelucrate in variabile diferite. Se folosesc cat mai multe liste in care se memoreaza diferite etape ale calculelor care mai apoi sunt trimise pe frontend. Aici sunt parcurse cu ajutorul instructiunilor repetitive si afisate in pagina. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.35\textheight]{images/60.png}
+    \caption{Bayes Naiv si Bayes Optimal- explicatii oferite in pagina }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+
+\newpage
+\section*{7. Interfata cu utilizatorul \\} 
+\addcontentsline{toc}{section}{Interfata cu utilizatorul} 
+\setcounter{section}{1}
+\subsection*{\texorpdfstring{\textbullet\ Prezentarea UI}{Prezentarea UI}}
+
+Interfata grafica este una dintre cele mai importante lucruri atunci cand vorbim de o pagina web. Chiar daca pagina are o functionalitate foarte buna, o acuratete si performanta ridicata, ofera intr-un timp foarte scurt informatiile necesare, dar daca informatiile sunt doat simplu afisate, aranjate intr-un mod dezordonat si doar scris alb pe negru nu va atrage prea multa lume. \\
+In contextul acestei aplicatii, tot ce tine de interfata grafica a putut fi creat cu ajutorul limbajului CSS (Cascade Style Sheets). Aceste este cel care a oferit culoare, dimensiune, aranjare in pagina a obiectelor, oferirea unor forme frumoase ale tabelelor sau crearea de animatii pe butoane. \\
+Ca si tema de fundal s-a optat folosirea unui gradient (Figura 61). Gradientul este o combinatie de culori specificate de programator care sunt imbinate intr-un mod placut. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.17\textheight]{images/61.png}
+    \caption{Interfata grafica- gradient}
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Gradientul are mai multe functionalitati, precum cea de a inclina culorile intr-un anumit unghi sau cea care da senzatia ca gradientul se misca. Senzatia de miscare este creata in felul urmator: se creeaza un gradient care este mult mai mare decat dimensiunea ecranului, de regula de trei sau patru ori mai mare, dupa care elementul pe care se doreste sa se aplice gradientul este fixat iar in spatele acestuia gradientul executa o miscare in functie de unghiul specificat. In paginile unde trebuie introduse date despre setul de date ce urmeaza sa fie introdus se poate vedea mai bine cum apare efectul de gradient miscator. \\
+Toate butoanele din aplicatie, cele care duc catre pagina cu notiuni teoretice, cel de schimbare a temei, cel care trimite utilizatorul catre pagina cu exemplul practic sau pagina Home, au animatii. Butoanele (Figura 62) sunt rotunjite la colturi si au efectul de hover, adica atunci cand cursorul mouse-ului este dus pe butonul respectiv, acesta ori isi schimba culoarea ori dimensiunea. \\
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth, height=0.1\textheight]{images/62.png}
+    \caption{Interfata grafica- butoane }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+\clearpage
+\subsection*{\texorpdfstring{\textbullet\ Explicarea functionalitatilor interactive}{Explicarea functionalitatilor interactive}}
+
+Printre functionalitatile interactive ale acestei pagini se regasesc efectul de gradient miscator, efectul de hover la butoane si butonul de schimbare a temei. Primul a fost explicat la pasul anterior. Efectul de hover se realizeaza prin adaugarea unui tag atributului pe care dorim sa il stilizam. Apoi, in pagina CSS de care este legata pagina HTML, se adauga efectul de hover (Figura 63) atributului prin specificarea tag-ului, procesul fiind unul foarte simplu.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth, height=0.11\textheight]{images/63.png}
+    \caption{Interfata grafica- efectul hover }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Una dintre functionalitatile care au adus o imbunatatire destul de placuta pe partea grafica este adaugarea unui buton cu ajutorul caruia utilizatorul poate schimba tema aplicatiei. In fisierul CSS asociat paginii respective este creat un template care doar ofera paginii o aranjare placuta a cuvintelor, tabelelor si butoanlor. Pe langa acest template mai sunt adaugate cateva cazuri care cuprind atribute ce determina o anumita culoare. Utilizatorul are la alegere intre mai multe teme, teme de fundal ce sunt memorate intr-o lista. In momentul intrarii pe pagina, tema de fundal va fi mereu prima din lista. In momentul in care butonul de schimbare a temei este apasat, indexul este crescut cu o unitate, trecand la urmatoarea tema. Acest lucru este facut cu ajutorul unui script scris in JavaScript si integrat in codul HTML. Astfel, utilizatorului ii sunt puse la dispozitie mai multe teme la alegere. In mod implicit, tema aplicatiei este una mai intunecata, scopul fiind de a nu oferi un disconfort ochilor din cauza luminii prea puternice. Daca se prefera o tema mai luminoasa, se poate schimba foatre usor intr-o tema cu imagini deschise si cu mult alb (Figura 64).
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth, height=0.31\textheight]{images/64.png}
+    \caption{Interfata grafica- efectul hover }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+\newpage
+\section*{8. Testare si validare \\} 
+\addcontentsline{toc}{section}{Testare si validare} 
+\setcounter{section}{1}
+\subsection*{\texorpdfstring{\textbullet\ Modul de testare a aplicatiei}{Modul de testare a aplicatiei}}
+
+Pe parcursul dezvoltarii acestei aplicatii a fost necesara si faza de testare si validare a codului. Aceasta faza s-a desfasurat in mai multe etape:\\
+-Testarea functionala: Functiile care au ajutat in procesul de prelucrare al datelor au fost testate separat. Unul dintre cazuri este testarea la algoritmul k-NN a functiei de calculare a distantei. Aceasta functie primea patru parametri, primii doi reprezentant coordonatele primului punct iar ultimele doua corespunzatoare celui de-al doilea punct. Separat, pe o foaie, s-au luat mai multe cazuri, adica mai multe combinatii de coordonate de diferite dimensiuni si semn, si s-a aplicat formula. In cele ce a urmat, s-a verificat daca rezultatele de pe foaie coincid cu cele oferite de functia scrisa in Python.\\
+-Testare de compatibilitare: Aplicatia a fost testata daca e compatibila pe mai multe sisteme de operare. Mai intai, codul a fost incarcat pe Github iar link-ul aferent acestui repository a fost adaugat pe Render. Pe aceasta platforma s-a putut hosta aplicatia pe web, astfel incat sa aiba cat mai multa lume acces la ea. Din momentul in care s-a terminat procesul de deployment, aplicatia a putut fi testata de pe telefon cu sistemul de operare Android si de pe laptopuri cu sistemele de operare Windows si Linux.\\
+-Testare de interfata: Etapa de creare a interfetei grafice a fost lasata la urma. Dupa ce a fost scris codul CSS corespunzator fisierelor HTML, s-a verificat daca aplicatia ofera interfata dorita. Au fost necesare unele modificari din anumite cauze precum culoarea anumitor zone sau obiecte care nu se potrivea cu fundalul, asezarea in pagina a anumitor elemente, unele pasaje de text erau prea ingramadite sau aplicatia nu oferea efectul de responsiveness.\\ \\
+In procesul de testare si intalnire a anumitor bug-uri si erori, au fost necesare cateva actiuni precum modificarea integrala a unei bucati mari de cod, renuntarea la anumite obiective din realizarea aplicatiei sau memorarea de cod din diferite stari ale evolutiei sale. \\
+
+\subsection*{\texorpdfstring{\textbullet\ Testarea rezultatelor algoritmilor}{Testarea rezultatelor algoritmilor}}
+
+De fiecare data ce o functionalitate noua era introdusa sau un algoritm era gata de implementat, a fost necesara testarea corectitudinii codului ce a fost implementat. Prima data am testat algoritmii oferind seturi mici de date pe care am aplicat algoritmul pe hartie. Au aparut si situatii in care rezultatele nu coincideau si a fost necesara revizuirea codului si a logicii implementarii. Dupa ce algoritmul a oferit rezultatul asteptat pe seturi mici de date, am trecut si la seturi de date mai mari. Aceste seturi au fost preluate din carti de specialitate precum cartea "Exercitii de invatare automata" scrisa de Dr. Liviu Ciortuz sau din cartea "Machine Learning" scrisa de Tom Mitchell.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth, height=0.31\textheight]{images/65.png}
+    \caption{Set de date pentru testare }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+\newpage
+In figura 65 este un set de date preluat din cartea "Exercitii de invatare automata" de Dr. Liviu Ciortuz de la sectiunea "Algoritmul AdaBoost", iar al doilea dataset (Figura 66) este din cartea "Machine Learning" de Tom Mitchell de la sectiunea "Retele neuronale".
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth, height=0.31\textheight]{images/66.png}
+    \caption{Set de date pentru testare }
+    \label{fig:eticheta_imagine}
+\end{figure}
+
+Primul set de date a fost folosit de multe ori in testarea corectitudinii algoritmului implementat de mine, verificand rezultatele din carte cu cele oferite de programul meu. Pe prima pagina, pagina Home, la sectiunea "Resusrse utile" este oferit un link catre o pagina numita Kaggle, pagina pe care se pot gasi seturi de date mult mai mari si consistente. Pe acest site se pot gasi date reale precum date despre boli medicale, informatii despre automobile sau despre social-media.
+
+\newpage
+\section*{9. Concluzii si directii viitoare \\} 
+\addcontentsline{toc}{section}{Concluzii si directii viitoare} 
+\setcounter{section}{1}
+\subsection*{\texorpdfstring{\textbullet\ Ce am invatat din proiect, ce poate fi imbunatatit si propuneri pentru extindere}{Ce am invatat din proiect, ce poate fi imbunatatit si propuneri pentru extindere}}
+Lucrul cel mai important din acest proiect pe care l-am invatat a fost cum sa imi gestionez timpul. Este important ca in dezvoltarea unui proiect de dimensiuni mai mari cum este acesta, sa se imparta task-urile in subtask-uri care sa fie rezolvate zilnic. Cu cat de mult se amana mai mult finalizarea unui task, cu atat apar si unele probleme si erori in cod datorate presiunii de a termina ceva inceput cat mai repede. Am invatat ca scrierea de cod insotita de mici pauze ajuta mult iar lucrarea zilnica la proiect ajuta deoarece esti "tinut in priza" cu proiectul. Amanarea unei bucati de cod sa fie terminata in alta zi este o problema mare din cauza faptului ca se pot uita anumite detalii ce nesesita sa fie implementate sau se pierde timp in a intelege ce a fost scris pana in un moment dat.\\
+De asemenea, am reusit sa invat sa lucrez cu un framework nou si sa fac o pagina web sa raspunda in mod dinamic in functie de anumiti parametri. Am mai invatat cum se creeaza grafice cu ajutorul unor librarii, iar la nivel teoretic mi-am imbunatatit cunostiintele despre algoritmii de Machine Learning si mi-am fixat anumiti termeni importanti si cuvinte cheie. Una dintre marile provocari a fost host-area aplicatiei pe web, din care am invatat cum o aplicatie ajunge sa fie publicat pe internet. \\
+Aplicatia nu este perfecta, ea putand fi imbunatatita in multe moduri. Eu as imbunatati modul in care unele iteratii ale algoritmilor sunt explicate, adaugarea de informatii suplimentare acolo unde nu sunt de ajuns sau modul de afisare in pagina. Pe partea de cod, o imbunatatire majora ar fi adusa de fragmentarea codului de pe backend, fiecarui algoritm sa ii fie dedicata o pagina speciala unde poate fi scris cod Python si chiar intretinut, imbunatatit si scalat. \\
+Ca si propuneri pentru extindere, eu consider ca adaugarea si altor algoritmi decat cei prezentati ar fi o imbunatatire majora. Adaugarea unor pagini interactive unde utilizatorii pot completa rebusuri cu cuvinte cheie utilizate in acest domeniu al informaticii sau pagini cu lucruri interesante din viata de zi cu zi in care acesti algoritmi si-au pus amprenta. O alta imbunatatire ar fi aceea de a memora seturile de date introduse de utilizatori intr-o baza de date ca pe urma cand alti utilizatori vor sa completeze cu un set de date pe care sa se aplice unul dintre algoritmi, el sa primeasca o sugestie de dataset bazat pe cel al celorlalti utilizatori. S-ar mai putea adauga si imagini cu animatii din care sa se vada cum se misca punctele de la o iteratie la alta sau diferenta intre iteratii. Pentru cei care doresc sa faca mai multe lucruri in acelasi timp, s-ar putea adauga o functie care citeste textul de pe paginile cu notiuni teoretice. Nu este recomandata aceasta functie deoarece unii utilizatori nu ar fi atenti, dar este o functie care ar aduce o noutate paginii si poate un moment de amuzament. \\
+Din punctul meu de vedere, dezvoltarea acestei aplicatii m-a ajutat mult deoarece am invatat lucruri utile, notiuni teoretice si modul de lucru cu diferite unelte din domeniul programarii. Cu toate ca nu este perfecta si i se mai pot aduce imbunatatiri, este o aplicatie de care sunt multumit deoarece lipsa intr-o companie la o aplicatie de acest nivel s-a simtit. Este o aplicatie de care imi voi aduce aminte cu drag si pe care o voi adauga in CV-ul de angajare. 
+
+
+\newpage
+\section*{10. Bibliografie \\} 
+\addcontentsline{toc}{section}{Bibliografie} 
+\setcounter{section}{1}
+\subsection*{\texorpdfstring{\textbullet\ Carti, cursuri, articole online, tutoriale}{Carti, cursuri, articole online, tutoriale}}
+
+\begin{itemize}
+\item \url{https://www.bibliaortodoxa.ro/}
+    \item \url{https://ro.wikipedia.org/wiki/Învățare_automată}
+    \item \url{https://www.sap.com/romania/products/artificial-intelligence/what-is-machine-learning.html}
+    \item \url{https://en.wikipedia.org/wiki/Reinforcement_learning}
+    
+    \item \url{https://ro.wikipedia.org/wiki/%C3%8Env%C4%83%C8%9Bare_automat%C4%83}
+
+    \item \url{https://www.almabetter.com/bytes/tutorials/data-science/adaboost-algorithm}
+
+    \item \url{https://lazyprogrammer.me/mlcompendium/ensemble/adaboost.html}
+
+    \item \url{https://en.wikipedia.org/wiki/Entropy_(information_theory)}
+
+    \item \url{https://www.researchgate.net/figure/Advantages-and-disadvantages-of-the-ID3-C45-CART-PCC-Tree-DR-and-FWDT-decision-tree_tbl1_374795587}
+
+    \item \url{https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm}
+
+    \item \url{https://keylabs.ai/blog/k-nearest-neighbors-knn-real-world-applications/}
+
+    \item \url{    https://en.wikipedia.org/wiki/Elbow_method_(clustering)}
+
+ \item \url{https://developers.google.com/machine-learning/clustering/kmeans/advantages-disadvantages}
+
+  \item \url{https://towardsdatascience.com/three-versions-of-k-means-cf939b65f4ea/}
+
+   \item \url{https://medium.com/@karan.kamat1406/how-logistic-regression-works-the-sigmoid-function-and-maximum-likelihood-36cf7cec1f46}
+
+    \item \url{https://www.geeksforgeeks.org/advantages-and-disadvantages-of-logistic-regression/}
+
+     \item \url{https://www.geeksforgeeks.org/python/flask-tutorial/}
+
+      \item \url{https://doxologia.ro/biblia-ortodoxa}
+
+      \item \url{https://biblia.resursecrestine.ro/?gad_source=1&gad_campaignid=895007671&gbraid=0AAAAADJNkXJbvJXO54ZX02jGmq3EFWcOQ&gclid=Cj0KCQjwgvnCBhCqARIsADBLZoI9nLMmvo0urSjokn7qEirADnktCHwUMnbC6Gvd5-Qt_-OFpq5UTokaAoKpEALw_wcBhttps://www.crestinortodox.ro/dogmatica/dogma/interpretarea-sfintei-scripturi-68921.html}
+
+      \item \url{https://www.crestinortodox.ro/dogmatica/dogma/interpretarea-sfintei-scripturi-68921.html}
+
+      \item \url{http://www.softwaretesting.ro/Romana/Files/TestMethods/Software%20Testing%20Methods.html}
+
+      \item \url{https://blogdeit.ro/7-idei-pentru-un-cod-de-testare-automata-eficient/}
+
+    \item \url{https://uncoded.ro/testarea-automata-a-codului-in-aplicatii-python/}
+    
+    \item \url{https://www.zaptest.com/ro/ce-este-testarea-functionala-tipuri-exemple-lista-de-verificare-si-implementare}
+    
+    \item \url{https://www.geeksforgeeks.org/python/how-to-use-css-in-python-flask/}
+    
+    \item \url{https://stackoverflow.com/questions/22259847/application-not-picking-up-css-file-flask-python}
+    
+    \item \url{https://flask.palletsprojects.com/en/stable/tutorial/static/}
+    
+    \item \url{https://pythonhow.com/python-tutorial/flask/Adding-CSS-styling-to-your-website/}
+    
+    \item \url{https://medium.com/an-idea/beautify-flask-web-app-using-css-html-d574332f710f}
+
+     \item \url{https://blogdeit.ro/7-idei-pentru-un-cod\allowbreak -de-testare\allowbreak -automata-eficient/}
+
+    
+    \item \url{https://pythonhow.com/python-tutorial/flask/HTML-templates-in-flask/}
+
+ \item \url{https://stackoverflow.com/questions/74962606/how-to-use-flask-for-rendering-html-files}
+
+  \item \url{https://www.geeksforgeeks.org/python/flask-rendering-templates/}
+
+   \item \url{https://matplotlib.org/}
+
+    \item \url{https://www.w3schools.com/python/matplotlib_intro.asp}
+
+     \item \url{https://matplotlib.org/stable/gallery/user_interfaces/web_application_server_sgskip.html}
+
+      \item \url{https://www.geeksforgeeks.org/python/create-scatter-charts-in-matplotlib-using-flask/}
+\newpage
+\thispagestyle{empty}
+\null
+\newpage
+
+
+\end{itemize}
+
+
+\end{document}
+`
